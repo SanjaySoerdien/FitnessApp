@@ -10,6 +10,5 @@ namespace FitnessWebAppModels
         private string name;
         private string muscleGroup;
         private List<Comment> comments = new List<Comment>();
-
     }
 }

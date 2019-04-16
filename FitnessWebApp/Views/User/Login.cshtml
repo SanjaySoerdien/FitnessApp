@@ -1,14 +1,24 @@
-﻿
+﻿@model FitnessWebAppModels.User
 @{
     ViewData["Title"] = "Login";
 }
 
 <h2>Login</h2>
-<div class="form-group">
-    <label for="usr">Name:</label>
-    <input type="text" class="form-control" id="usr">
-</div>
-<div class="form-group col">
-    <label for="pwd">Password:</label>
-    <input type="password" class="form-control" id="pwd" size="20px"> 
+<div class="row">
+    <div class="col-lg-12">
+        <form class="login-form validate-form" asp-action="Login">
+            <div class="input-group-addon validate-input" data-validate="Enter username">
+                <input type="text" asp-for="Username" name="Username" placeholder="Gebruikersnaam">
+            </div>
+
+            <div data-validate="Enter password">
+                <input  type="password" asp-for="Password" name="Password" placeholder="Wachtwoord">
+            </div>
+            <div class="container-login100-form-btn">
+                <input type="submit" class="login100-form-btn" value="Login" />
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-12">
+    </div>
 </div>

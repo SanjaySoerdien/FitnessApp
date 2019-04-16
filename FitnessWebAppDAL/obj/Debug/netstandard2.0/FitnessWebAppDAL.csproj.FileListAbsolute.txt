@@ -37,3 +37,17 @@ C:\Users\sanja\Desktop\FitnessWebApp\FitnessWebApp\FitnessWebAppDAL\bin\Debug\ne
 C:\Users\sanja\Desktop\FitnessWebApp\FitnessWebApp\FitnessWebAppDAL\bin\Debug\netstandard2.0\FitnessWebAppInterfaces.pdb
 C:\Users\sanja\Desktop\FitnessWebApp\FitnessWebApp\FitnessWebAppDAL\bin\Debug\netstandard2.0\FitnessWebAppModels.pdb
 C:\Users\sanja\Desktop\FitnessWebApp\FitnessWebApp\FitnessWebAppDAL\obj\Debug\netstandard2.0\FitnessWebAppDAL.csproj.CopyComplete
+D:\Sanjay\Software\FitnessApp\FitnessWebAppDAL\obj\Debug\netstandard2.0\FitnessWebAppDAL.csprojAssemblyReference.cache
+D:\Sanjay\Software\FitnessApp\FitnessWebAppDAL\obj\Debug\netstandard2.0\FitnessWebAppDAL.csproj.CoreCompileInputs.cache
+D:\Sanjay\Software\FitnessApp\FitnessWebAppDAL\obj\Debug\netstandard2.0\FitnessWebAppDAL.AssemblyInfoInputs.cache
+D:\Sanjay\Software\FitnessApp\FitnessWebAppDAL\obj\Debug\netstandard2.0\FitnessWebAppDAL.AssemblyInfo.cs
+D:\Sanjay\Software\FitnessApp\FitnessWebAppDAL\obj\Debug\netstandard2.0\FitnessWebAppDAL.dll
+D:\Sanjay\Software\FitnessApp\FitnessWebAppDAL\obj\Debug\netstandard2.0\FitnessWebAppDAL.pdb
+D:\Sanjay\Software\FitnessApp\FitnessWebAppDAL\bin\Debug\netstandard2.0\FitnessWebAppDAL.deps.json
+D:\Sanjay\Software\FitnessApp\FitnessWebAppDAL\bin\Debug\netstandard2.0\FitnessWebAppDAL.dll
+D:\Sanjay\Software\FitnessApp\FitnessWebAppDAL\bin\Debug\netstandard2.0\FitnessWebAppDAL.pdb
+D:\Sanjay\Software\FitnessApp\FitnessWebAppDAL\bin\Debug\netstandard2.0\FitnessWebAppInterfaces.dll
+D:\Sanjay\Software\FitnessApp\FitnessWebAppDAL\bin\Debug\netstandard2.0\FitnessWebAppModels.dll
+D:\Sanjay\Software\FitnessApp\FitnessWebAppDAL\bin\Debug\netstandard2.0\FitnessWebAppInterfaces.pdb
+D:\Sanjay\Software\FitnessApp\FitnessWebAppDAL\bin\Debug\netstandard2.0\FitnessWebAppModels.pdb
+D:\Sanjay\Software\FitnessApp\FitnessWebAppDAL\obj\Debug\netstandard2.0\FitnessWebAppDAL.csproj.CopyComplete

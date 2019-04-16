@@ -4621,7 +4621,8 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "FitnessWebAppInterfaces": "1.0.0",
-          "FitnessWebAppModels": "1.0.0"
+          "FitnessWebAppModels": "1.0.0",
+          "System.Data.SqlClient": "4.3.0"
         },
         "compile": {
           "bin/placeholder/FitnessWebAppDAL.dll": {}
@@ -4661,6 +4662,9 @@
       "FitnessWebAppModels/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "System.ComponentModel.Annotations": "4.3.0"
+        },
         "compile": {
           "bin/placeholder/FitnessWebAppModels.dll": {}
         },
@@ -7271,7 +7275,7 @@
       ]
     },
     "Microsoft.VisualStudio.Web.CodeGeneration/2.1.1": {
-      "sha512": "T261YUlVUH1nINaPN7odLnV/Qx3nNXaM+ZqOfMRy+W9uP4ZmaDPMGIjzxzauKYF/Td0zBZx8VzUOW+QBOFq84g==",
+      "sha512": "xvNRQmZOYfuReVC9trT8sTYVRm7yJzI5z1YZ4iO6Im/EWOWoqqLNoYG0sY8EHnp4DOtioGJ/hmJ+ksqaJN8aBA==",
       "type": "package",
       "path": "microsoft.visualstudio.web.codegeneration/2.1.1",
       "files": [
@@ -7284,7 +7288,7 @@
       ]
     },
     "Microsoft.VisualStudio.Web.CodeGeneration.Contracts/2.1.1": {
-      "sha512": "a42G/myvJTNq2D0aS/ryYR614V0RLlqNCv/pIQ+vrR96LlXhVo96n5xOrtGDWebfkMgFWlU+Bg0Wrks/pNXNZQ==",
+      "sha512": "Su++Q22kR3EaWmg7flhuAX0xZFPVL4z99HYc9CNQZksi4L/lCzxyIRXJUV3qTEyyX8wkl6sx3RDVUcYcBTdjlg==",
       "type": "package",
       "path": "microsoft.visualstudio.web.codegeneration.contracts/2.1.1",
       "files": [
@@ -7297,7 +7301,7 @@
       ]
     },
     "Microsoft.VisualStudio.Web.CodeGeneration.Core/2.1.1": {
-      "sha512": "8RlWoUsGqK/fxqQTIgFizBYJinUpVSkrNax1tKugqahYNtUsdhJlRYj/y5fRl+bdNzoMKnbz/9iRwU01oSBe8g==",
+      "sha512": "uIhfMpJOjQi/fBtKglWDP8lSuiX5AOQwomCS6hZ37EzKB5tMnaH+Z7DbkEFoZLaGcLDaskoOJ0nhIjA9A2i0Rg==",
       "type": "package",
       "path": "microsoft.visualstudio.web.codegeneration.core/2.1.1",
       "files": [
@@ -7310,7 +7314,7 @@
       ]
     },
     "Microsoft.VisualStudio.Web.CodeGeneration.Design/2.1.1": {
-      "sha512": "ubJdwxSYJlvZsS3Ae7AKtAS5d1TjAO9+4GBTuyX13O/ek7INPJxqLLYGuD5TIvk6UQl0tHA1tvq+QrtjRCkLuA==",
+      "sha512": "d4xk6rWvW9HR2/QdwQ7OfrbmQcMi4EE3IlZT3JwfIRFdbtCXDFz+PCjs/qomLC+d+vlEXZuPvneX+G5FF9d1MA==",
       "type": "package",
       "path": "microsoft.visualstudio.web.codegeneration.design/2.1.1",
       "files": [
@@ -7333,7 +7337,7 @@
       ]
     },
     "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore/2.1.1": {
-      "sha512": "HvhP/iwUa9Y7ArQ0xIWOEp8HFz7si5EEC6r1WdpQSWr/l9iilNKnPzpmb4gb8SbmJAZ7Qt9nHEmHPH6+xbDVwg==",
+      "sha512": "03wiQubZKezzT5OKgnExDOnzrtn/TQG4QDQfOJI524yZ2CCC/h4PxtPmO5FDH7x1qP/99EXLaZYojE9fZ7u9Yw==",
       "type": "package",
       "path": "microsoft.visualstudio.web.codegeneration.entityframeworkcore/2.1.1",
       "files": [
@@ -7347,7 +7351,7 @@
       ]
     },
     "Microsoft.VisualStudio.Web.CodeGeneration.Templating/2.1.1": {
-      "sha512": "PTJYeSfXooNP77z2cpfo8TgCWE2G17qnpJ7c2GSREdJt65PBjA5/kuw2LMUIDGN+XbTDNREYwj0956Kp76+xyA==",
+      "sha512": "8rubHXs2ufTJ205H2c9aSga/X8ToURtGguISBHEGkAcz/1Qp922jAaGvGvvJNhoXiBg/9K5VupkfkJDvnhN3/Q==",
       "type": "package",
       "path": "microsoft.visualstudio.web.codegeneration.templating/2.1.1",
       "files": [
@@ -7360,7 +7364,7 @@
       ]
     },
     "Microsoft.VisualStudio.Web.CodeGeneration.Utils/2.1.1": {
-      "sha512": "2CyDpIyKv/Ehoc5ds7tAMnVljAR9a+rKXKQ7WrWQ70/SXwrvlgFPklh+5GYeUJViNCVIoQO0aSi/oiixdTFdKw==",
+      "sha512": "MRtBhRi0CQ36yi9r08l/j7I24a2bfiAW9N6fSq69M5mZFw1vjijPaM2NPokWv9hqT0aUCLNKCX7A6E20XgYE1w==",
       "type": "package",
       "path": "microsoft.visualstudio.web.codegeneration.utils/2.1.1",
       "files": [
@@ -7373,7 +7377,7 @@
       ]
     },
     "Microsoft.VisualStudio.Web.CodeGenerators.Mvc/2.1.1": {
-      "sha512": "SOOsomV+rRKH9BrAK3IDs6NMT9qkpWqllF5nnd9meZsa7o7oFbJsX4hlJQaKAUgD7ACawgDfwPLNJehz7Ge2KQ==",
+      "sha512": "LhsJrKf4fMqOyaVqAexbpkR6GmHDuVeek+s1NFGwFYFZAgSbnLmBt8DIw41zGbEXO/GYiPLTOTA7F1fJknsf6g==",
       "type": "package",
       "path": "microsoft.visualstudio.web.codegenerators.mvc/2.1.1",
       "files": [
@@ -7865,7 +7869,7 @@
       ]
     },
     "runtime.native.System.Net.Http/4.3.0": {
-      "sha512": "ZVuZJqnnegJhd2k/PtAbbIcZ3aZeITq3sj06oKfMBSfphW3HDmk/t4ObvbOk/JA/swGR0LNqMksAh/f7gpTROg==",
+      "sha512": "guqHgQOK2eUgtJae2VKjNawBn1xjC0hfOt5wASHa60XHbIdCsQlqtvMsFG+3hy7yp88V+gi9fZCjubuDkeakcQ==",
       "type": "package",
       "path": "runtime.native.system.net.http/4.3.0",
       "files": [
@@ -7930,7 +7934,7 @@
       ]
     },
     "runtime.osx.10.10-x64.runtime.native.System.Security.Cryptography.Apple/4.3.0": {
-      "sha512": "kVXCuMTrTlxq4XOOMAysuNwsXWpYeboGddNGpIgNSZmv1b6r/s/DPk0fYMB7Q5Qo4bY68o48jt4T4y5BVecbCQ==",
+      "sha512": "Kh9W4agE0r/hK8AX1LvyQI2NrKHBL8pO0gRoDTdDb0LL6Ta1Z2OtFx3lOaAE0ZpCUc/dt9Wzs3rA7a3IsKdOVA==",
       "type": "package",
       "path": "runtime.osx.10.10-x64.runtime.native.system.security.cryptography.apple/4.3.0",
       "files": [
@@ -8331,7 +8335,7 @@
       ]
     },
     "System.Collections.Specialized/4.3.0": {
-      "sha512": "Epx8PoVZR0iuOnJJDzp7pWvdfMMOAvpUo95pC4ScH2mJuXkKA2Y4aR3cG9qt2klHgSons1WFh4kcGW7cSXvrxg==",
+      "sha512": "NoPBj0ykejqAWW4p4gGtrrL+3c84ZLSvGnHgq422ew1Rj4WKj1FA8/BCybqC111EtgcqUl6ZJNFYYS22HLgbjA==",
       "type": "package",
       "path": "system.collections.specialized/4.3.0",
       "files": [
@@ -12610,11 +12614,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sanja\\Desktop\\FitnessWebApp\\FitnessWebApp\\FitnessWebApp\\FitnessWebApp.csproj",
+      "projectUniqueName": "D:\\Sanjay\\Software\\FitnessApp\\FitnessWebApp\\FitnessWebApp.csproj",
       "projectName": "FitnessWebApp",
-      "projectPath": "C:\\Users\\sanja\\Desktop\\FitnessWebApp\\FitnessWebApp\\FitnessWebApp\\FitnessWebApp.csproj",
+      "projectPath": "D:\\Sanjay\\Software\\FitnessApp\\FitnessWebApp\\FitnessWebApp.csproj",
       "packagesPath": "C:\\Users\\sanja\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sanja\\Desktop\\FitnessWebApp\\FitnessWebApp\\FitnessWebApp\\obj\\",
+      "outputPath": "D:\\Sanjay\\Software\\FitnessApp\\FitnessWebApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -12633,11 +12637,11 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\sanja\\Desktop\\FitnessWebApp\\FitnessWebApp\\FitnessWebAppLogic\\FitnessWebAppLogic.csproj": {
-              "projectPath": "C:\\Users\\sanja\\Desktop\\FitnessWebApp\\FitnessWebApp\\FitnessWebAppLogic\\FitnessWebAppLogic.csproj"
+            "D:\\Sanjay\\Software\\FitnessApp\\FitnessWebAppLogic\\FitnessWebAppLogic.csproj": {
+              "projectPath": "D:\\Sanjay\\Software\\FitnessApp\\FitnessWebAppLogic\\FitnessWebAppLogic.csproj"
             },
-            "C:\\Users\\sanja\\Desktop\\FitnessWebApp\\FitnessWebApp\\FitnessWebAppModels\\FitnessWebAppModels.csproj": {
-              "projectPath": "C:\\Users\\sanja\\Desktop\\FitnessWebApp\\FitnessWebApp\\FitnessWebAppModels\\FitnessWebAppModels.csproj"
+            "D:\\Sanjay\\Software\\FitnessApp\\FitnessWebAppModels\\FitnessWebAppModels.csproj": {
+              "projectPath": "D:\\Sanjay\\Software\\FitnessApp\\FitnessWebAppModels\\FitnessWebAppModels.csproj"
             }
           }
         }
@@ -12663,6 +12667,7 @@
             "version": "[2.1.2, )"
           },
           "Microsoft.NETCore.App": {
+            "suppressParent": "All",
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true

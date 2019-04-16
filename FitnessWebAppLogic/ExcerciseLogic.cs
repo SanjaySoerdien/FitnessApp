@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FitnessWebAppLogic
 {
-    class ExcerciseLogic
+    public class ExcerciseLogic
     {
     }
 }

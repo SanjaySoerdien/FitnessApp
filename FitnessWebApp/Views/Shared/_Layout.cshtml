@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -28,8 +29,17 @@
                 <li><a href="#">Page 2</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a asp-area="" asp-controller="User" asp-action="Login" class="glyphicon glyphicon-user" > Home</a></li>
-                <li><a asp-area="" asp-controller="User" asp-action="Login" class="glyphicon glyphicon-log-in" > Login</a></li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li><a asp-area="" asp-controller="User" asp-action="Profile" class="glyphicon glyphicon-user"> @User.Identity.Name.ToString()</a></li>
+                    <li><a asp-area="" asp-controller="User" asp-action="Logout" class="glyphicon glyphicon-log-out"> Logout</a></li>
+                }
+                else
+                {
+                    <li><a asp-controller="User" asp-action="Index" class="glyphicon glyphicon-log-in"> Login</a></li>
+                    <li><a asp-controller="User" asp-action="Register" class="glyphicon glyphicon-log-out"> Register</a></li>
+                }
+
             </ul>
         </div>
     </nav>
