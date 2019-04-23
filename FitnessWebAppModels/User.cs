@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
-using FitnessWebAppModels.Enums;
 
 
 namespace FitnessWebAppModels
@@ -17,6 +16,6 @@ namespace FitnessWebAppModels
         [Required(ErrorMessage = "Password field is required!")]
         public string Password { get; set; }
         public List<WorkoutPlan> WorkoutPlans { get; set; }
-        public Role Role { get; set; }
+        public string Role { get; set; }
     }
 }

@@ -6,9 +6,8 @@ namespace FitnessWebAppModels
 {
     public class Excercise
     {
-        private int id;
-        private string name;
-        private string muscleGroup;
-        private List<Comment> comments = new List<Comment>();
+        public string Name { get; set; }
+        public string MuscleGroup { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 }

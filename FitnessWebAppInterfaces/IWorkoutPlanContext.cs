@@ -7,6 +7,9 @@ namespace FitnessWebAppInterfaces
 {
     public interface IWorkoutPlanContext
     {
-        
+        List<WorkoutPlan> GetWorkoutPlansByUser(string username);
+        List<WorkoutPlan> GetTopWorkoutPlans();
+        WorkoutPlan GetWorkoutPlan(string username, string planName);
+
     }
 }

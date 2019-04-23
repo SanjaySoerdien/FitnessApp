@@ -10,7 +10,6 @@ namespace FitnessWebAppInterfaces
     public interface IUserContext
     {
         User Login(string username, string password);
-        List<WorkoutPlan> GetWorkoutPlans(User user);
         User GetUserInfo(string userName);
         void AddUser(User user);
     }

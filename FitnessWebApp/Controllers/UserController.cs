@@ -66,7 +66,7 @@ namespace FitnessWebApp.Controllers
         private User LoginUser(User user)
         {
             UserLogic userLogic = new UserLogic();
-            var claims = new List<Claim>();
+            List<Claim> claims = new List<Claim>();
             user = userLogic.Login(user.Username, user.Password);
             if (user != null)
             {

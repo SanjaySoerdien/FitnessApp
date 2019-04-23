@@ -21,11 +21,6 @@ namespace FitnessWebAppDAL
             return userContext.Login(username, password);
         }
 
-        public List<WorkoutPlan> GetWorkoutPlans(User user)
-        {
-            return userContext.GetWorkoutPlans(user);
-        }
-
         public User GetUserInfo(string username)
         {
             return userContext.GetUserInfo(username);

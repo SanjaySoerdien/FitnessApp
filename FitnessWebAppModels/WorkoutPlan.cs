@@ -6,10 +6,9 @@ namespace FitnessWebAppModels
 {
     public class WorkoutPlan
     {
-        private int id;
-        private string name;
-        private int kudos;
-        private List<Excercise> excercises = new List<Excercise>();
-        private List<Comment> comments = new List<Comment>();
+        public string CreatorName { get; set; }
+        public string Name { get; set; }
+        public int Kudos { get; set; }
+        public List<Excercise> Excercises { get; set; }
     }
 }

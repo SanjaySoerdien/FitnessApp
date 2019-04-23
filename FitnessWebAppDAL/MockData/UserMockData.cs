@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using FitnessWebAppInterfaces;
 using FitnessWebAppModels;
-using FitnessWebAppModels.Enums;
 
 namespace FitnessWebAppDAL
 {
@@ -12,7 +11,6 @@ namespace FitnessWebAppDAL
 
         private List<User> users = new List<User>();
 
-
         public UserMockData()
         {
             users.Add(new User
@@ -20,7 +18,7 @@ namespace FitnessWebAppDAL
                 Nickname = "TestAdmin",
                 Username = "admin",
                 Password = "1234",
-                Role = Role.Admin
+                Role = "Member"
             });
 
             users.Add(new User
@@ -28,7 +26,7 @@ namespace FitnessWebAppDAL
                 Nickname = "TestUser",
                 Username = "user",
                 Password = "1234",
-                Role = Role.Member
+                Role = "Member"
             });
         }
         public User Login(string username, string password)
@@ -61,13 +59,13 @@ namespace FitnessWebAppDAL
             return new User
             {
                 Nickname = "MockName",
-                Role = Role.Member,
+                Role = "Member",
             };
         }
 
         public void AddUser(User user)
         {
-            user.Role = Role.Member;
+            user.Role = "Member";
             users.Add(user);
         }
     }
