@@ -99,5 +99,10 @@ namespace FitnessWebAppDAL.MockData
             var result = workoutPlans.Where(workoutplan => workoutplan.CreatorName.Equals(username));
             return (List<WorkoutPlan>)result;
         }
+
+        public void AddWorkoutPlan(WorkoutPlan workoutPlanToAdd)
+        {
+            workoutPlans.Add(workoutPlanToAdd);
+        }
     }
 }

@@ -1640,11 +1640,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Sanjay\\Software\\FitnessApp\\FitnessWebAppInterfaces\\FitnessWebAppInterfaces.csproj",
+      "projectUniqueName": "D:\\Sanjay\\Software\\S2\\FitnessApp\\FitnessWebAppInterfaces\\FitnessWebAppInterfaces.csproj",
       "projectName": "FitnessWebAppInterfaces",
-      "projectPath": "D:\\Sanjay\\Software\\FitnessApp\\FitnessWebAppInterfaces\\FitnessWebAppInterfaces.csproj",
+      "projectPath": "D:\\Sanjay\\Software\\S2\\FitnessApp\\FitnessWebAppInterfaces\\FitnessWebAppInterfaces.csproj",
       "packagesPath": "C:\\Users\\sanja\\.nuget\\packages\\",
-      "outputPath": "D:\\Sanjay\\Software\\FitnessApp\\FitnessWebAppInterfaces\\obj\\",
+      "outputPath": "D:\\Sanjay\\Software\\S2\\FitnessApp\\FitnessWebAppInterfaces\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -1663,8 +1663,8 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "D:\\Sanjay\\Software\\FitnessApp\\FitnessWebAppModels\\FitnessWebAppModels.csproj": {
-              "projectPath": "D:\\Sanjay\\Software\\FitnessApp\\FitnessWebAppModels\\FitnessWebAppModels.csproj"
+            "D:\\Sanjay\\Software\\S2\\FitnessApp\\FitnessWebAppModels\\FitnessWebAppModels.csproj": {
+              "projectPath": "D:\\Sanjay\\Software\\S2\\FitnessApp\\FitnessWebAppModels\\FitnessWebAppModels.csproj"
             }
           }
         }

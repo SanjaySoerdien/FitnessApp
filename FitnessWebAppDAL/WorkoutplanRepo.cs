@@ -29,5 +29,10 @@ namespace FitnessWebAppDAL
         {
             return context.GetWorkoutPlan(username, planName);
         }
+
+        public void AddWorkoutPlan(WorkoutPlan workoutPlanToAdd)
+        {
+            context.AddWorkoutPlan(workoutPlanToAdd);
+        }
     }
 }

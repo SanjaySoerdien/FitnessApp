@@ -1622,11 +1622,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Sanjay\\Software\\FitnessApp\\FitnessWebAppModels\\FitnessWebAppModels.csproj",
+      "projectUniqueName": "D:\\Sanjay\\Software\\S2\\FitnessApp\\FitnessWebAppModels\\FitnessWebAppModels.csproj",
       "projectName": "FitnessWebAppModels",
-      "projectPath": "D:\\Sanjay\\Software\\FitnessApp\\FitnessWebAppModels\\FitnessWebAppModels.csproj",
+      "projectPath": "D:\\Sanjay\\Software\\S2\\FitnessApp\\FitnessWebAppModels\\FitnessWebAppModels.csproj",
       "packagesPath": "C:\\Users\\sanja\\.nuget\\packages\\",
-      "outputPath": "D:\\Sanjay\\Software\\FitnessApp\\FitnessWebAppModels\\obj\\",
+      "outputPath": "D:\\Sanjay\\Software\\S2\\FitnessApp\\FitnessWebAppModels\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

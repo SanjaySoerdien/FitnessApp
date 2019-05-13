@@ -63,8 +63,8 @@ namespace FitnessWebAppDAL
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand($"SELECT * from dbo.Workoutplan WHERE Name = '{planname}' AND UserID = {username}", conn); //todo innerjoins enzo , maak de query af
-
+                SqlCommand command = new SqlCommand($"SELECT * from dbo.Workoutplan " +
+                                                    $"WHERE Name = '{planname}' AND UserID = {username}", conn); //todo innerjoins enzo , maak de query af
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -78,6 +78,11 @@ namespace FitnessWebAppDAL
                 }
             }
             return result;
+        }
+
+        public void AddWorkoutPlan(WorkoutPlan workoutPlanToAdd)
+        {
+            throw new NotImplementedException();
         }
 
     }

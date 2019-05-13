@@ -10,6 +10,7 @@ namespace FitnessWebAppModels
 {
     public class User
     {
+        [Required(ErrorMessage = "Nickname field is required!")]
         public string Nickname { get; set; }
         [Required(ErrorMessage = "Username field is required!")]
         public string Username { get; set; }

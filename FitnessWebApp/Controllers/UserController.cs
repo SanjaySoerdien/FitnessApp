@@ -41,8 +41,19 @@ namespace FitnessWebApp.Controllers
             return RedirectToAction("Index","Home");
         }
 
-        public IActionResult Register()
+        public IActionResult Register([Bind("Password, Username, Nickname")] User user)
         {
+
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            AddUser(user);
+            user = LoginUser(user);
+            if (user != null)
+            {
+                return RedirectToAction("Index", "Home"); //redirect naar page om cookies te refreshen
+            }
             return View();
         }
 
@@ -70,7 +81,7 @@ namespace FitnessWebApp.Controllers
             user = userLogic.Login(user.Username, user.Password);
             if (user != null)
             {
-                claims.Add(new Claim(ClaimTypes.Role, user.Role.ToString()));
+                claims.Add(new Claim(ClaimTypes.Role, user.Role));
                 claims.Add(new Claim(ClaimTypes.Name, user.Nickname));
                 ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme));
                 var authProp = new AuthenticationProperties { IsPersistent = true };
