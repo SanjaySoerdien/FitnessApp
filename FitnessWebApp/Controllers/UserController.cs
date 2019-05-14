@@ -14,6 +14,7 @@ namespace FitnessWebApp.Controllers
 {
     public class UserController : Controller
     {
+        UserLogic userLogic = new UserLogic();
         public IActionResult Index()
         {
             return View("Login");
@@ -23,7 +24,7 @@ namespace FitnessWebApp.Controllers
         [AllowAnonymous]
         public IActionResult Login([Bind("Password, Username")] User user)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.ContainsKey("Password")&& !ModelState.ContainsKey("Username"))
             {
                 return View("Login");
             }
@@ -60,7 +61,6 @@ namespace FitnessWebApp.Controllers
         public IActionResult Profile()
         {
             User user = new User();
-            UserLogic userLogic = new UserLogic();
             user = userLogic.GetUserInfo(User.Identity.Name);
             return View(user);
         }
@@ -68,15 +68,13 @@ namespace FitnessWebApp.Controllers
         [HttpPost]
         public IActionResult AddUser([Bind("Password, Username, Nickname")] User user)
         {
-            UserLogic userlogic = new UserLogic();
-            userlogic.AddUser(user);
+            userLogic.AddUser(user);
             LoginUser(user);
             return RedirectToAction("Index", "Home");
         }
 
         private User LoginUser(User user)
         {
-            UserLogic userLogic = new UserLogic();
             List<Claim> claims = new List<Claim>();
             user = userLogic.Login(user.Username, user.Password);
             if (user != null)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using FitnessWebAppDAL.MockData;
 using FitnessWebAppInterfaces;
 using FitnessWebAppModels;
 
@@ -12,7 +13,8 @@ namespace FitnessWebAppDAL
 
         public WorkoutplanRepo()
         {
-            context = new WorkoutPlanDAL();    
+            context = new WorkoutPlanMockData();
+            //context = new WorkoutPlanDAL();    
         }
 
         public List<WorkoutPlan> GetWorkoutPlansByUser(string username)

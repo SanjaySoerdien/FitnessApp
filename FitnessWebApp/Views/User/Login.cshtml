@@ -7,10 +7,9 @@
 <div class="row">
     <div class="col-lg-12">
         <form class="login-form validate-form" asp-action="Login">
-            <div class="input-group-addon validate-input" data-validate="Enter username">
+            <div data-validate="Enter username">
                 <input type="text" asp-for="Username" name="Username" placeholder="Gebruikersnaam">
             </div>
-
             <div data-validate="Enter password">
                 <input  type="password" asp-for="Password" name="Password" placeholder="Wachtwoord">
             </div>
@@ -19,6 +18,5 @@
             </div>
         </form>
     </div>
-    <div class="col-lg-12">
-    </div>
+    
 </div>

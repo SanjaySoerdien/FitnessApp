@@ -25,3 +25,12 @@ D:\Sanjay\Software\FitnessApp\FitnessWebAppModels\obj\Debug\netstandard2.0\Fitne
 D:\Sanjay\Software\FitnessApp\FitnessWebAppModels\obj\Debug\netstandard2.0\FitnessWebAppModels.AssemblyInfo.cs
 D:\Sanjay\Software\FitnessApp\FitnessWebAppModels\obj\Debug\netstandard2.0\FitnessWebAppModels.dll
 D:\Sanjay\Software\FitnessApp\FitnessWebAppModels\obj\Debug\netstandard2.0\FitnessWebAppModels.pdb
+D:\Sanjay\Software\S2\FitnessApp\FitnessWebAppModels\bin\Debug\netstandard2.0\FitnessWebAppModels.deps.json
+D:\Sanjay\Software\S2\FitnessApp\FitnessWebAppModels\bin\Debug\netstandard2.0\FitnessWebAppModels.dll
+D:\Sanjay\Software\S2\FitnessApp\FitnessWebAppModels\bin\Debug\netstandard2.0\FitnessWebAppModels.pdb
+D:\Sanjay\Software\S2\FitnessApp\FitnessWebAppModels\obj\Debug\netstandard2.0\FitnessWebAppModels.csprojAssemblyReference.cache
+D:\Sanjay\Software\S2\FitnessApp\FitnessWebAppModels\obj\Debug\netstandard2.0\FitnessWebAppModels.csproj.CoreCompileInputs.cache
+D:\Sanjay\Software\S2\FitnessApp\FitnessWebAppModels\obj\Debug\netstandard2.0\FitnessWebAppModels.AssemblyInfoInputs.cache
+D:\Sanjay\Software\S2\FitnessApp\FitnessWebAppModels\obj\Debug\netstandard2.0\FitnessWebAppModels.AssemblyInfo.cs
+D:\Sanjay\Software\S2\FitnessApp\FitnessWebAppModels\obj\Debug\netstandard2.0\FitnessWebAppModels.dll
+D:\Sanjay\Software\S2\FitnessApp\FitnessWebAppModels\obj\Debug\netstandard2.0\FitnessWebAppModels.pdb

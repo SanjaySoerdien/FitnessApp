@@ -5,28 +5,43 @@
 }
 
 <h2>Profile</h2>
-
-<div>
-    <h4>User</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Username)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Role)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Role)
-        </dd>
-    </dl>
+<div class="container">
+    <div class="row">
+        <div class="well well-sm">
+            <div class="row">
+                <div class="col-sm-6 col-md-4">
+                    <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive"/>
+                </div>
+                <div class="col-sm-6 col-md-8">
+                    <h4>
+                        @Html.DisplayFor(model => model.Nickname)
+                    </h4>
+                    @Html.DisplayNameFor(model => model.Role)
+                    <p>
+                        <i class="glyphicon glyphicon-envelope"></i> email@example.com?
+                        <br/>
+                        <i class="glyphicon glyphicon-globe"></i> Country?
+                        <br/>
+                        <i class="glyphicon glyphicon-gift"></i> Birthdate?
+                    </p>
+                    <!-- Split button -->
+                    <!--<div class="btn-group">
+                        <button type="button" class="btn btn-primary">
+                            Social
+                        </button>
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span><span class="sr-only">Social</span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Twitter</a></li>
+                            <li><a href="https://plus.google.com/+Jquery2dotnet/posts">Google +</a></li>
+                            <li><a href="https://www.facebook.com/jquery2dotnet">Facebook</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Github</a></li>
+                        </ul>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

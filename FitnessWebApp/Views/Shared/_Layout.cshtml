@@ -24,15 +24,15 @@
                 <a class="navbar-brand" href="#">WebSiteName</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Page 1</a></li>
-                <li><a href="#">Page 2</a></li>
+                <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-controller="Workout" asp-action="Index">Workouts</a></li>
+                <li><a asp-controller="User" asp-action="Profile">Page 2</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <li><a asp-area="" asp-controller="User" asp-action="Profile" class="glyphicon glyphicon-user"> @User.Identity.Name.ToString()</a></li>
-                    <li><a asp-area="" asp-controller="User" asp-action="Logout" class="glyphicon glyphicon-log-out"> Logout</a></li>
+                    <li><a asp-controller="User" asp-action="Profile" class="glyphicon glyphicon-user"> @User.Identity.Name.ToString()</a></li>
+                    <li><a asp-controller="User" asp-action="Logout" class="glyphicon glyphicon-log-out"> Logout</a></li>
                 }
                 else
                 {
