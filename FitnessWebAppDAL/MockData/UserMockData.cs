@@ -9,7 +9,7 @@ namespace FitnessWebAppDAL
     class UserMockData : IUserContext
     {
 
-        private List<User> users = new List<User>();
+        private static List<User> users = new List<User>();
 
         public UserMockData()
         {
