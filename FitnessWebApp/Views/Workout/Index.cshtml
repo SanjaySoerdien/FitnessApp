@@ -34,9 +34,10 @@
                     @Html.DisplayFor(modelItem => item.Kudos)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink(linkText: "View", actionName: "ShowWorkout",routeValues: new {
+                        creatornickname = item.CreatorName,
+                        planname = item.Name
+                    })
                 </td>
             </tr>
     }

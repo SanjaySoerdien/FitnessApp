@@ -7,7 +7,7 @@ using FitnessWebAppModels;
 
 namespace FitnessWebAppLogic
 {
-    public class WorkoutPlanLogic
+    public class WorkoutPlanLogic : IWorkoutPlanContext
     {
        readonly WorkoutplanRepo workoutplanRepo = new WorkoutplanRepo();
 
@@ -21,9 +21,14 @@ namespace FitnessWebAppLogic
            return workoutplanRepo.GetTopWorkoutPlans();
        }
 
-       public WorkoutPlan GetWorkoutPlan(string username, string planname)
+       public List<Excercise> GetWorkoutPlanExcercises(string username, string planName)
        {
-           return GetWorkoutPlan(username, planname);
+           return workoutplanRepo.GetWorkoutPlanExcercises(username,planName);
+       }
+
+       public void AddWorkoutPlan(WorkoutPlan workoutPlanToAdd)
+       {
+           throw new NotImplementedException();
        }
     }
 }

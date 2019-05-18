@@ -66,27 +66,31 @@ namespace FitnessWebAppDAL
             return result;
         }
 
-        public List<Excercise> GetWorkoutPlanExcercises(string username, string planname)
+        public List<Excercise> GetWorkoutPlanExcercises(string nickname, string planname)
         {
             List<Excercise> result = new List<Excercise>();
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand($"SELECT * from dbo.Workoutplan " +
-                                                    $"WHERE Name = '{planname}' AND UserID = {username}", conn); //todo innerjoins enzo , maak de query af
-                SqlDataReader reader = command.ExecuteReader();
+                SqlCommand cmd = new SqlCommand("GetWorkoutPlanExercises", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new SqlParameter("@Planname", planname));
+                cmd.Parameters.Add(new SqlParameter("@Nickname", nickname));
+
+                SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     result.Add(new Excercise
                     {
                         Name = (string) reader["Name"],
-                        SetTarget = (int) reader["SetTarget"],
+                        SetTarget = (int) reader["SetsTarget"],
                         RepTarget = (int) reader["RepsTarget"],
                         MuscleGroup = (string) reader["Category"]
                     });
-                    reader.Close();
-                    conn.Close();
                 }
+                reader.Close();
+                conn.Close();
             }
             return result;
         }
