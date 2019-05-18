@@ -13,8 +13,8 @@ namespace FitnessWebAppDAL
 
         public WorkoutplanRepo()
         {
-            context = new WorkoutPlanMockData();
-            //context = new WorkoutPlanDAL();    
+            //context = new WorkoutPlanMockData();
+            context = new WorkoutPlanDAL();    
         }
 
         public List<WorkoutPlan> GetWorkoutPlansByUser(string username)
@@ -27,9 +27,9 @@ namespace FitnessWebAppDAL
             return context.GetTopWorkoutPlans();
         }
 
-        public WorkoutPlan GetWorkoutPlan(string username, string planName)
+        public List<Excercise>GetWorkoutPlanExcercises(string username, string planName)
         {
-            return context.GetWorkoutPlan(username, planName);
+            return context.GetWorkoutPlanExcercises(username, planName);
         }
 
         public void AddWorkoutPlan(WorkoutPlan workoutPlanToAdd)

@@ -29,6 +29,7 @@ namespace FitnessWebAppDAL
                 Role = "Member"
             });
         }
+
         public User Login(string username, string password)
         {
             User result = new User();

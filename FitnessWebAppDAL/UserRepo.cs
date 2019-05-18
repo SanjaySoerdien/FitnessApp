@@ -12,8 +12,8 @@ namespace FitnessWebAppDAL
 
         public UserRepo()
         {
-            userContext = new UserMockData();
-            //userContext = new UserDAL();
+            //userContext = new UserMockData();
+            userContext = new UserDAL();
         }
 
         public User Login(string username, string password)

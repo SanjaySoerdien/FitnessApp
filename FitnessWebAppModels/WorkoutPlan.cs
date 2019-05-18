@@ -8,6 +8,7 @@ namespace FitnessWebAppModels
     {
         public string CreatorName { get; set; }
         public string Name { get; set; }
+        public string CategoryName { get; set; }
         public int Kudos { get; set; }
         public List<Excercise> Excercises { get; set; }
     }

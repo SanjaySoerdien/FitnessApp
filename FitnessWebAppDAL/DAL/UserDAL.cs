@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using FitnessWebAppInterfaces;
@@ -18,9 +19,11 @@ namespace FitnessWebAppDAL
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand($"SELECT Inlognaam,Wachtwoord, from dbo.User " +
-                                                    $"WHERE Inlognaam = '{username}' and Wachtwoord = '{password}'", conn); //ToDo Add roles to query
-                SqlDataReader reader = command.ExecuteReader();
+                SqlCommand cmd = new SqlCommand("Login", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@Username", username));
+               
+                SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     if (password != (string) reader["Password"])
@@ -30,7 +33,8 @@ namespace FitnessWebAppDAL
                     result = new User
                     {
                         Username = (string)reader["Username"],
-                        //Role = (string)reader["Role"]
+                        Role = (string)reader["Role"],
+                        Nickname = (string)reader["Nickname"]
                     };
                 }
                 reader.Close();
@@ -38,22 +42,23 @@ namespace FitnessWebAppDAL
             }
             return result;
         }
-
-        public User GetUserInfo(string username)
+        public User GetUserInfo(string nickname)
         {
             User result = null;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand($"SELECT * from dbo.User " +
-                                                    $"WHERE Inlognaam = '{username}'", conn);
-                SqlDataReader reader = command.ExecuteReader();
+                SqlCommand cmd = new SqlCommand("GetUserInfo", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@Nickname", nickname));
+                SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     result = new User
                     {
-                        //todo Write info to user when decided on what info
-                        //Role = (string)reader["Role"]
+                        Role = (string) reader["Role"],
+                        Nickname = (string) reader["Nickname"]
+                        //TODO more info from db, (ADD TO DB!!)
                     };
                 }
                 reader.Close();
@@ -67,11 +72,15 @@ namespace FitnessWebAppDAL
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand command =
-                    new SqlCommand(
-                        $"INSERT INTO User (Nickname, Username, Password) VALUES({user.Nickname}, {user.Username}, {user.Password});");
 
-                if (command.ExecuteNonQuery() > 0)
+                SqlCommand cmd = new SqlCommand("AddUser", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new SqlParameter("@Nickname", user.Nickname));
+                cmd.Parameters.Add(new SqlParameter("@Username", user.Username));
+                cmd.Parameters.Add(new SqlParameter("@Password", user.Password));
+
+                if (cmd.ExecuteNonQuery() > 0)
                 {
                     //ToDo Detect if functional?
                 }

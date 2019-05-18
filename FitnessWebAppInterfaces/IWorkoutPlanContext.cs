@@ -9,7 +9,7 @@ namespace FitnessWebAppInterfaces
     {
         List<WorkoutPlan> GetWorkoutPlansByUser(string username);
         List<WorkoutPlan> GetTopWorkoutPlans();
-        WorkoutPlan GetWorkoutPlan(string username, string planName);
+        List<Excercise> GetWorkoutPlanExcercises(string username, string planName);
         void AddWorkoutPlan(WorkoutPlan workoutPlanToAdd);
     }
 }

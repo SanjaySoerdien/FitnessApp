@@ -88,10 +88,10 @@ namespace FitnessWebAppDAL.MockData
             return workoutPlans;
         }
 
-        public WorkoutPlan GetWorkoutPlan(string username, string planName)
+        public List<Excercise> GetWorkoutPlanExcercises(string username, string planName)
         {
             var result = workoutPlans.First(workoutplan => workoutplan.Name.Equals(planName) && workoutplan.CreatorName.Equals(username));
-            return result;
+            return result.Excercises;
         }
 
         public List<WorkoutPlan> GetWorkoutPlansByUser(string username)

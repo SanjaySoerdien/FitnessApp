@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using FitnessWebAppInterfaces;
@@ -18,15 +19,19 @@ namespace FitnessWebAppDAL
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand($"SELECT * from dbo.Workoutplan WHERE Userid = '{username}'", conn);
-                
-                SqlDataReader reader = command.ExecuteReader();
+                SqlCommand cmd = new SqlCommand("Login", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@username", username));
+
+                SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     result.Add(new WorkoutPlan
                     {
-                        Name = (string) reader["Name"],
-                        Kudos = (int) reader["Kudos"],
+                       Name = (string)reader["Name"],
+                       CreatorName = (string)reader["Nickname"],
+                       CategoryName = (string)reader["CategoryName"],
+                       Kudos = (int)reader["Kudo"]
                     });
                     reader.Close();
                     conn.Close();
@@ -41,25 +46,29 @@ namespace FitnessWebAppDAL
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand($"SELECT TOP50 from dbo.Workoutplan ", conn); //TODO: add order by rating
-                SqlDataReader reader = command.ExecuteReader();
+                SqlCommand cmd = new SqlCommand("GetTopWorkoutPlans", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     result.Add(new WorkoutPlan
                     {
                         Name = (string)reader["Name"],
-                        Kudos = (int)reader["Kudos"],
+                        CreatorName = (string)reader["Nickname"],
+                        CategoryName = (string)reader["CategoryName"],
+                        Kudos = (int)reader["Kudo"]
                     });
-                    reader.Close();
-                    conn.Close();
                 }
+                reader.Close();
+                conn.Close();
             }
+
             return result;
         }
 
-        public WorkoutPlan GetWorkoutPlan(string username, string planname)
+        public List<Excercise> GetWorkoutPlanExcercises(string username, string planname)
         {
-            WorkoutPlan result = new WorkoutPlan();
+            List<Excercise> result = new List<Excercise>();
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -68,11 +77,13 @@ namespace FitnessWebAppDAL
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    result = new WorkoutPlan
+                    result.Add(new Excercise
                     {
-                        Name = (string)reader["Name"],
-                        Kudos = (int)reader["Kudos"],
-                    };
+                        Name = (string) reader["Name"],
+                        SetTarget = (int) reader["SetTarget"],
+                        RepTarget = (int) reader["RepsTarget"],
+                        MuscleGroup = (string) reader["Category"]
+                    });
                     reader.Close();
                     conn.Close();
                 }
@@ -83,6 +94,7 @@ namespace FitnessWebAppDAL
         public void AddWorkoutPlan(WorkoutPlan workoutPlanToAdd)
         {
             throw new NotImplementedException();
+            //TODO Make dis
         }
 
     }
