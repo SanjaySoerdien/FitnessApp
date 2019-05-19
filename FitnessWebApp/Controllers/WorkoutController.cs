@@ -15,6 +15,11 @@ namespace FitnessWebApp.Controllers
             return View(workoutPlanLogic.GetTopWorkoutPlans());
         }
 
+        public IActionResult ShowUserWorkouts(string username)
+        {
+            return View("Index",workoutPlanLogic.GetWorkoutPlansByUser(username));
+        }
+
         public IActionResult ShowWorkout(string creatornickname, string planname)
         {
             return View(workoutPlanLogic.GetWorkoutPlanExcercises(creatornickname, planname));

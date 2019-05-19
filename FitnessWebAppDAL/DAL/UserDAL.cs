@@ -72,14 +72,11 @@ namespace FitnessWebAppDAL
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-
                 SqlCommand cmd = new SqlCommand("AddUser", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-
                 cmd.Parameters.Add(new SqlParameter("@Nickname", user.Nickname));
                 cmd.Parameters.Add(new SqlParameter("@Username", user.Username));
                 cmd.Parameters.Add(new SqlParameter("@Password", user.Password));
-
                 if (cmd.ExecuteNonQuery() > 0)
                 {
                     //ToDo Detect if functional?

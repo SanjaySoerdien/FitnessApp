@@ -27,11 +27,26 @@
                 <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
                 <li><a asp-controller="Workout" asp-action="Index">Workouts</a></li>
                 <li><a asp-controller="User" asp-action="Profile">Page 2</a></li>
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                }
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <li><a asp-controller="User" asp-action="Profile" class="glyphicon glyphicon-user"> @User.Identity.Name.ToString()</a></li>
+                    <li><a asp-controller="User" asp-action="Profile" asp-route-nickname="@User.Identity.Name" class="glyphicon glyphicon-user"> @User.Identity.Name</a></li>
                     <li><a asp-controller="User" asp-action="Logout" class="glyphicon glyphicon-log-out"> Logout</a></li>
                 }
                 else
@@ -39,12 +54,11 @@
                     <li><a asp-controller="User" asp-action="Index" class="glyphicon glyphicon-log-in"> Login</a></li>
                     <li><a asp-controller="User" asp-action="Register" class="glyphicon glyphicon-log-out"> Register</a></li>
                 }
-
             </ul>
         </div>
     </nav>
 
-<partial name="_CookieConsentPartial" />
+    <partial name="_CookieConsentPartial" />
 
     <div class="container body-content">
         @RenderBody()

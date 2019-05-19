@@ -58,10 +58,10 @@ namespace FitnessWebApp.Controllers
             return View();
         }
 
-        public IActionResult Profile()
+        public IActionResult Profile(string nickname)
         {
             User user = new User();
-            user = userLogic.GetUserInfo(User.Identity.Name);
+            user = userLogic.GetUserInfo(nickname);
             return View(user);
         }
 
