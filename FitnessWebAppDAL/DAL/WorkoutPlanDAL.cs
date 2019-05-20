@@ -28,6 +28,7 @@ namespace FitnessWebAppDAL
                 {
                     result.Add(new WorkoutPlan
                     {
+                       Id = (int)reader["ID"],
                        Name = (string)reader["Name"],
                        CreatorName = (string)reader["Nickname"],
                        CategoryName = (string)reader["CategoryName"],
@@ -53,6 +54,7 @@ namespace FitnessWebAppDAL
                 {
                     result.Add(new WorkoutPlan
                     {
+                        Id = (int)reader["ID"],
                         Name = (string)reader["Name"],
                         CreatorName = (string)reader["Nickname"],
                         CategoryName = (string)reader["CategoryName"],
@@ -66,9 +68,9 @@ namespace FitnessWebAppDAL
             return result;
         }
 
-        public List<Excercise> GetWorkoutPlanExcercises(string nickname, string planname)
+        public List<Exercise> GetWorkoutPlanExercises(string nickname, string planname)
         {
-            List<Excercise> result = new List<Excercise>();
+            List<Exercise> result = new List<Exercise>();
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -81,8 +83,9 @@ namespace FitnessWebAppDAL
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    result.Add(new Excercise
+                    result.Add(new Exercise
                     {
+                        Id = (int)reader["ID"],
                         Name = (string) reader["Name"],
                         SetTarget = (int) reader["SetsTarget"],
                         RepTarget = (int) reader["RepsTarget"],

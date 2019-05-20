@@ -7,7 +7,7 @@ using FitnessWebAppModels;
 
 namespace FitnessWebAppDAL
 {
-    public class WorkoutplanRepo : IWorkoutPlanContext
+    public class WorkoutplanRepo
     {
         private readonly IWorkoutPlanContext context;
 
@@ -27,9 +27,9 @@ namespace FitnessWebAppDAL
             return context.GetTopWorkoutPlans();
         }
 
-        public List<Excercise>GetWorkoutPlanExcercises(string username, string planName)
+        public List<Exercise>GetWorkoutPlanExercises(string username, string planName)
         {
-            return context.GetWorkoutPlanExcercises(username, planName);
+            return context.GetWorkoutPlanExercises(username, planName);
         }
 
         public void AddWorkoutPlan(WorkoutPlan workoutPlanToAdd)

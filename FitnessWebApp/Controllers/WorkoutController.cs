@@ -22,7 +22,7 @@ namespace FitnessWebApp.Controllers
 
         public IActionResult ShowWorkout(string creatornickname, string planname)
         {
-            return View(workoutPlanLogic.GetWorkoutPlanExcercises(creatornickname, planname));
+            return View(workoutPlanLogic.GetWorkoutPlanExercises(creatornickname, planname));
         }
     }
 }

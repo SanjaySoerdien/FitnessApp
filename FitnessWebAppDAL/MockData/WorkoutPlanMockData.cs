@@ -17,24 +17,24 @@ namespace FitnessWebAppDAL.MockData
                 Name = "Chest day is the best day",
                 CreatorName = "TestUser",
                 Kudos = 40,
-                Excercises = new List<Excercise>
+                Exercises = new List<Exercise>
                 {
-                    new Excercise
+                    new Exercise
                     {
                         Name = "BenchPress",
                         MuscleGroup = "Chest"
                     },
-                    new Excercise
+                    new Exercise
                     {
                         Name = "Chest Fly",
                         MuscleGroup = "Chest"
                     },
-                    new Excercise
+                    new Exercise
                     {
                         Name = "Pullovers",
                         MuscleGroup = "Chest"
                     },
-                    new Excercise
+                    new Exercise
                     {
                         Name = "Dips",
                         MuscleGroup = "Chest"
@@ -46,14 +46,14 @@ namespace FitnessWebAppDAL.MockData
                     Name = "Always Skip LegDate",
                     CreatorName = "TestAdmin",
                     Kudos = 12,
-                    Excercises = new List<Excercise>
+                    Exercises = new List<Exercise>
                     {
-                        new Excercise
+                        new Exercise
                         {
                             Name = "Squat",
                             MuscleGroup = "Legs"
                         },
-                        new Excercise
+                        new Exercise
                         {
                             Name = "Leg press",
                             MuscleGroup = "Legs"
@@ -66,14 +66,14 @@ namespace FitnessWebAppDAL.MockData
                     Name = "2nd plan for admin <3",
                     CreatorName = "TestAdmin",
                     Kudos = 12,
-                    Excercises = new List<Excercise>
+                    Exercises = new List<Exercise>
                     {
-                        new Excercise
+                        new Exercise
                         {
                             Name = "360 noscope",
                             MuscleGroup = "Brain"
                         },
-                        new Excercise
+                        new Exercise
                         {
                             Name = "Kickflip op skateboard",
                             MuscleGroup = "LEGZZZ"
@@ -88,10 +88,10 @@ namespace FitnessWebAppDAL.MockData
             return workoutPlans;
         }
 
-        public List<Excercise> GetWorkoutPlanExcercises(string username, string planName)
+        public List<Exercise> GetWorkoutPlanExercises(string username, string planName)
         {
             var result = workoutPlans.First(workoutplan => workoutplan.Name.Equals(planName) && workoutplan.CreatorName.Equals(username));
-            return result.Excercises;
+            return result.Exercises;
         }
 
         public List<WorkoutPlan> GetWorkoutPlansByUser(string username)

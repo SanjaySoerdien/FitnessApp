@@ -21,9 +21,9 @@ namespace FitnessWebAppLogic
            return workoutplanRepo.GetTopWorkoutPlans();
        }
 
-       public List<Excercise> GetWorkoutPlanExcercises(string username, string planName)
+       public List<Exercise> GetWorkoutPlanExercises(string username, string planName)
        {
-           return workoutplanRepo.GetWorkoutPlanExcercises(username,planName);
+           return workoutplanRepo.GetWorkoutPlanExercises(username,planName);
        }
 
        public void AddWorkoutPlan(WorkoutPlan workoutPlanToAdd)

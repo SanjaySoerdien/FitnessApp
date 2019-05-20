@@ -4,8 +4,9 @@ using System.Text;
 
 namespace FitnessWebAppModels
 {
-    public class Excercise
+    public class Exercise
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string MuscleGroup { get; set; }
         public int SetTarget { get; set; }
