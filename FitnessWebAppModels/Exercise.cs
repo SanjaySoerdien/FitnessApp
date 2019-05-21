@@ -11,6 +11,7 @@ namespace FitnessWebAppModels
         public string MuscleGroup { get; set; }
         public int SetTarget { get; set; }
         public int RepTarget { get; set; }
+        public int Kudos { get; set; }
         public List<Comment> Comments { get; set; }
     }
 }

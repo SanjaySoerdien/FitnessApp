@@ -27,11 +27,6 @@ namespace FitnessWebAppLogic
             return userRepo.GetUserInfo(username);
         }
 
-        public List<WorkoutPlan> GetWorkoutPlans(User user)
-        {
-            throw new NotImplementedException();
-        }
-
         public void AddUser(User user)
         {
             userRepo.AddUser(user);

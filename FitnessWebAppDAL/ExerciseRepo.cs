@@ -26,6 +26,20 @@ namespace FitnessWebAppDAL
             return context.GetExercise(id);
         }
 
+        public List<Exercise> GetTopExercises()
+        {
+            return context.GetTopExercises();
+        }
+
+        public List<string> GetAllCategories()
+        {
+            return context.GetAllCategories();
+        }
+
+        public List<Exercise> GetExercisesByCategory(string category)
+        {
+            return context.GetExercisesByCategory(category);
+        }
         public void AddExercise()
         {
             throw new NotImplementedException();

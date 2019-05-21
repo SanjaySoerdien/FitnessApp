@@ -24,5 +24,10 @@ namespace FitnessWebApp.Controllers
         {
             return View(workoutPlanLogic.GetWorkoutPlanExercises(creatornickname, planname));
         }
+
+        public IActionResult SearchWorkouts()
+        {
+            return View();//TODO fix deze view idk ben te moe
+        }
     }
 }

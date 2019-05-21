@@ -11,6 +11,9 @@ namespace FitnessWebAppInterfaces
     {
         Exercise GetExercise(string name);
         Exercise GetExercise(int id);
+        List<Exercise> GetTopExercises();
+        List<string> GetAllCategories();
+        List<Exercise> GetExercisesByCategory(string category);
         void AddExercise();
 
     }

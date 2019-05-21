@@ -19,9 +19,9 @@ namespace FitnessWebAppDAL
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("Login", conn);
+                SqlCommand cmd = new SqlCommand("GetWorkoutPlansByUser", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@username", username));
+                cmd.Parameters.Add(new SqlParameter("@Nickname", username));
 
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -34,9 +34,9 @@ namespace FitnessWebAppDAL
                        CategoryName = (string)reader["CategoryName"],
                        Kudos = (int)reader["Kudo"]
                     });
-                    reader.Close();
-                    conn.Close();
                 }
+                reader.Close();
+                conn.Close();
             }
             return result;
         }

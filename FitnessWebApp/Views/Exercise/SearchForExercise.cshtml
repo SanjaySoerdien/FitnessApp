@@ -1,0 +1,58 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewData["Title"] = "SearchForExercise";
+}
+
+<h2>Search for Exercise</h2>
+
+<div class="col-sm-6">
+    <select id="Category" type="text" name="field1">
+        <option>
+            - Select -
+        </option>
+        @foreach (var category in Model)
+        {
+            <option>
+                @category
+            </option>
+        }
+    </select>
+</div>
+<div class="col-sm-6">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                   Name
+                </th>
+                <th>
+                    Muscle Group
+                </th>
+                <th>
+                    Kudos
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+@section Scripts
+{
+    <script>
+        $('#Category').change(function() {
+            $.post('@Url.Action("SearchForExerciseByCategory", "Exercise")',
+                {
+                    sectionId: selectedSectionId
+                },
+                function(data) {
+                    data.forEach(function(section) {
+                        //todo HIER WAS JE, data verwerken , jason objecten omzetten naar table.
+                    });
+                });
+        });
+    </script>
+}

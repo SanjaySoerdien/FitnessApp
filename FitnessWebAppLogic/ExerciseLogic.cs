@@ -7,7 +7,7 @@ using FitnessWebAppModels;
 
 namespace FitnessWebAppLogic
 {
-    public class ExerciseLogic 
+    public class ExerciseLogic
     {
         ExerciseRepo exerciseRepo = new ExerciseRepo();
         public Exercise GetExercise(string name)
@@ -18,6 +18,21 @@ namespace FitnessWebAppLogic
         public Exercise GetExercise(int id)
         {
             return exerciseRepo.GetExercise(id);
+        }
+
+        public List<Exercise> GetTopExercises()
+        {
+            return exerciseRepo.GetTopExercises();
+        }
+
+        public List<string> GetAllCategories()
+        {
+            return exerciseRepo.GetAllCategories();
+        }
+
+        public List<Exercise> GetExercisesByCategory(string category)
+        {
+            return exerciseRepo.GetExercisesByCategory(category);
         }
 
         public void AddExercise()
