@@ -1,7 +1,10 @@
-﻿@model IEnumerable<string>
+﻿@using FitnessWebAppModels
+@model IEnumerable<string>
 
 @{
     ViewData["Title"] = "SearchForExercise";
+    int selectedId = 0;
+    string exerciseName = "Failed to get name";
 }
 
 <h2>Search for Exercise</h2>
@@ -24,7 +27,7 @@
         <thead>
             <tr>
                 <th>
-                   Name
+                    Name
                 </th>
                 <th>
                     Muscle Group
@@ -43,24 +46,22 @@
 @section Scripts
 {
     <script>
-        $('#Category').change(function () {
-            $('table tbody').empty();
+    $('#Category').change(function() {
+        $('#body').empty();
         $.post('@Url.Action("SearchForExerciseByCategory", "Exercise")',
             {
                 category: $('#Category').val()
             },
-            function (data) {
-                console.log(data);
-                data.forEach(function (excercise) {
+            function(data) {
+                data.forEach(function(exercise) {
                     $('#body').append(
                         "<tr>\n" +
-                        `  <td> ${excercise.name}</td>\n`  +
-                        `  <td> ${excercise.muscleGroup}</td>\n` +
-                        `  <td> ${excercise.kudos}</td>\n` +
-                        "</tr>\n"
-                    );
+                        `  <td> <a href="/Exercise/ShowExercise/${exercise.id}"> ${exercise.name}</a> </td>\n ` +
+                        `  <td> ${exercise.muscleGroup}</td>\n` +
+                        `  <td> ${exercise.kudos}</td>\n` +
+                        "</tr>\n");
                 });
             });
-        });
+    });
     </script>
 }
