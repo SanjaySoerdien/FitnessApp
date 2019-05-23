@@ -20,7 +20,7 @@
     </select>
 </div>
 <div class="col-sm-6">
-    <table class="table">
+    <table class="table" summary="">
         <thead>
             <tr>
                 <th>
@@ -35,7 +35,7 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="body">
         </tbody>
     </table>
 </div>
@@ -43,16 +43,24 @@
 @section Scripts
 {
     <script>
-        $('#Category').change(function() {
-            $.post('@Url.Action("SearchForExerciseByCategory", "Exercise")',
-                {
-                    sectionId: selectedSectionId
-                },
-                function(data) {
-                    data.forEach(function(section) {
-                        //todo HIER WAS JE, data verwerken , jason objecten omzetten naar table.
-                    });
+        $('#Category').change(function () {
+            $('table tbody').empty();
+        $.post('@Url.Action("SearchForExerciseByCategory", "Exercise")',
+            {
+                category: $('#Category').val()
+            },
+            function (data) {
+                console.log(data);
+                data.forEach(function (excercise) {
+                    $('#body').append(
+                        "<tr>\n" +
+                        `  <td> ${excercise.name}</td>\n`  +
+                        `  <td> ${excercise.muscleGroup}</td>\n` +
+                        `  <td> ${excercise.kudos}</td>\n` +
+                        "</tr>\n"
+                    );
                 });
+            });
         });
     </script>
 }

@@ -23,15 +23,13 @@ namespace FitnessWebApp.Controllers
 
         public IActionResult SearchForExercise()
         {
-            return View();
+            return View(exerciseLogic.GetAllCategories());
         }
 
         [HttpPost]
         public IActionResult SearchForExerciseByCategory(string category)
         {
-            List<Exercise> result = new List<Exercise>();
-            result = exerciseLogic.GetExercisesByCategory(category);
-            return Json(result);
+            return Json(exerciseLogic.GetExercisesByCategory(category));
         }
     }
 }
