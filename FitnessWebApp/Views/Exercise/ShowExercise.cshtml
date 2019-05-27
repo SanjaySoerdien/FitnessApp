@@ -7,7 +7,7 @@
 <h2>@Html.DisplayFor(model => model.Name)</h2>
 <div>
     <h4> @Html.DisplayNameFor(model => model.MuscleGroup)</h4>
-    <hr/>
+    <hr />
     <dl class="dl-horizontal">
         <dt>
             Info:
@@ -16,5 +16,29 @@
             text?
         </dd>
     </dl>
-    comments hier   
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="page-header">
+                    <h1><small class="pull-right">@Model.Comments.Count Comments</small> Comments </h1>
+                </div>
+                <div class="comments-list">
+                    <div class="media">
+                        @foreach (var comment in Model.Comments)
+                        {
+
+                            <div class="media-body col-xs-12">
+
+                                <h4 class="media-heading user_name">@comment.Nickname</h4>
+                                @comment.Text
+                                <p><small><a class="pull-right" href="#">Like</a></small></p>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>

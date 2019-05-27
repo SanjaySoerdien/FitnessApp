@@ -12,6 +12,7 @@ namespace FitnessWebAppDAL.DAL
     {
         private readonly string connectionString =
             "Server=mssql.fhict.local;Database=dbi413271_iller;User Id=dbi413271_iller;Password=sjorsbaktniet;";
+        CommentDAL commentDAL = new CommentDAL();
 
         public Exercise GetExercise(string name)
         {
@@ -60,6 +61,7 @@ namespace FitnessWebAppDAL.DAL
                 reader.Close();
                 conn.Close();
             }
+            result.Comments = commentDAL.GetCommentsByExercise(result.Id);
             return result;
         }
 

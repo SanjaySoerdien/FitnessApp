@@ -16,7 +16,6 @@ namespace FitnessWebAppModels
         public string Username { get; set; }
         [Required(ErrorMessage = "Password field is required!")]
         public string Password { get; set; }
-        public List<WorkoutPlan> WorkoutPlans { get; set; }
         public string Role { get; set; }
     }
 }

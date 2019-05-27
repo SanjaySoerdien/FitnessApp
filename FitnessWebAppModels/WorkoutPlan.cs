@@ -12,5 +12,6 @@ namespace FitnessWebAppModels
         public string CategoryName { get; set; }
         public int Kudos { get; set; }
         public List<Exercise> Exercises { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 }
