@@ -28,7 +28,7 @@ namespace FitnessWebAppDAL.DAL
                 {
                     result = new Exercise
                     {
-                        Id = (int) reader["Id"], //TODO check deze shit
+                        Id = (int) reader["Id"], 
                         MuscleGroup = (string) reader["Category"],
                         Name = (string) reader["Name"],
                     };

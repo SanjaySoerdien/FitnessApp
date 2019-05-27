@@ -36,15 +36,8 @@ namespace FitnessWebApp.Controllers
             return View("Login");
         }
 
-        public IActionResult Logout()
-        {
-            this.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Index","Home");
-        }
-
         public IActionResult Register([Bind("Password, Username, Nickname")] User user)
         {
-
             if (!ModelState.IsValid)
             {
                 return View();
@@ -83,9 +76,15 @@ namespace FitnessWebApp.Controllers
                 claims.Add(new Claim(ClaimTypes.Name, user.Nickname));
                 ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme));
                 var authProp = new AuthenticationProperties { IsPersistent = true };
-                this.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authProp);
+                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authProp);
             }
             return user;
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Home");
         }
     }
 }

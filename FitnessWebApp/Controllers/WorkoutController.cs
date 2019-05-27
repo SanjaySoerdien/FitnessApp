@@ -27,7 +27,7 @@ namespace FitnessWebApp.Controllers
 
         public IActionResult SearchWorkouts()
         {
-            return View();//TODO fix deze view idk ben te moe
+            return View();
         }
     }
 }

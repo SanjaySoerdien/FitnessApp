@@ -1,38 +1,28 @@
-﻿@model IEnumerable<string>
-@{
+﻿@{
     ViewData["Title"] = "SearchWorkouts";
 }
 
 <h2>Search Workouts</h2>
 <div class="col-sm-6">
-    <select id="Category" type="text" name="field1">
-        <option>
-            - Select -
-        </option>
-        @foreach (var category in Model)
-        {
-            <option>
-                @category
-            </option>
-        }
-    </select>
+    Category: <input id="Category" type="text"> <br/>
+    Name:     <input id="Name" type="text">
 </div>
 
 <div class="col-sm-6">
-    <table class="table">
+    <table id="body"class="table">
         <thead>
             <tr>
                 <th>
-                    Name????
+                    Name
                 </th>
                 <th>
-                    Category name?!
+                    Category name
                 </th>
                 <th>
-                    Kudos??
+                    Kudos
                 </th>
                 <th>
-                    Creator Name/???
+                    Creator Name
                 </th>
                 <th></th>
             </tr>
@@ -44,15 +34,22 @@
 @section Scripts
 {
     <script>
-        $('#Category').change(function() {
-            $.ajax({
-                url: '@Url.Action("action", "controller")',
-                data: $('#Category').val(),
-                type: "POST",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json"
-            });
+        $('#EENOFANDEREBUTTOn').onclick(function() {
+            $('#body').empty();
+            $.post('@Url.Action("SearchForExerciseByCategory", "Exercise")',
+                {
+                    category: $('#Category').val()
+                },
+                function(data) {
+                    data.forEach(function(exercise) {
+                        $('#body').append(
+                            "<tr>\n" +
+                            `  <td> <a href="/Exercise/ShowExercise/${exercise.id}"> ${exercise.name}</a> </td>\n ` +
+                            `  <td> ${exercise.muscleGroup}</td>\n` +
+                            `  <td> ${exercise.kudos}</td>\n` +
+                            "</tr>\n");
+                    });
+                });
         });
-        //TODO Deze na de andere 
     </script>
 }
