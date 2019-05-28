@@ -3,8 +3,6 @@
 
 @{
     ViewData["Title"] = "SearchForExercise";
-    int selectedId = 0;
-    string exerciseName = "Failed to get name";
 }
 
 <h2>Search for Exercise</h2>
@@ -52,15 +50,22 @@
             {
                 category: $('#Category').val()
             },
-            function(data) {
-                data.forEach(function(exercise) {
+            function (data) {
+                if (data.length !== 0) {
+                    data.forEach(function(exercise) {
+                        $('#body').append(
+                            "<tr>\n" +
+                            `  <td> <a href="/Exercise/ShowExercise/${exercise.id}"> ${exercise.name}</a> </td>\n ` +
+                            `  <td> ${exercise.muscleGroup}</td>\n` +
+                            `  <td> ${exercise.kudos}</td>\n` +
+                            "</tr>\n");
+                    });
+                } else {
                     $('#body').append(
                         "<tr>\n" +
-                        `  <td> <a href="/Exercise/ShowExercise/${exercise.id}"> ${exercise.name}</a> </td>\n ` +
-                        `  <td> ${exercise.muscleGroup}</td>\n` +
-                        `  <td> ${exercise.kudos}</td>\n` +
+                        "  <td> No results found</td>\n"  +
                         "</tr>\n");
-                });
+                }
             });
     });
     </script>

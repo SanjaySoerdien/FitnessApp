@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FitnessWebAppLogic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FitnessWebApp.Controllers
@@ -25,6 +26,11 @@ namespace FitnessWebApp.Controllers
             return View(workoutPlanLogic.GetWorkoutPlan(creatornickname, planname));
         }
 
+        public IActionResult ShowWorkoutById(int id)
+        {
+            return View("ShowWorkout", workoutPlanLogic.GetWorkoutPlanById(id));
+        }
+
         public IActionResult SearchWorkouts()
         {
             return View();
@@ -33,6 +39,12 @@ namespace FitnessWebApp.Controllers
         public IActionResult SearchWorkoutsByName(string name)
         {
             return Json(workoutPlanLogic.SearchWorkoutsByName(name));
+        }
+
+        public IActionResult ShowYourWorkouts()
+        {
+            return View(workoutPlanLogic.GetWorkoutPlansByUser(User.Identity.Name));
+            //todo maak deze view en voeg add functies toe enzo 
         }
     }
 }

@@ -32,6 +32,11 @@ namespace FitnessWebAppLogic
            throw new NotImplementedException();
        }
 
+       public WorkoutPlan GetWorkoutPlanById(int id)
+       {
+           return workoutplanRepo.GetWorkoutPlanById(id);
+       }
+
        public List<WorkoutPlan> SearchWorkoutsByName(string name)
        {
            return workoutplanRepo.SearchWorkoutsByName(name);

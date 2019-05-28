@@ -14,6 +14,7 @@ namespace FitnessWebAppDAL.MockData
         {
             workoutPlans.Add(new WorkoutPlan
             {
+                Id = 0,
                 Name = "Chest day is the best day",
                 CreatorName = "TestUser",
                 Kudos = 40,
@@ -43,6 +44,7 @@ namespace FitnessWebAppDAL.MockData
             });
             workoutPlans.Add(new WorkoutPlan
                 {
+                    Id = 1,
                     Name = "Always Skip LegDate",
                     CreatorName = "TestAdmin",
                     Kudos = 12,
@@ -63,6 +65,7 @@ namespace FitnessWebAppDAL.MockData
             );
             workoutPlans.Add(new WorkoutPlan
                 {
+                    Id = 2,
                     Name = "2nd plan for admin <3",
                     CreatorName = "TestAdmin",
                     Kudos = 12,
@@ -96,8 +99,7 @@ namespace FitnessWebAppDAL.MockData
 
         public List<WorkoutPlan> GetWorkoutPlansByUser(string username)
         {
-            var result = workoutPlans.Where(workoutplan => workoutplan.CreatorName.Equals(username));
-            return (List<WorkoutPlan>)result;
+            return (List<WorkoutPlan>) workoutPlans.Where(workoutplan => workoutplan.CreatorName.Equals(username));
         }
 
         public void AddWorkoutPlan(WorkoutPlan workoutPlanToAdd)
@@ -108,6 +110,11 @@ namespace FitnessWebAppDAL.MockData
         public List<WorkoutPlan> SearchWorkoutsByName(string name)
         {
             throw new NotImplementedException();
+        }
+
+        public WorkoutPlan GetWorkoutPlanById(int id)
+        {
+            return (WorkoutPlan)workoutPlans.Where(workoutplan => workoutplan.Id.Equals(id));
         }
     }
 }

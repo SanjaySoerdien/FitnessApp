@@ -41,5 +41,10 @@ namespace FitnessWebAppDAL
         {
             return context.SearchWorkoutsByName(name);
         }
+
+        public WorkoutPlan GetWorkoutPlanById(int id)
+        {
+            return context.GetWorkoutPlanById(id);
+        }
     }
 }

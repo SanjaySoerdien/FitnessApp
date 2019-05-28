@@ -40,16 +40,24 @@
                 {
                     Name: $('#Name').val()
                 },
-                function(data) {
-                    data.forEach(function(workout) {
+                function (data) {
+                    console.log(data);
+                    if (data.length !== 0) {
+                        data.forEach(function(workout) {
+                            $('#body').append(
+                                "<tr>\n" +
+                                `  <td> <a href="/Workout/ShowWorkoutById/${workout.id}"> ${workout.name}</a> </td>\n ` +
+                                `  <td> ${workout.muscleGroup}</td>\n` +
+                                `  <td> ${workout.kudos}</td>\n` +
+                                `  <td> ${workout.creatorName}</td>\n` +
+                                "</tr>\n");
+                        });
+                    } else {
                         $('#body').append(
                             "<tr>\n" +
-                            `  <td> <a href="/Workout/ShowWorkout/${workout.id}"> ${workout.name}</a> </td>\n ` +
-                            `  <td> ${workout.muscleGroup}</td>\n` +
-                            `  <td> ${workout.kudos}</td>\n` +
-                            `  <td> ${workout.creatorName}</td>\n` +
+                            "  <td> No results found</td>\n"  +
                             "</tr>\n");
-                    });
+                    }
                 });
         });
     </script>
