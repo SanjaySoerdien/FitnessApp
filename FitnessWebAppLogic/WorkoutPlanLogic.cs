@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Text;
 using FitnessWebAppDAL;
 using FitnessWebAppInterfaces;
@@ -21,7 +22,7 @@ namespace FitnessWebAppLogic
            return workoutplanRepo.GetTopWorkoutPlans();
        }
 
-       public List<Exercise> GetWorkoutPlanExercises(string username, string planName)
+       public WorkoutPlan GetWorkoutPlan(string username, string planName)
        {
            return workoutplanRepo.GetWorkoutPlanExercises(username,planName);
        }
@@ -29,6 +30,11 @@ namespace FitnessWebAppLogic
        public void AddWorkoutPlan(WorkoutPlan workoutPlanToAdd)
        {
            throw new NotImplementedException();
+       }
+
+       public List<WorkoutPlan> SearchWorkoutsByName(string name)
+       {
+           return workoutplanRepo.SearchWorkoutsByName(name);
        }
     }
 }

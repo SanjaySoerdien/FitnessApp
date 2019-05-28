@@ -54,18 +54,13 @@
                     <ul class="dropdown-menu">
                         <li><a asp-controller="Exercise" asp-action="Index">Top Exercises</a></li>
                         <li><a asp-controller="Exercise" asp-action="SearchForExercise">Search exercises</a></li>
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li role="separator" class="divider"></li>
-                            <li>add IfAutheticatedOption?</li>
-                        }
                     </ul>
                 </li>
 
                 @if (User.IsInRole("Admin"))
                 {
                     <li>
-                        <a href="#">Admin screen</a>
+                        <a asp-controller="Admin" asp-action="Index">Admin screen</a>
                     </li>
                 }
             </ul>

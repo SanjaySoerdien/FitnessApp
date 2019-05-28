@@ -4,12 +4,12 @@
 
 <h2>Search Workouts</h2>
 <div class="col-sm-6">
-    Category: <input id="Category" type="text"> <br/>
     Name:     <input id="Name" type="text">
+    <button id="searchbutton" type="button">Search!</button>
 </div>
 
 <div class="col-sm-6">
-    <table id="body"class="table">
+    <table class="table">
         <thead>
             <tr>
                 <th>
@@ -27,26 +27,27 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody></tbody>
+        <tbody id="body"></tbody>
     </table>
 </div>
 
 @section Scripts
 {
     <script>
-        $('#EENOFANDEREBUTTOn').onclick(function() {
+        $('#searchbutton').click(function() {
             $('#body').empty();
-            $.post('@Url.Action("SearchForExerciseByCategory", "Exercise")',
+            $.post('@Url.Action("SearchWorkoutsByName", "Workout")',
                 {
-                    category: $('#Category').val()
+                    Name: $('#Name').val()
                 },
                 function(data) {
-                    data.forEach(function(exercise) {
+                    data.forEach(function(workout) {
                         $('#body').append(
                             "<tr>\n" +
-                            `  <td> <a href="/Exercise/ShowExercise/${exercise.id}"> ${exercise.name}</a> </td>\n ` +
-                            `  <td> ${exercise.muscleGroup}</td>\n` +
-                            `  <td> ${exercise.kudos}</td>\n` +
+                            `  <td> <a href="/Workout/ShowWorkout/${workout.id}"> ${workout.name}</a> </td>\n ` +
+                            `  <td> ${workout.muscleGroup}</td>\n` +
+                            `  <td> ${workout.kudos}</td>\n` +
+                            `  <td> ${workout.creatorName}</td>\n` +
                             "</tr>\n");
                     });
                 });

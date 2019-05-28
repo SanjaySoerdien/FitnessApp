@@ -27,14 +27,19 @@ namespace FitnessWebAppDAL
             return context.GetTopWorkoutPlans();
         }
 
-        public List<Exercise>GetWorkoutPlanExercises(string username, string planName)
+        public WorkoutPlan GetWorkoutPlanExercises(string username, string planName)
         {
-            return context.GetWorkoutPlanExercises(username, planName);
+            return context.GetWorkoutPlan(username, planName);
         }
 
         public void AddWorkoutPlan(WorkoutPlan workoutPlanToAdd)
         {
             context.AddWorkoutPlan(workoutPlanToAdd);
+        }
+
+        public List<WorkoutPlan> SearchWorkoutsByName(string name)
+        {
+            return context.SearchWorkoutsByName(name);
         }
     }
 }

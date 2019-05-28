@@ -12,6 +12,7 @@ namespace FitnessWebAppDAL
     {
         private readonly string connectionString =
             "Server=mssql.fhict.local;Database=dbi413271_iller;User Id=dbi413271_iller;Password=sjorsbaktniet;";
+        CommentDAL commentDAL = new CommentDAL();
 
         public List<WorkoutPlan> GetWorkoutPlansByUser(string username)
         {
@@ -68,9 +69,30 @@ namespace FitnessWebAppDAL
             return result;
         }
 
-        public List<Exercise> GetWorkoutPlanExercises(string nickname, string planname)
+        public WorkoutPlan GetWorkoutPlan(string nickname, string planname)
         {
-            List<Exercise> result = new List<Exercise>();
+            WorkoutPlan result = new WorkoutPlan();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("GetWorkoutPlanInfo", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new SqlParameter("@Planname", planname));
+                cmd.Parameters.Add(new SqlParameter("@Nickname", nickname));
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                        result.Id = (int) reader["ID"];
+                        result.Name = (string) reader["Name"];
+                        result.CreatorName = (string) reader["Nickname"];
+                        result.CategoryName = (string) reader["CategoryName"];
+                }
+                reader.Close();
+                conn.Close();
+            }
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -83,7 +105,8 @@ namespace FitnessWebAppDAL
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    result.Add(new Exercise
+                    result.Exercises = new List<Exercise>();
+                    result.Exercises.Add(new Exercise
                     {
                         Id = (int)reader["ID"],
                         Name = (string) reader["Name"],
@@ -92,6 +115,8 @@ namespace FitnessWebAppDAL
                         MuscleGroup = (string) reader["Category"]
                     });
                 }
+
+                result.Comments = commentDAL.GetCommentsByWorkoutplan(result.Id);
                 reader.Close();
                 conn.Close();
             }
@@ -104,5 +129,31 @@ namespace FitnessWebAppDAL
             //TODO Make dis
         }
 
+        public List<WorkoutPlan> SearchWorkoutsByName(string name)
+        {
+            List<WorkoutPlan> result = new List<WorkoutPlan>();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SearchWorkoutsByName", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@Name", name));
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    result.Add(new WorkoutPlan
+                    {
+                        Id = (int)reader["ID"],
+                        Name = (string)reader["Name"],
+                        CreatorName = (string)reader["Nickname"],
+                        CategoryName = (string)reader["CategoryName"],
+                        Kudos = (int)reader["Kudo"]
+                    });
+                }
+                reader.Close();
+                conn.Close();
+            }
+            return result;
+        }
     }
 }

@@ -22,12 +22,17 @@ namespace FitnessWebApp.Controllers
 
         public IActionResult ShowWorkout(string creatornickname, string planname)
         {
-            return View(workoutPlanLogic.GetWorkoutPlanExercises(creatornickname, planname));
+            return View(workoutPlanLogic.GetWorkoutPlan(creatornickname, planname));
         }
 
         public IActionResult SearchWorkouts()
         {
             return View();
+        }
+
+        public IActionResult SearchWorkoutsByName(string name)
+        {
+            return Json(workoutPlanLogic.SearchWorkoutsByName(name));
         }
     }
 }

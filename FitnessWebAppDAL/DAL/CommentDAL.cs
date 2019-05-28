@@ -53,7 +53,7 @@ namespace FitnessWebAppDAL
                     result.Add(new Comment
                     {
                         Text = (string)reader["Text"],
-                        Kudos = (int)reader["Kudos"],
+                        //Kudos = (int)reader["Kudos"], TODO fix later, kudo stuff edit DB eerst
                         Nickname = (string)reader["Nickname"]
                     });
                 }

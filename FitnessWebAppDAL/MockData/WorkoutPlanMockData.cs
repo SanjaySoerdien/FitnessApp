@@ -88,10 +88,10 @@ namespace FitnessWebAppDAL.MockData
             return workoutPlans;
         }
 
-        public List<Exercise> GetWorkoutPlanExercises(string username, string planName)
+        public WorkoutPlan GetWorkoutPlan(string username, string planName)
         {
             var result = workoutPlans.First(workoutplan => workoutplan.Name.Equals(planName) && workoutplan.CreatorName.Equals(username));
-            return result.Exercises;
+            return result;
         }
 
         public List<WorkoutPlan> GetWorkoutPlansByUser(string username)
@@ -103,6 +103,11 @@ namespace FitnessWebAppDAL.MockData
         public void AddWorkoutPlan(WorkoutPlan workoutPlanToAdd)
         {
             workoutPlans.Add(workoutPlanToAdd);
+        }
+
+        public List<WorkoutPlan> SearchWorkoutsByName(string name)
+        {
+            throw new NotImplementedException();
         }
     }
 }

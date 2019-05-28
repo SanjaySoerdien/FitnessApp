@@ -1,48 +1,73 @@
-﻿@model IEnumerable<FitnessWebAppModels.Exercise>
+﻿@using FitnessWebAppModels
+@model WorkoutPlan
 
 @{
     ViewData["Title"] = "ShowWorkout";
 }
 
-<h2>ShowWorkout</h2>
-
+<h2> @Model.Name </h2>
+<h3> Made by @Model.CreatorName</h3>
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MuscleGroup)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SetTarget)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RepTarget)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Exercises[0].Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Exercises[0].MuscleGroup)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Exercises[0].SetTarget)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Exercises[0].RepTarget)
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+    @foreach (var exercise in Model.Exercises)
+    {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => exercise.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MuscleGroup)
+                @Html.DisplayFor(modelItem => exercise.MuscleGroup)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SetTarget)
+                @Html.DisplayFor(modelItem => exercise.SetTarget)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RepTarget)
+                @Html.DisplayFor(modelItem => exercise.RepTarget)
             </td>
             <td>
-                @Html.ActionLink("View", "ShowExercise","Exercise", new {item.Id}) |
+                @Html.ActionLink("View", "ShowExercise", "Exercise", new { exercise.Id })
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="page-header">
+                <h1><small class="pull-right">@Model.Comments.Count Comments</small> Comments </h1>
+            </div>
+            <div class="comments-list">
+                <div class="media">
+                    @foreach (var comment in Model.Comments)
+                    {
+                        <div class="media-body col-xs-12">
+                            <h4 class="media-heading user_name">@comment.Nickname</h4>
+                            @comment.Text
+                            <p><small><a class="pull-right" href="#">Like</a></small></p>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
