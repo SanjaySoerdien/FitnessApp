@@ -43,7 +43,7 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li role="separator" class="divider"></li>
-                            <li><a asp-controller="Workout" asp-action="ShowUserWorkouts" asp-route-username="@User.Identity.Name">Your workouts</a></li>
+                            <li><a asp-controller="Workout" asp-action="ShowYourWorkouts" asp-route-username="@User.Identity.Name">Your workouts</a></li>
                         }
                     </ul>
                 </li>

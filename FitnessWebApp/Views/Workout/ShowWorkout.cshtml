@@ -49,6 +49,11 @@
     </tbody>
 </table>
 
+
+@if (Model.CreatorName == User.Identity.Name)
+{
+}
+
 <div class="container">
     <div class="row">
         <div class="col-md-8">
@@ -67,7 +72,6 @@
                     }
                 </div>
             </div>
-
         </div>
     </div>
 </div>

@@ -44,7 +44,13 @@ namespace FitnessWebApp.Controllers
         public IActionResult ShowYourWorkouts()
         {
             return View(workoutPlanLogic.GetWorkoutPlansByUser(User.Identity.Name));
-            //todo maak deze view en voeg add functies toe enzo 
+            //TODO maak deze view en voeg add functies toe enzo 
+        }
+
+        public IActionResult AddWorkout()
+        {
+            ExerciseLogic exerciseLogic = new ExerciseLogic();
+            return View(exerciseLogic.GetAllCategories());
         }
     }
 }

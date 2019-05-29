@@ -93,7 +93,7 @@ namespace FitnessWebAppDAL
                 conn.Close();
             }
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(connectionString)) //TODO copy paste naar exercise
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("GetWorkoutPlanExercises", conn);
@@ -115,7 +115,7 @@ namespace FitnessWebAppDAL
                         MuscleGroup = (string) reader["Category"]
                     });
                 }
-
+    
                 result.Comments = commentDAL.GetCommentsByWorkoutplan(result.Id);
                 reader.Close();
                 conn.Close();

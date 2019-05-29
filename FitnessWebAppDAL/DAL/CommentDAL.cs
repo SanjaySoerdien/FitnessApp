@@ -27,6 +27,7 @@ namespace FitnessWebAppDAL
                 {
                     result.Add(new Comment
                     {
+                        ID = (int)reader["Id"],
                         Text = (string) reader["Text"],
                         //Kudos = (int)reader["Kudos"], todo fix kudos hier
                         Nickname = (string)reader["Nickname"]
@@ -52,6 +53,7 @@ namespace FitnessWebAppDAL
                 {
                     result.Add(new Comment
                     {
+                        ID = (int)reader["Id"],
                         Text = (string)reader["Text"],
                         //Kudos = (int)reader["Kudos"], TODO fix later, kudo stuff edit DB eerst
                         Nickname = (string)reader["Nickname"]

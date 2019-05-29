@@ -1,0 +1,73 @@
+﻿@model IEnumerable<string>
+    @{
+        ViewData["Title"] = "AddWorkout";
+    }
+
+
+
+<input type="button" value="Save" id="btnsave" name="btnsave" />
+
+<h2>Search for Exercise</h2>
+<div class="col-sm-6">
+
+</div>
+    <div class="col-sm-3">
+        <select id="Category" type="text" name="field1">
+            <option>
+                - Select -
+            </option>
+            @foreach (var category in Model)
+            {
+                <option>
+                    @category
+                </option>
+            }
+        </select>
+    </div>
+    <div class="col-sm-3">
+        <table class="table" summary="">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Muscle Group
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="body"></tbody>
+        </table>
+    </div>
+
+    @section Scripts
+        {
+        <script>
+        $('#Category').change(function() {
+            $('#body').empty();
+            $.post('@Url.Action("SearchForExerciseByCategory", "Exercise")',
+                {
+                    category: $('#Category').val()
+                },
+                function (data) {
+                    if (data.length !== 0) {
+                        data.forEach(function(exercise) {
+                            $('#body').append(
+                                "<tr>\n" +
+                                `  <td> <a href="/Exercise/ShowExercise/${exercise.id}"> ${exercise.name}</a> </td>\n ` +
+                                `  <td> ${exercise.muscleGroup}</td>\n` +
+                                `  <td> id=${exercise.Name}</td>\n` +//todo gekke shit hier dat ie hem toevoegnd aan andere lijst en dan met ajax heel die shit maken komt goeie, en dan nog boxen met andere shit voor dingens info
+                                "</tr>\n");
+                        });
+                    } else {
+                        $('#body').append(
+                            "<tr>\n" +
+                            "  <td> No results found</td>\n"  +
+                            "</tr>\n");
+                    }
+                });
+        });
+        </script>
+    }
