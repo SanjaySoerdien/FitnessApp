@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FitnessWebAppLogic;
+using FitnessWebAppModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -47,10 +48,21 @@ namespace FitnessWebApp.Controllers
             //TODO maak deze view en voeg add functies toe enzo 
         }
 
+        [Authorize]
         public IActionResult AddWorkout()
         {
-            ExerciseLogic exerciseLogic = new ExerciseLogic();
-            return View(exerciseLogic.GetAllCategories());
+            return View();
+        }
+
+        public IActionResult CreateNewWorkout([Bind("CreatorName", "CategoryName")] WorkoutPlan workoutPlan)
+        {
+            if (!ModelState.ContainsKey("Name") && !ModelState.ContainsKey("CategoryName"))
+            {
+                return View("AddWorkout");
+            }
+            workoutPlan.CreatorName = User.Identity.Name;
+            workoutPlanLogic.AddWorkoutPlan(workoutPlan); //TODO maak in DAL en IN DB
+            return View("ShowYourWorkouts");
         }
     }
 }

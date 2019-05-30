@@ -12,6 +12,7 @@ namespace FitnessWebAppModels
         public int SetTarget { get; set; }
         public int RepTarget { get; set; }
         public int Kudos { get; set; }
+        public string Description { get; set; } //todo fix in dal enzo
         public List<Comment> Comments { get; set; }
     }
 }

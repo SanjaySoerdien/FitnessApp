@@ -132,7 +132,38 @@ namespace FitnessWebAppDAL.DAL
             }
             return result;
         }
-        
+
+        public List<Exercise> GetWorkoutPlanExercises(string planname, string nickname)
+        {
+            List<Exercise> result = new List<Exercise>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("GetWorkoutPlanExercises", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new SqlParameter("@Planname", planname));
+                cmd.Parameters.Add(new SqlParameter("@Nickname", nickname));
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    result.Add(new Exercise
+                    {
+                        Id = (int)reader["ID"],
+                        Name = (string)reader["Name"],
+                        SetTarget = (int)reader["SetsTarget"],
+                        RepTarget = (int)reader["RepsTarget"],
+                        MuscleGroup = (string)reader["Category"]
+                    });
+                }
+                reader.Close();
+                conn.Close();
+            }
+            return result;
+        }
+
         public void AddExercise()
         {
             throw new NotImplementedException();

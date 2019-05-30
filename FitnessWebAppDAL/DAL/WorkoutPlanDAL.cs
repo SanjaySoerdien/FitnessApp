@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using FitnessWebAppDAL.DAL;
 using FitnessWebAppInterfaces;
 using FitnessWebAppModels;
 
@@ -13,6 +14,7 @@ namespace FitnessWebAppDAL
         private readonly string connectionString =
             "Server=mssql.fhict.local;Database=dbi413271_iller;User Id=dbi413271_iller;Password=sjorsbaktniet;";
         CommentDAL commentDAL = new CommentDAL();
+        ExerciseDAL exerciseDAL = new ExerciseDAL();
 
         public List<WorkoutPlan> GetWorkoutPlansByUser(string username)
         {
@@ -93,33 +95,11 @@ namespace FitnessWebAppDAL
                 conn.Close();
             }
 
-            using (SqlConnection conn = new SqlConnection(connectionString)) //TODO copy paste naar exercise
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("GetWorkoutPlanExercises", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
+           
 
-                cmd.Parameters.Add(new SqlParameter("@Planname", planname));
-                cmd.Parameters.Add(new SqlParameter("@Nickname", nickname));
+            result.Exercises = exerciseDAL.GetWorkoutPlanExercises(planname, nickname);
+            result.Comments = commentDAL.GetCommentsByWorkoutplan(result.Id);
 
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    result.Exercises = new List<Exercise>();
-                    result.Exercises.Add(new Exercise
-                    {
-                        Id = (int)reader["ID"],
-                        Name = (string) reader["Name"],
-                        SetTarget = (int) reader["SetsTarget"],
-                        RepTarget = (int) reader["RepsTarget"],
-                        MuscleGroup = (string) reader["Category"]
-                    });
-                }
-    
-                result.Comments = commentDAL.GetCommentsByWorkoutplan(result.Id);
-                reader.Close();
-                conn.Close();
-            }
             return result;
         }
 
@@ -145,35 +125,8 @@ namespace FitnessWebAppDAL
                 reader.Close();
                 conn.Close();
             }
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("GetWorkoutPlanExercises", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.Add(new SqlParameter("@Planname", result.Name));
-                cmd.Parameters.Add(new SqlParameter("@Nickname", result.CreatorName));
-
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    result.Exercises = new List<Exercise>();
-                    result.Exercises.Add(new Exercise
-                    {
-                        Id = (int)reader["ID"],
-                        Name = (string)reader["Name"],
-                        SetTarget = (int)reader["SetsTarget"],
-                        RepTarget = (int)reader["RepsTarget"],
-                        MuscleGroup = (string)reader["Category"]
-                    });
-                }
-
-                result.Comments = commentDAL.GetCommentsByWorkoutplan(result.Id);
-                reader.Close();
-                conn.Close();
-            }
+            result.Exercises = exerciseDAL.GetWorkoutPlanExercises(result.Name, result.CreatorName);//TODO maybe change to ID?
+            result.Comments = commentDAL.GetCommentsByWorkoutplan(result.Id);
             return result;
         }
 
