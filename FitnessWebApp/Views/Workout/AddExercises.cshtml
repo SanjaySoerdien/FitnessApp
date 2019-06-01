@@ -11,6 +11,7 @@
         margin: 6px;
     }
 </style>
+
 <h2>Add exercises to @Model.Name</h2>
 
 <div class="container" value="">
@@ -127,8 +128,7 @@
                         data.forEach(function(exercise) {
                             $('#ToAddBody').append(
                                 "<tr>\n" +
-                                `  <td> <a href="/Exercise/ShowExercise/${exercise.id}"> ${exercise.name
-                                }</a> </td>\n ` +
+                                `  <td> <a href="/Exercise/ShowExercise/${exercise.id}"> ${exercise.name}</a> </td>\n ` +
                                 `  <td> ${exercise.muscleGroup}</td>\n` +
                                 `  <td> ${exercise.kudos}</td>\n` +
                                 `  <td><button onclick="AddExercise(${exercise.id})" value="${exercise.id}"> Add </button></td> \n` +
@@ -143,23 +143,26 @@
                 });
         });
 
-
         function AddExercise(id)
         {
-            if (id !== undefined) {
+            console.log(id);
+            if (id == undefined) {
                 alert("Exercise unable to be added");
             } else {
                 $.ajax({
-                    url: '@Html.ActionLink("Test","AddExerciseToWorkout","Workout")',
-                    data: { workoutPlanId: @Model.Id, exerciseId: id, repCount: $('#Reps').val(), setCount: $('#Sets').val() },
+                    url: '@Url.Action("AddExerciseToWorkout","Workout")',
+                    data: {
+                        workoutPlanId: @Model.Id,
+                        exerciseId: id,
+                        repCount: $('#Reps').val(),
+                        setCount: $('#Sets').val()
+                    },
                     type: "POST",
-                    contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function(result) {
                         console.log("Success");
                         alert(result.message);
-                        location.reload(); //TODO check , eventueel fixen door opnieuw naar controller te gaan en zo te refreshen
-                        //TODO HIER WAS JE!!!
+                        location.reload(); 
                     },
                     error: function () {
                         alert("Adding exercise failed");

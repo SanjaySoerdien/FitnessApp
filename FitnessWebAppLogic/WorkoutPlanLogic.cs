@@ -27,9 +27,9 @@ namespace FitnessWebAppLogic
            return workoutplanRepo.GetWorkoutPlanExercises(username,planName);
        }
 
-       public void AddWorkoutPlan(WorkoutPlan workoutPlanToAdd)
+       public void AddWorkoutPlan (WorkoutPlan workoutPlanToAdd)
        {
-           throw new NotImplementedException();
+           workoutplanRepo.AddWorkoutPlan(workoutPlanToAdd);
        }
 
        public WorkoutPlan GetWorkoutPlanById(int id)
@@ -40,6 +40,11 @@ namespace FitnessWebAppLogic
        public List<WorkoutPlan> SearchWorkoutsByName(string name)
        {
            return workoutplanRepo.SearchWorkoutsByName(name);
+       }
+
+       public void AddExerciseToWorkout(int workoutPlanId, int exerciseId, int repCount, int setCount)
+       {
+           workoutplanRepo.AddExerciseToWorkout(workoutPlanId, exerciseId, repCount, setCount);
        }
     }
 }

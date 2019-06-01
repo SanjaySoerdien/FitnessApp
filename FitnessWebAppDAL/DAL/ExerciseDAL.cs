@@ -137,7 +137,6 @@ namespace FitnessWebAppDAL.DAL
         public List<Exercise> GetWorkoutPlanExercises(string planname, string nickname)
         {
             List<Exercise> result = new List<Exercise>();
-
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();

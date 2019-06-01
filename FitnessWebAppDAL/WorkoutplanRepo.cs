@@ -46,5 +46,10 @@ namespace FitnessWebAppDAL
         {
             return context.GetWorkoutPlanById(id);
         }
+
+        public void AddExerciseToWorkout(int workoutPlanId, int exerciseId, int repCount, int setCount)
+        {
+            context.AddExerciseToWorkout(workoutPlanId, exerciseId, repCount, setCount);
+        }
     }
 }

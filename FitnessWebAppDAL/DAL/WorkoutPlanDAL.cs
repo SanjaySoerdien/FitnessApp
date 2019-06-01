@@ -35,7 +35,6 @@ namespace FitnessWebAppDAL
                        Name = (string)reader["Name"],
                        CreatorName = (string)reader["Nickname"],
                        CategoryName = (string)reader["CategoryName"],
-                       Kudos = (int)reader["Kudo"]
                     });
                 }
                 reader.Close();
@@ -61,7 +60,6 @@ namespace FitnessWebAppDAL
                         Name = (string)reader["Name"],
                         CreatorName = (string)reader["Nickname"],
                         CategoryName = (string)reader["CategoryName"],
-                        Kudos = (int)reader["Kudo"]
                     });
                 }
                 reader.Close();
@@ -132,8 +130,20 @@ namespace FitnessWebAppDAL
 
         public void AddWorkoutPlan(WorkoutPlan workoutPlanToAdd)
         {
-            throw new NotImplementedException();
-            //TODO Make dis
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("AddWorkoutPlan", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@Name", workoutPlanToAdd.Name));
+                cmd.Parameters.Add(new SqlParameter("@Username", workoutPlanToAdd.CreatorName));
+                cmd.Parameters.Add(new SqlParameter("@CategoryName", workoutPlanToAdd.CategoryName));
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    //TODO detect if functional?
+                }
+                conn.Close();
+            }
         }
 
         public List<WorkoutPlan> SearchWorkoutsByName(string name)
@@ -154,13 +164,31 @@ namespace FitnessWebAppDAL
                         Name = (string)reader["Name"],
                         CreatorName = (string)reader["Nickname"],
                         CategoryName = (string)reader["CategoryName"],
-                        Kudos = (int)reader["Kudo"]
                     });
                 }
                 reader.Close();
                 conn.Close();
             }
             return result;
+        }
+
+        public void AddExerciseToWorkout(int workoutPlanId, int exerciseId, int repCount, int setCount)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("AddExerciseToWorkout", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@SetTarget", setCount));
+                cmd.Parameters.Add(new SqlParameter("@RepTarget", repCount));
+                cmd.Parameters.Add(new SqlParameter("@WorkoutPlanId", workoutPlanId));
+                cmd.Parameters.Add(new SqlParameter("@ExerciseID", exerciseId));
+                if (cmd.ExecuteNonQuery()>0)
+                {
+                    //TODO detect if functional?
+                }
+                conn.Close();
+            }
         }
     }
 }

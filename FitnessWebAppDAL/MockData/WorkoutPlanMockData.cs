@@ -116,5 +116,10 @@ namespace FitnessWebAppDAL.MockData
         {
             return (WorkoutPlan)workoutPlans.Where(workoutplan => workoutplan.Id.Equals(id));
         }
+
+        public void AddExerciseToWorkout(int workoutPlanId, int exerciseId, int repCount, int setCount)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

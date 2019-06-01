@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FitnessWebApp.Controllers
 {
-    [Authorize]
     public class WorkoutController : Controller
     {
         WorkoutPlanLogic workoutPlanLogic = new WorkoutPlanLogic();
@@ -62,20 +61,21 @@ namespace FitnessWebApp.Controllers
                 return View("AddWorkout");
             }
             workoutPlan.CreatorName = User.Identity.Name;
-            workoutPlanLogic.AddWorkoutPlan(workoutPlan); //TODO maak in DAL en IN DB
-            return View("ShowYourWorkouts");
+            workoutPlanLogic.AddWorkoutPlan(workoutPlan);
+            return RedirectToAction("ShowYourWorkouts");
         }
 
         [HttpPost]
         public IActionResult AddExerciseToWorkout(int workoutPlanId , int exerciseId,int repCount,int setCount)
         {
-            //todo add exercise to workout , easiest query ever
-            return View("AddExercises",workoutPlanLogic.GetWorkoutPlanById(workoutPlanId));
+            workoutPlanLogic.AddExerciseToWorkout(workoutPlanId, exerciseId, repCount, setCount);
+            return new JsonResult(new { message = "Successfully added exercise" });
         }
         
         public IActionResult AddExercises(WorkoutPlan workoutPlan)
         {
             return View(workoutPlanLogic.GetWorkoutPlanById(workoutPlan.Id));
         }
+
     }
 }
