@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FitnessWebApp.Controllers
 {
+    [Authorize]
     public class WorkoutController : Controller
     {
         WorkoutPlanLogic workoutPlanLogic = new WorkoutPlanLogic();
@@ -45,7 +46,6 @@ namespace FitnessWebApp.Controllers
         public IActionResult ShowYourWorkouts()
         {
             return View(workoutPlanLogic.GetWorkoutPlansByUser(User.Identity.Name));
-            //TODO maak deze view en voeg add functies toe enzo 
         }
 
         [Authorize]
@@ -54,15 +54,28 @@ namespace FitnessWebApp.Controllers
             return View();
         }
 
-        public IActionResult CreateNewWorkout([Bind("CreatorName", "CategoryName")] WorkoutPlan workoutPlan)
+        [HttpPost]
+        public IActionResult CreateNewWorkout([Bind("Name , CategoryName")] WorkoutPlan workoutPlan)
         {
-            if (!ModelState.ContainsKey("Name") && !ModelState.ContainsKey("CategoryName"))
+            if (workoutPlan.Name == null || workoutPlan.CategoryName == null) 
             {
                 return View("AddWorkout");
             }
             workoutPlan.CreatorName = User.Identity.Name;
             workoutPlanLogic.AddWorkoutPlan(workoutPlan); //TODO maak in DAL en IN DB
             return View("ShowYourWorkouts");
+        }
+
+        [HttpPost]
+        public IActionResult AddExerciseToWorkout(int workoutPlanId , int exerciseId,int repCount,int setCount)
+        {
+            //todo add exercise to workout , easiest query ever
+            return View("AddExercises",workoutPlanLogic.GetWorkoutPlanById(workoutPlanId));
+        }
+        
+        public IActionResult AddExercises(WorkoutPlan workoutPlan)
+        {
+            return View(workoutPlanLogic.GetWorkoutPlanById(workoutPlan.Id));
         }
     }
 }

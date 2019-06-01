@@ -9,7 +9,5 @@ namespace FitnessWebAppInterfaces
     {
         List<Comment> GetCommentsByWorkoutplan(int id);
         List<Comment> GetCommentsByExercise(int id);
-
-        //todo usercomments?
     }
 }

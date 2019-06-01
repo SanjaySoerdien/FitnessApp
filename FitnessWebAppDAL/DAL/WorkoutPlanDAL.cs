@@ -97,7 +97,7 @@ namespace FitnessWebAppDAL
 
            
 
-            result.Exercises = exerciseDAL.GetWorkoutPlanExercises(planname, nickname);
+            result.Exercises = exerciseDAL.GetWorkoutPlanExercises(result.Name, result.CreatorName);
             result.Comments = commentDAL.GetCommentsByWorkoutplan(result.Id);
 
             return result;

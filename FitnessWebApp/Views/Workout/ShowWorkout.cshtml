@@ -25,33 +25,45 @@
         <th></th>
     </tr>
     </thead>
+
     <tbody>
-    @foreach (var exercise in Model.Exercises)
+    @if (Model.Exercises.Count > 0)
+    {
+        foreach (var exercise in Model.Exercises)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => exercise.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => exercise.MuscleGroup)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => exercise.SetTarget)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => exercise.RepTarget)
+                </td>
+                <td>
+                    @Html.ActionLink("View", "ShowExercise", "Exercise", new { exercise.Id })
+                </td>
+            </tr>
+        }
+    }
+    else
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => exercise.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => exercise.MuscleGroup)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => exercise.SetTarget)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => exercise.RepTarget)
-            </td>
-            <td>
-                @Html.ActionLink("View", "ShowExercise", "Exercise", new { exercise.Id })
-            </td>
+            <td>No exercises in workout</td>
         </tr>
     }
+
     </tbody>
 </table>
 
 
 @if (Model.CreatorName == User.Identity.Name)
 {
+   <button>@Html.ActionLink("Add exercises", "AddExercises", "Workout", routeValues: Model)</button>
 }
 
 <div class="container">

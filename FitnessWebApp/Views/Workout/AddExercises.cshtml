@@ -1,0 +1,171 @@
+﻿@model FitnessWebAppModels.WorkoutPlan
+
+@{
+    ViewData["Title"] = "AddExercises";
+}
+
+
+<style>
+    .inputUnder {
+        display: block;
+        margin: 6px;
+    }
+</style>
+<h2>Add exercises to @Model.Name</h2>
+
+<div class="container" value="">
+    <div class="col-sm-6 row">
+        <div class="inputUnder">
+            <label>Category</label>
+            <select class="inputUnder" id="Category" type="text" name="field1">
+                <option>
+                    - Select -
+                </option>
+            </select>
+        </div>
+        <div class="inputUnder"><label>Reps</label><input id="Reps" type="number" value="12" id="example-number-input"></div>
+        <div class="inputUnder"><label>Sets</label><input id="Sets" class="inputUnder" type="number" value="8" id="example-number-input"></div>
+    </div>
+
+    <div class="col-sm-6">
+        <table class="table" summary="">
+            <thead value>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Muscle Group
+                    </th>
+                    <th>
+                        Kudos
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="ToAddBody">
+                <tr><td>Select a category</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<table class="table" class="col-xs-12">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Exercises[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Exercises[0].MuscleGroup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Exercises[0].SetTarget)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Exercises[0].RepTarget)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Exercises.Count > 0)
+        {
+            foreach (var exercise in Model.Exercises)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => exercise.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => exercise.MuscleGroup)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => exercise.SetTarget)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => exercise.RepTarget)
+                    </td>
+                    <td>
+                        @Html.ActionLink("View", "ShowExercise", "Exercise", new { exercise.Id })
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td>No exercises in workout</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts
+    {
+    <script>
+        $(document).ready(function() {
+            $.post('@Url.Action("GetAllCategories", "Exercise")',
+                {},
+                function(data) {
+                    data.forEach(function(string) {
+                        $('#Category').append($("<option></option>")
+                            .attr("value", string)
+                            .text(string));
+                    });
+                });
+        });
+
+        $('#Category').change(function() {
+            $('#ToAddBody').empty();
+            $.post('@Url.Action("SearchForExerciseByCategory", "Exercise")',
+                {
+                    category: $('#Category').val()
+                },
+                function(data) {
+                    if (data.length !== 0) {
+                        data.forEach(function(exercise) {
+                            $('#ToAddBody').append(
+                                "<tr>\n" +
+                                `  <td> <a href="/Exercise/ShowExercise/${exercise.id}"> ${exercise.name
+                                }</a> </td>\n ` +
+                                `  <td> ${exercise.muscleGroup}</td>\n` +
+                                `  <td> ${exercise.kudos}</td>\n` +
+                                `  <td><button onclick="AddExercise(${exercise.id})" value="${exercise.id}"> Add </button></td> \n` +
+                                "</tr>\n");
+                        });
+                    } else {
+                        $('#ToAddBody').append(
+                            "<tr>\n" +
+                            "  <td> No results found</td>\n" +
+                            "</tr>\n");
+                    }
+                });
+        });
+
+
+        function AddExercise(id)
+        {
+            if (id !== undefined) {
+                alert("Exercise unable to be added");
+            } else {
+                $.ajax({
+                    url: '@Html.ActionLink("Test","AddExerciseToWorkout","Workout")',
+                    data: { workoutPlanId: @Model.Id, exerciseId: id, repCount: $('#Reps').val(), setCount: $('#Sets').val() },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function(result) {
+                        console.log("Success");
+                        alert(result.message);
+                        location.reload(); //TODO check , eventueel fixen door opnieuw naar controller te gaan en zo te refreshen
+                        //TODO HIER WAS JE!!!
+                    },
+                    error: function () {
+                        alert("Adding exercise failed");
+                    }
+                });
+            }
+        }
+    </script>
+}

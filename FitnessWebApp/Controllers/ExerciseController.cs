@@ -31,5 +31,11 @@ namespace FitnessWebApp.Controllers
         {
             return Json(exerciseLogic.GetExercisesByCategory(category));
         }
+
+        [HttpPost]
+        public IActionResult GetAllCategories()
+        {
+            return Json(exerciseLogic.GetAllCategories());
+        }
     }
 }

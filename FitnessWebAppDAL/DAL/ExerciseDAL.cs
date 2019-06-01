@@ -55,7 +55,8 @@ namespace FitnessWebAppDAL.DAL
                     {
                         Id = (int)reader["Id"], 
                         MuscleGroup = (string)reader["Category"],
-                        Name = (string)reader["Name"]
+                        Name = (string)reader["Name"],
+                        Description = (string)reader["Description"]
                     };
                 }
                 reader.Close();
