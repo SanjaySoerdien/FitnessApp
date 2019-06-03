@@ -138,10 +138,7 @@ namespace FitnessWebAppDAL
                 cmd.Parameters.Add(new SqlParameter("@Name", workoutPlanToAdd.Name));
                 cmd.Parameters.Add(new SqlParameter("@Username", workoutPlanToAdd.CreatorName));
                 cmd.Parameters.Add(new SqlParameter("@CategoryName", workoutPlanToAdd.CategoryName));
-                if (cmd.ExecuteNonQuery() > 0)
-                {
-                    //TODO detect if functional?
-                }
+                cmd.ExecuteNonQuery();
                 conn.Close();
             }
         }
@@ -183,11 +180,7 @@ namespace FitnessWebAppDAL
                 cmd.Parameters.Add(new SqlParameter("@RepTarget", repCount));
                 cmd.Parameters.Add(new SqlParameter("@WorkoutPlanId", workoutPlanId));
                 cmd.Parameters.Add(new SqlParameter("@ExerciseID", exerciseId));
-                if (cmd.ExecuteNonQuery()>0)
-                {
-                    //TODO detect if functional?
-                }
-                conn.Close();
+                cmd.ExecuteNonQuery();
             }
         }
     }

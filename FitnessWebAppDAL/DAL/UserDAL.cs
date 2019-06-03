@@ -58,7 +58,6 @@ namespace FitnessWebAppDAL
                     {
                         Role = (string) reader["Role"],
                         Nickname = (string) reader["Nickname"]
-                        //TODO more info from db, (ADD TO DB!!)
                     };
                 }
                 reader.Close();
@@ -77,10 +76,9 @@ namespace FitnessWebAppDAL
                 cmd.Parameters.Add(new SqlParameter("@Nickname", user.Nickname));
                 cmd.Parameters.Add(new SqlParameter("@Username", user.Username));
                 cmd.Parameters.Add(new SqlParameter("@Password", user.Password));
-                if (cmd.ExecuteNonQuery() > 0)
-                {
-                    //ToDo Detect if functional?
-                }
+                cmd.ExecuteNonQuery();
+
+                
                 conn.Close();
             }
         }

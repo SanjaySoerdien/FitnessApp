@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using FitnessWebApp.Models;
 using FitnessWebAppLogic;
 using FitnessWebAppModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.UI.Pages.Account.Internal;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FitnessWebApp.Controllers
@@ -36,14 +38,23 @@ namespace FitnessWebApp.Controllers
             return View("Login");
         }
 
-        public IActionResult Register([Bind("Password, Username, Nickname")] User user)
+        public IActionResult Register([Bind("Password, Username, Nickname, Confirm Password")] RegisterViewModel user)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid && user.Password == user.ConfirmPassword)
             {
                 return View();
             }
-            AddUser(user);
-            user = LoginUser(user);
+
+            User userToAdd = new User
+            {
+                Nickname = user.Nickname,
+                Password = user.Password,
+                Role = "Member"
+            };
+/*
+
+            AddUser();
+            user = LoginUser(user);*/ //TODO HIER BEN IK
             if (user != null)
             {
                 return RedirectToAction("Index", "Home"); //redirect naar page om cookies te refreshen

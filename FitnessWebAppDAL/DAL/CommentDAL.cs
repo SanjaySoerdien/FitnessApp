@@ -64,5 +64,36 @@ namespace FitnessWebAppDAL
             }
             return result;
         }
+
+        public void AddCommentToWorkout(Comment commentToAdd)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("AddCommentToWorkoutplan", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@Username", commentToAdd.Nickname));
+                cmd.Parameters.Add(new SqlParameter("@Text", commentToAdd.Text));
+                cmd.Parameters.Add(new SqlParameter("@WorkoutplanID", commentToAdd.ForeignID));
+
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+        }
+
+        public void AddCommentToExercise(Comment commentToAdd)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("AddCommentToExercise", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@Username", commentToAdd.Nickname));
+                cmd.Parameters.Add(new SqlParameter("@Text", commentToAdd.Text));
+                cmd.Parameters.Add(new SqlParameter("@ExerciseID", commentToAdd.ForeignID));
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+        }
     }
 }

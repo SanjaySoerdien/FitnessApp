@@ -12,7 +12,7 @@ namespace FitnessWebAppModels
         public int SetTarget { get; set; }
         public int RepTarget { get; set; }
         public int Kudos { get; set; }
-        public string Description { get; set; } //todo fix in dal enzo en in DB!
+        public string Description { get; set; }
         public List<Comment> Comments { get; set; }
     }
 }
