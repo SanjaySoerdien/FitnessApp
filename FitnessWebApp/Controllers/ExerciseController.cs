@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FitnessWebAppLogic;
 using FitnessWebAppModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FitnessWebApp.Controllers
@@ -36,6 +37,13 @@ namespace FitnessWebApp.Controllers
         public IActionResult GetAllCategories()
         {
             return Json(exerciseLogic.GetAllCategories());
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult AddKudoToComment(int commentId)
+        {
+            throw new NotImplementedException(); //TODO MAAK DIT
         }
     }
 }

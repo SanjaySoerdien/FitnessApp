@@ -37,5 +37,12 @@ namespace FitnessWebApp.Controllers
             commentLogic.AddCommentToExercise(commentToAdd);
             return new JsonResult(new { message = "Success" });
         }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult AddKudoToWorkoutplan(int commentId)
+        {
+            throw new NotImplementedException(); //TODO MAAK DIT
+        }
     }
 }

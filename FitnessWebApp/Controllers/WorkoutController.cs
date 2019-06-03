@@ -77,5 +77,11 @@ namespace FitnessWebApp.Controllers
             return View(workoutPlanLogic.GetWorkoutPlanById(workoutPlan.Id));
         }
 
+        [Authorize]
+        [HttpPost]
+        public IActionResult AddKudoToWorkoutplan(int commentId)
+        {
+            throw new NotImplementedException(); //TODO MAAK DIT
+        }
     }
 }
