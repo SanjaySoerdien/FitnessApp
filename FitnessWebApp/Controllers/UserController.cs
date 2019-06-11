@@ -44,22 +44,16 @@ namespace FitnessWebApp.Controllers
             {
                 return View();
             }
-
             User userToAdd = new User
             {
                 Nickname = user.Nickname,
                 Password = user.Password,
                 Role = "Member"
             };
-/*
+            userLogic.AddUser(userToAdd);
+            AuthorizeUser(userToAdd);
+            return RedirectToAction("Index", "Home"); //redirect naar page om cookies te refreshen
 
-            AddUser();
-            user = LoginUser(user);*/ //TODO HIER BEN IK
-            if (user != null)
-            {
-                return RedirectToAction("Index", "Home"); //redirect naar page om cookies te refreshen
-            }
-            return View();
         }
 
         public IActionResult Profile(string nickname)
@@ -79,17 +73,22 @@ namespace FitnessWebApp.Controllers
 
         private User LoginUser(User user)
         {
-            List<Claim> claims = new List<Claim>();
             user = userLogic.Login(user.Username, user.Password);
             if (user != null)
             {
-                claims.Add(new Claim(ClaimTypes.Role, user.Role));
-                claims.Add(new Claim(ClaimTypes.Name, user.Nickname));
-                ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme));
-                var authProp = new AuthenticationProperties { IsPersistent = true };
-                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authProp);
+                AuthorizeUser(user);
             }
             return user;
+        }
+
+        private void AuthorizeUser(User user)
+        {
+            List<Claim> claims = new List<Claim>();
+            claims.Add(new Claim(ClaimTypes.Role, user.Role));
+            claims.Add(new Claim(ClaimTypes.Name, user.Nickname));
+            ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme));
+            var authProp = new AuthenticationProperties { IsPersistent = true };
+            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authProp);
         }
 
         public IActionResult Logout()

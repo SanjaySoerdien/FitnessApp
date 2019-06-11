@@ -38,7 +38,7 @@ namespace FitnessWebApp.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult DeleteExercise(Exercise exercise)
+        public IActionResult DeleteExercise(int id)
         {
             throw new NotImplementedException(); //TODO MAAK DIT
         }
