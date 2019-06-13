@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using FitnessWebAppInterfaces;
 using FitnessWebAppModels;
 
@@ -114,7 +115,11 @@ namespace FitnessWebAppDAL.MockData
 
         public WorkoutPlan GetWorkoutPlanById(int id)
         {
-            return (WorkoutPlan)workoutPlans.Where(workoutplan => workoutplan.Id.Equals(id));
+            var result = new WorkoutPlan();
+            var searchedList = new List<WorkoutPlan>();
+            searchedList = (List<WorkoutPlan>) workoutPlans.Where(workoutplan => workoutplan.Id.Equals(id));
+            result = searchedList.First();
+            return result;
         }
 
         public void AddExerciseToWorkout(int workoutPlanId, int exerciseId, int repCount, int setCount)

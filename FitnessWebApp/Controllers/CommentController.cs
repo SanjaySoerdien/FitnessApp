@@ -44,5 +44,12 @@ namespace FitnessWebApp.Controllers
         {
             throw new NotImplementedException(); //TODO MAAK DIT
         }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult RemoveComment(int commentId)
+        {
+            throw new NotImplementedException(); //TODO MAAK DIT
+        }
     }
 }

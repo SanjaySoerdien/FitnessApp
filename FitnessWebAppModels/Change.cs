@@ -7,7 +7,6 @@ namespace FitnessWebAppModels
 {
     public class Change
     {
-        //todo add 2x string en vull in db enzo
         [Display(Name = "Change")]
         public string changeText { get; set; }
         [Display(Name = "Time")]

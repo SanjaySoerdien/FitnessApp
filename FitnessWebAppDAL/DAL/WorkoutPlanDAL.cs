@@ -35,6 +35,7 @@ namespace FitnessWebAppDAL
                        Name = (string)reader["Name"],
                        CreatorName = (string)reader["Nickname"],
                        CategoryName = (string)reader["CategoryName"],
+                       Kudos = (int)reader["Kudos"]
                     });
                 }
                 reader.Close();
