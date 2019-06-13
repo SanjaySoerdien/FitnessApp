@@ -92,12 +92,8 @@ namespace FitnessWebAppDAL
                 reader.Close();
                 conn.Close();
             }
-
-           
-
             result.Exercises = exerciseDAL.GetWorkoutPlanExercises(result.Name, result.CreatorName);
             result.Comments = commentDAL.GetCommentsByWorkoutplan(result.Id);
-
             return result;
         }
 
@@ -138,6 +134,19 @@ namespace FitnessWebAppDAL
                 cmd.Parameters.Add(new SqlParameter("@Name", workoutPlanToAdd.Name));
                 cmd.Parameters.Add(new SqlParameter("@Username", workoutPlanToAdd.CreatorName));
                 cmd.Parameters.Add(new SqlParameter("@CategoryName", workoutPlanToAdd.CategoryName));
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+        }
+
+        public void RemoveWorkout(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("RemoveWorkoutPlan", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@ID", id));
                 cmd.ExecuteNonQuery();
                 conn.Close();
             }

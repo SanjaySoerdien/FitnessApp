@@ -6,6 +6,7 @@ using FitnessWebAppLogic;
 using FitnessWebAppModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace FitnessWebApp.Controllers
 {
@@ -75,6 +76,12 @@ namespace FitnessWebApp.Controllers
         public IActionResult AddExercises(WorkoutPlan workoutPlan)
         {
             return View(workoutPlanLogic.GetWorkoutPlanById(workoutPlan.Id));
+        }
+
+        public IActionResult RemoveWorkout(int id)
+        {
+            workoutPlanLogic.RemoveWorkout(id);
+            return RedirectToAction("ShowYourWorkouts");
         }
 
         [Authorize]

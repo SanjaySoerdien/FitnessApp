@@ -109,7 +109,7 @@ namespace FitnessWebAppDAL.MockData
 
         public List<WorkoutPlan> SearchWorkoutsByName(string name)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException(); //todo
         }
 
         public WorkoutPlan GetWorkoutPlanById(int id)
@@ -119,7 +119,12 @@ namespace FitnessWebAppDAL.MockData
 
         public void AddExerciseToWorkout(int workoutPlanId, int exerciseId, int repCount, int setCount)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException(); //todo
+        }
+
+        public void RemoveWorkout(int id)
+        {
+            throw new NotImplementedException();//todo
         }
     }
 }

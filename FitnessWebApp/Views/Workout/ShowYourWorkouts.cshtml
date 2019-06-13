@@ -37,6 +37,9 @@
                     @Html.ActionLink(linkText: "View", actionName: "ShowWorkout",routeValues: new {
                         creatornickname = item.CreatorName,
                         planname = item.Name
+                    }) | 
+                    @Html.ActionLink(linkText: "Delete", actionName: "RemoveWorkout",routeValues: new {
+                       id = item.Id
                     })
                 </td>
             </tr>

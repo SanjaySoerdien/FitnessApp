@@ -42,6 +42,11 @@ namespace FitnessWebAppLogic
            return workoutplanRepo.SearchWorkoutsByName(name);
        }
 
+       public void RemoveWorkout(int id)
+       {
+           workoutplanRepo.RemoveWorkout(id);
+       }
+
        public void AddExerciseToWorkout(int workoutPlanId, int exerciseId, int repCount, int setCount)
        {
            workoutplanRepo.AddExerciseToWorkout(workoutPlanId, exerciseId, repCount, setCount);
