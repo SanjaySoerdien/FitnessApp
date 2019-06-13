@@ -8,9 +8,9 @@ namespace FitnessWebAppInterfaces
 {
     public interface IAdminContext
     {
-        void AddCategory(string category);
-        void ChangeCategory(string categoryNew, string categoryOld);
-        void DeleteCategory(string category);
+        int AddCategory(string category);
+        int ChangeCategory(string categoryNew, string categoryOld);
+        int DeleteCategory(string category);
         void AddExercise(Exercise exercise); 
         void DeleteExercise(int id);
         List<Change> GetRecentChanges();

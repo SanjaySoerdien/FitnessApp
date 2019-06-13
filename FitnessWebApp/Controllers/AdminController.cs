@@ -13,6 +13,7 @@ namespace FitnessWebApp.Controllers
     public class AdminController : Controller
     {
         AdminLogic adminLogic = new AdminLogic();
+        ExerciseLogic exerciseLogic = new ExerciseLogic();
         public IActionResult Index()
         {
       
@@ -22,22 +23,32 @@ namespace FitnessWebApp.Controllers
         [HttpPost]
         public IActionResult AddCategory(string category)
         {
-            adminLogic.AddCategory(category);
-            throw new NotImplementedException();
+            if (adminLogic.AddCategory(category) > 0)
+            {
+                return new JsonResult(new { message = "Successfully added category" });
+            }
+            return new JsonResult(new { message = "Failed to add category" });
         }
 
         [HttpPost]
         public IActionResult ChangeCategory(string categoryNew, string categoryOld)
         {
-            adminLogic.ChangeCategory(categoryNew, categoryOld);
-            throw new NotImplementedException();
+            if (adminLogic.ChangeCategory(categoryNew, categoryOld) > 0)
+            {
+                return new JsonResult(new { message = "Successfully changed category" });
+            }
+            return new JsonResult(new { message = "Failed to change category" });
         }
 
         [HttpPost]
         public IActionResult DeleteCategory(string category)
         {
-            adminLogic.DeleteCategory(category);
-            throw new NotImplementedException();
+
+            if (adminLogic.DeleteCategory(category) > 0)
+            {
+                return new JsonResult(new { message = "Successfully deleted category" });
+            }
+            return new JsonResult(new { message = "Failed to delete category" });
         }
 
         [HttpPost]
@@ -66,8 +77,7 @@ namespace FitnessWebApp.Controllers
 
         public IActionResult CategoriesView()
         {
-
-            return View();
+            return View(exerciseLogic.GetAllCategories());
         }
 
         public IActionResult ShowMoreChanges()

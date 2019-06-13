@@ -10,19 +10,19 @@ namespace FitnessWebAppLogic
     {
         private AdminRepo adminRepo = new AdminRepo();
 
-        public void AddCategory(string category)
+        public int AddCategory(string category)
         {
-            adminRepo.AddCategory(category);
+            return adminRepo.AddCategory(category);
         }
 
-        public void ChangeCategory(string categoryNew, string categoryOld)
+        public int ChangeCategory(string categoryNew, string categoryOld)
         {
-            adminRepo.ChangeCategory(categoryNew, categoryOld);
+            return adminRepo.ChangeCategory(categoryNew, categoryOld);
         }
 
-        public void DeleteCategory(string category)
+        public int DeleteCategory(string category)
         {
-            adminRepo.DeleteCategory(category);
+            return adminRepo.DeleteCategory(category);
         }
 
         public void AddExercise(Exercise exercise)

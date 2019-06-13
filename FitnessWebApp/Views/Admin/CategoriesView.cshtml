@@ -3,15 +3,138 @@
     ViewData["Title"] = "CategoriesView";
 }
 
-<h2>CategoriesView</h2>
+<h2>Categories</h2>
 
-<h4>Delete workout</h4>
+<h4>Add Category</h4>
 <div class="jumbotron col-xs-12">
     <div class="col-sm-6">
-        <select id="Category" type="text" name="field1">
+        <div class="input-group form-group">
+            <input id="newCategoryAdd" type="text" class="form-control" placeholder="Category to add" aria-describedby="basic-addon1">
+        </div>
+        <div class="form-group">
+            <input id="AddButton" class="btn btn-primary" value="Add"/>
+        </div>
+    </div>
+</div>
+
+<h4>Edit Category</h4>
+<div class="jumbotron col-xs-12">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <h6>Choose Category</h6>
+            <select id="DeleteSelect" class="list-group" id="Category" type="text" name="field1" style="width: 200px; height: 35px">
+                <option>
+                    - Select -
+                </option>
+                @foreach (var item in Model)
+                {
+                    <option value="@item">
+                        @item
+                    </option>
+                }
+            </select>
+            <div class="form-group">
+                <input id="DeleteButton" class="btn btn-primary" value="Delete"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <h6>Change Category</h6>
+        <select id="UpdateSelect" class="list-group" id="Category" type="text" name="field1" style="width: 200px; height: 35px">
             <option>
                 - Select -
             </option>
-        </select>
+            @foreach (var item in Model)
+            {
+                <option value="@item">
+                    @item
+                </option>
+            }
+        </select> <br/>
+        <div class="input-group form-group">
+            <input id="newCategoryUpdate" type="text" class="form-control" placeholder="New category" aria-describedby="basic-addon1">
+        </div>
+        <div class="form-group">
+            <input id="UpdateButton" class="btn btn-primary" value="Update"/>
+        </div>
     </div>
 </div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function() {
+            $('#newCategoryAdd').val('');
+            $('#newCategoryUpdate').val('');
+        });
+
+        $('#AddButton').click(function() {
+            if ($('#newCategoryAdd').val().length >= 3) {
+                $.ajax({
+                    url: '@Url.Action("AddCategory", "Admin")',
+                    data: {
+                        category: $('#newCategoryAdd').val()
+                    },
+                    type: "POST",
+                    dataType: "json",
+                    success: function(message) {
+                        alert(message.message);
+                        location.reload();
+                    }
+                });
+            } else {
+                alert("Enter at least 3 tokens");
+            }
+        });
+
+        $('#UpdateButton').click(function() {
+            if ($('#UpdateSelect').val() == "- Select -") {
+                alert("Select a category");
+            } else if ($('#newCategoryUpdate').val().length < 3) {
+                alert("Enter at least 3 tokens");
+            } else {
+                $.ajax({
+                    url: '@Url.Action("ChangeCategory", "Admin")',
+                    data: {
+                        categoryNew: $('#newCategoryUpdate').val(),
+                        categoryOld: $('#UpdateSelect').val()
+                    },
+                    type: "POST",
+                    dataType: "json",
+                    success: function(message) {
+                        alert(message.message);
+                        location.reload();
+                    },
+                    error: function() {
+                        alert("Changing category failed");
+                    }
+                });
+            }
+
+        });
+
+        $('#DeleteButton').click(function() {
+
+            if ($('#DeleteSelect').val() == "- Select -") {
+                alert("Select a category");
+            } else {
+                $.ajax({
+                    url: '@Url.Action("DeleteCategory", "Admin")',
+                    data: {
+                        category: $('#DeleteSelect').val()
+                    },
+                    type: "POST",
+                    dataType: "json",
+                    success: function(message) {
+                        alert(message.message);
+                        location.reload();
+                    },
+                    error: function() {
+                        alert("Removing category failed");
+                    }
+                });
+            };
+        });
+    </script>
+}

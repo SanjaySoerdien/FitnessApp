@@ -13,44 +13,72 @@ namespace FitnessWebAppDAL
         private readonly string connectionString =
             "Server=mssql.fhict.local;Database=dbi413271_iller;User Id=dbi413271_iller;Password=sjorsbaktniet;";
 
-        public void AddCategory(string category)
+        public int AddCategory(string category)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            int result = -1;
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("AddCategory", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@Category", category));
-                cmd.ExecuteNonQuery();
-                conn.Close();
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("AddCategory", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Category", category));
+                    result = cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
             }
+            catch (Exception ex)
+            {
+                result = -1;
+            }
+            return result;
         }
 
-        public void ChangeCategory(string categoryNew, string categoryOld)
+        public int ChangeCategory(string categoryNew, string categoryOld)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            int result = -1;
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("UpdateCategoryAddCommentToExercise", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@CategoryOld", categoryOld));
-                cmd.Parameters.Add(new SqlParameter("@CategoryNew", categoryNew));
-                cmd.ExecuteNonQuery();
-                conn.Close();
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("UpdateCategory", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@CategoryOld", categoryOld));
+                    cmd.Parameters.Add(new SqlParameter("@CategoryNew", categoryNew));
+                    result = cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
             }
+            catch (Exception ex)
+            {
+                result = -1;
+            }
+            return result;
+        
         }
 
-        public void DeleteCategory(string category)
+        public int DeleteCategory(string category)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            int result = -1;
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("DeleteCategory", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@Category", category));
-                cmd.ExecuteNonQuery();
-                conn.Close();
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("DeleteCategory", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Category", category));
+                    result = cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
             }
+            catch (Exception ex)
+            {
+                result = -1;
+            }
+            return result;
         }
 
         public void AddExercise(Exercise exercise)
@@ -94,8 +122,7 @@ namespace FitnessWebAppDAL
                 {
                     result.Add(new Change
                     {
-                        username = (string)reader["Username"],
-                        changeText = (string)reader["ChangeText"],
+                        changeText = (string)reader["ChangesText"],
                         time = (DateTime)reader["Date"]
                     });
                 }
@@ -118,8 +145,7 @@ namespace FitnessWebAppDAL
                 {
                     result.Add(new Change
                     {
-                        username = (string)reader["Username"],
-                        changeText = (string)reader["ChangeText"],
+                        changeText = (string)reader["ChangesText"],
                         time = (DateTime)reader["Date"]
                     });
                 }

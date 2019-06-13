@@ -14,19 +14,19 @@ namespace FitnessWebAppDAL
             //todo Add mock data voor unit tests
         }
 
-        public void AddCategory(string category)
+        public int AddCategory(string category)
         {
-            context.AddCategory(category);
+            return context.AddCategory(category);
         }
 
-        public void ChangeCategory(string categoryNew, string categoryOld)
+        public int ChangeCategory(string categoryNew, string categoryOld)
         {
-            context.ChangeCategory(categoryNew,categoryOld);
+            return context.ChangeCategory(categoryNew,categoryOld);
         }
 
-        public void DeleteCategory(string category)
+        public int DeleteCategory(string category)
         {
-            context.DeleteCategory(category);
+            return context.DeleteCategory(category);
         }
 
         public void AddExercise(Exercise exercise)
