@@ -13,8 +13,14 @@ namespace FitnessWebAppDAL
         public CommentRepo()
         {
             context = new CommentDAL();
-            //todo Add mock data voor unit tests
+            //TODO
         }
+
+        public CommentRepo(ICommentContext context)
+        {
+            this.context = context;
+        }
+
         public void AddCommentToWorkout(Comment commentToAdd)
         {
             context.AddCommentToWorkout(commentToAdd);

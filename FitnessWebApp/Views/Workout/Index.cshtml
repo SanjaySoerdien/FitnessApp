@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Top workouts</h2>
 <div class="container">
     <table class="table">
         <thead>
@@ -22,25 +22,36 @@
             </tr>
         </thead>
         <tbody>
-    @foreach (var item in Model) {
+        @if (Model.Count() <= 0)
+        {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CreatorName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Kudos)
-                </td>
-                <td>
-                    @Html.ActionLink(linkText: "View", actionName: "ShowWorkout",routeValues: new {
-                        creatornickname = item.CreatorName,
-                        planname = item.Name
-                    })
+                    No results found
                 </td>
             </tr>
-     }
+        }else {
+            @foreach (var item in Model)
+             {
+                 <tr>
+                     <td>
+                         @Html.DisplayFor(modelItem => item.CreatorName)
+                     </td>
+                     <td>
+                         @Html.DisplayFor(modelItem => item.Name)
+                     </td>
+                     <td>
+                         @Html.DisplayFor(modelItem => item.Kudos)
+                     </td>
+                     <td>
+                         @Html.ActionLink(linkText: "View", actionName: "ShowWorkout", routeValues: new
+                         {
+                             creatornickname = item.CreatorName,
+                             planname = item.Name
+                         })
+                     </td>
+                 </tr>
+             }
+        }
         </tbody>
     </table>
 </div>

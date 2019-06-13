@@ -2,7 +2,7 @@ using NUnit.Framework;
 
 namespace Tests
 {
-    public class Tests
+    public class ExerciseLogicTests
     {
         [SetUp]
         public void Setup()
@@ -10,6 +10,7 @@ namespace Tests
         }
 
         [Test]
+        // MethodeDieJeTest_Scenario_ExpectenOut
         public void Test1()
         {
             Assert.Pass();
