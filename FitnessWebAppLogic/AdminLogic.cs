@@ -34,5 +34,15 @@ namespace FitnessWebAppLogic
         {
             adminRepo.DeleteExercise(id);
         }
+
+        public List<Change> GetRecentChanges()
+        {
+            return adminRepo.GetRecentChanges();
+        }
+
+        public List<Change> GetMoreChanges()
+        {
+            return adminRepo.GetMoreChanges();
+        }
     }
 }

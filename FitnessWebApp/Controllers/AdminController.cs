@@ -15,7 +15,8 @@ namespace FitnessWebApp.Controllers
         AdminLogic adminLogic = new AdminLogic();
         public IActionResult Index()
         {
-            return View();
+      
+            return View(adminLogic.GetRecentChanges());
         }
 
         [HttpPost]
@@ -43,18 +44,19 @@ namespace FitnessWebApp.Controllers
         public IActionResult AddExercise(Exercise exercise)
         {
 
-            if (exercise.Name != null && exercise.MuscleGroup != null && exercise.Description != null)
+            //if (exercise.Name != null && exercise.MuscleGroup != null && exercise.Description != null)
+            if (ModelState.IsValid)
             {
                 adminLogic.AddExercise(exercise);
             }
+           
             return View("ExerciseView");
         }
 
-        [HttpPost]
         public IActionResult DeleteExercise(int id)
         {
             adminLogic.DeleteExercise(id);
-            throw new NotImplementedException();
+            return View("ExerciseView");
         }
 
         public IActionResult ExerciseView()
@@ -64,7 +66,13 @@ namespace FitnessWebApp.Controllers
 
         public IActionResult CategoriesView()
         {
+
             return View();
+        }
+
+        public IActionResult ShowMoreChanges()
+        {
+            return View(adminLogic.GetMoreChanges());
         }
     }
 }

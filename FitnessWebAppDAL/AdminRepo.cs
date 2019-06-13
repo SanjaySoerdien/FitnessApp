@@ -1,4 +1,5 @@
-﻿using FitnessWebAppInterfaces;
+﻿using System.Collections.Generic;
+using FitnessWebAppInterfaces;
 using FitnessWebAppModels;
 
 namespace FitnessWebAppDAL
@@ -36,6 +37,16 @@ namespace FitnessWebAppDAL
         public void DeleteExercise(int id)
         {
             context.DeleteExercise(id);
+        }
+
+        public List<Change> GetRecentChanges()
+        {
+            return context.GetRecentChanges();
+        }
+
+        public List<Change> GetMoreChanges()
+        {
+            return context.GetMoreChanges();
         }
     }
 }

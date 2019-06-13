@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using FitnessWebAppModels;
 
@@ -12,5 +13,7 @@ namespace FitnessWebAppInterfaces
         void DeleteCategory(string category);
         void AddExercise(Exercise exercise); 
         void DeleteExercise(int id);
+        List<Change> GetRecentChanges();
+        List<Change> GetMoreChanges();
     }
 }

@@ -55,7 +55,17 @@ namespace FitnessWebAppDAL
 
         public void AddExercise(Exercise exercise)
         {
-            //todo add view first then add in Database
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("AddExercise", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@Name", exercise.Name));
+                cmd.Parameters.Add(new SqlParameter("@Category", exercise.MuscleGroup));
+                cmd.Parameters.Add(new SqlParameter("@Description", exercise.Description));
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
         }
 
         public void DeleteExercise(int id)
@@ -69,6 +79,54 @@ namespace FitnessWebAppDAL
                 cmd.ExecuteNonQuery();
                 conn.Close();
             }
+        }
+
+        public List<Change> GetRecentChanges()
+        {
+            List<Change> result = new List<Change>();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("GetRecentChanges", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    result.Add(new Change
+                    {
+                        username = (string)reader["Username"],
+                        changeText = (string)reader["ChangeText"],
+                        time = (DateTime)reader["Date"]
+                    });
+                }
+                reader.Close();
+                conn.Close();
+            }
+            return result; 
+        }
+
+        public List<Change> GetMoreChanges()
+        {
+            List<Change> result = new List<Change>();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("GetMoreChanges", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    result.Add(new Change
+                    {
+                        username = (string)reader["Username"],
+                        changeText = (string)reader["ChangeText"],
+                        time = (DateTime)reader["Date"]
+                    });
+                }
+                reader.Close();
+                conn.Close();
+            }
+            return result;
         }
     }
 }
