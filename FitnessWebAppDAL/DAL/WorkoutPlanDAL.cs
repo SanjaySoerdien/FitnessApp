@@ -123,7 +123,7 @@ namespace FitnessWebAppDAL
                 reader.Close();
                 conn.Close();
             }
-            result.Exercises = exerciseDAL.GetWorkoutPlanExercises(result.Name, result.CreatorName);//TODO maybe change to ID?
+            result.Exercises = exerciseDAL.GetWorkoutPlanExercises(result.Name, result.CreatorName);
             result.Comments = commentDAL.GetCommentsByWorkoutplan(result.Id);
             return result;
         }

@@ -35,9 +35,14 @@ namespace FitnessWebAppLogic
             return exerciseRepo.GetExercisesByCategory(category);
         }
 
-        public void AddExercise()
+        public void AddExercise(Exercise exercise)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException(); // DOE DEZE
+        }
+
+        public void RemoveExercise(int id)
+        {
+            throw new NotImplementedException(); // DOE DEZE
         }
     }
 }
