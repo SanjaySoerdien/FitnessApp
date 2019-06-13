@@ -29,7 +29,7 @@ namespace FitnessWebAppDAL
                     {
                         ID = (int)reader["Id"],
                         Text = (string) reader["Text"],
-                        //Kudos = (int)reader["Kudos"], todo fix kudos hier
+                        Kudos = (int)reader["Kudos"],
                         Nickname = (string)reader["Nickname"]
                     });
                 }
@@ -55,7 +55,7 @@ namespace FitnessWebAppDAL
                     {
                         ID = (int)reader["Id"],
                         Text = (string)reader["Text"],
-                        //Kudos = (int)reader["Kudos"], TODO fix later, kudo stuff edit DB eerst
+                        Kudos = (int)reader["Kudos"], 
                         Nickname = (string)reader["Nickname"]
                     });
                 }
@@ -75,7 +75,6 @@ namespace FitnessWebAppDAL
                 cmd.Parameters.Add(new SqlParameter("@Username", commentToAdd.Nickname));
                 cmd.Parameters.Add(new SqlParameter("@Text", commentToAdd.Text));
                 cmd.Parameters.Add(new SqlParameter("@WorkoutplanID", commentToAdd.ForeignID));
-
                 cmd.ExecuteNonQuery();
                 conn.Close();
             }
@@ -91,6 +90,44 @@ namespace FitnessWebAppDAL
                 cmd.Parameters.Add(new SqlParameter("@Username", commentToAdd.Nickname));
                 cmd.Parameters.Add(new SqlParameter("@Text", commentToAdd.Text));
                 cmd.Parameters.Add(new SqlParameter("@ExerciseID", commentToAdd.ForeignID));
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+        }
+
+        public string AddKudoToComment(int commentId,string nickname)
+        {
+            string result = "Unable to add kudo";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("AddKudoToComment", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Nickname", nickname));
+                    cmd.Parameters.Add(new SqlParameter("@CommentID", commentId));
+                    if (cmd.ExecuteNonQuery() > 0)
+                    {
+                        result = "Kudo added!";
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return result;
+        }
+
+        public void RemoveComment(int commentId)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("RemoveComment", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@Id", commentId));
                 cmd.ExecuteNonQuery();
                 conn.Close();
             }

@@ -41,9 +41,9 @@ namespace FitnessWebApp.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult AddKudoToComment(int commentId)
+        public IActionResult AddKudoToExercise(int exerciseId)
         {
-            throw new NotImplementedException(); //TODO MAAK DIT
+            return new JsonResult(new {message = exerciseLogic.AddKudoToExercise(exerciseId, User.Identity.Name)});
         }
     }
 }

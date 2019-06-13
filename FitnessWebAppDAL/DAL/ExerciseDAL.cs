@@ -56,7 +56,8 @@ namespace FitnessWebAppDAL.DAL
                         Id = (int)reader["Id"], 
                         MuscleGroup = (string)reader["Category"],
                         Name = (string)reader["Name"],
-                        Description = (string)reader["Description"]
+                        Description = (string)reader["Description"],
+                        Kudos = (int)reader["Kudos"]
                     };
                 }
                 reader.Close();
@@ -81,7 +82,8 @@ namespace FitnessWebAppDAL.DAL
                     {
                         Id = (int)reader["Id"],
                         MuscleGroup = (string)reader["Category"],
-                        Name = (string)reader["Name"]
+                        Name = (string)reader["Name"],
+                        Kudos = (int)reader["Kudos"]
                     });
                 }
                 reader.Close();
@@ -125,7 +127,8 @@ namespace FitnessWebAppDAL.DAL
                     {
                         Id = (int)reader["Id"], 
                         MuscleGroup = (string)reader["Category"],
-                        Name = (string)reader["Name"]
+                        Name = (string)reader["Name"],
+                        Kudos = (int)reader["Kudos"]
                     });
                 }
                 reader.Close();
@@ -164,15 +167,29 @@ namespace FitnessWebAppDAL.DAL
             return result;
         }
 
-        public void AddExercise(Exercise exercise)
+        public string AddKudoToExercise(int exerciseId, string nickname)
         {
-            throw new NotImplementedException(); // DOE DEZE
+            string result = "Unable to add kudo";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("AddKudoToExercise", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Nickname", nickname));
+                    cmd.Parameters.Add(new SqlParameter("@exerciseID", exerciseId));
+                    if (cmd.ExecuteNonQuery() > 0)
+                    {
+                        result = "Kudo added!";
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return result;
         }
-
-        public void RemoveExercise(int id)
-        {
-            throw new NotImplementedException(); // DOE DEZE
-        }
-
     }
 }

@@ -18,16 +18,16 @@ namespace FitnessWebAppLogic
         {
             commentRepo.AddCommentToExercise(commentToAdd);
         }
-/*
 
-        public IActionResult AddKudoToWorkoutplan(int commentId)
+
+        public string AddKudoToComment(int commentId,string nickname)
         {
-            throw new NotImplementedException(); //TODO MAAK DIT
+            return commentRepo.AddKudoToComment(commentId,nickname);
         }
 
-        public IActionResult RemoveComment(int commentId)
+        public void RemoveComment(int commentId)
         {
-            throw new NotImplementedException(); //TODO MAAK DIT
-        }*/
+            commentRepo.RemoveComment(commentId);
+        }
     }
 }

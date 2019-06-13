@@ -24,5 +24,15 @@ namespace FitnessWebAppDAL
         {
             context.AddCommentToExercise(commentToAdd);
         }
+
+        public string AddKudoToComment(int commentId,string nickname)
+        {
+            return context.AddKudoToComment(commentId, nickname);
+        }
+
+        public void RemoveComment(int commentId)
+        {
+            context.RemoveComment(commentId);
+        }
     }
 }

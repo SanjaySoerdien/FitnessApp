@@ -61,6 +61,7 @@ namespace FitnessWebAppDAL
                         Name = (string)reader["Name"],
                         CreatorName = (string)reader["Nickname"],
                         CategoryName = (string)reader["CategoryName"],
+                        Kudos = (int)reader["Kudos"]
                     });
                 }
                 reader.Close();
@@ -89,6 +90,7 @@ namespace FitnessWebAppDAL
                         result.Name = (string) reader["Name"];
                         result.CreatorName = (string) reader["Nickname"];
                         result.CategoryName = (string) reader["CategoryName"];
+                        result.Kudos = (int) reader["Kudos"];
                 }
                 reader.Close();
                 conn.Close();
@@ -116,6 +118,7 @@ namespace FitnessWebAppDAL
                     result.Name = (string)reader["Name"];
                     result.CreatorName = (string)reader["Nickname"];
                     result.CategoryName = (string)reader["CategoryName"];
+                    result.Kudos = (int)reader["Kudos"];
                 }
                 reader.Close();
                 conn.Close();
@@ -171,6 +174,7 @@ namespace FitnessWebAppDAL
                         Name = (string)reader["Name"],
                         CreatorName = (string)reader["Nickname"],
                         CategoryName = (string)reader["CategoryName"],
+                        Kudos = (int)reader["Kudos"]
                     });
                 }
                 reader.Close();
@@ -192,6 +196,31 @@ namespace FitnessWebAppDAL
                 cmd.Parameters.Add(new SqlParameter("@ExerciseID", exerciseId));
                 cmd.ExecuteNonQuery();
             }
+        }
+
+        public string AddKudoToWorkoutPlan(int workoutplanId, string nickname)
+        {
+            string result = "Unable to add kudo";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("AddKudoToWorkoutplan", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Nickname", nickname));
+                    cmd.Parameters.Add(new SqlParameter("@WorkoutplanID", workoutplanId));
+                    if (cmd.ExecuteNonQuery() > 0)
+                    {
+                        result = "Kudo added!";
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return result;
         }
     }
 }

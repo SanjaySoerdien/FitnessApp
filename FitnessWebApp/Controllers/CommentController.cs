@@ -40,16 +40,17 @@ namespace FitnessWebApp.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult AddKudoToWorkoutplan(int commentId)
+        public IActionResult AddKudoToComment(int commentId)
         {
-            throw new NotImplementedException(); //TODO MAAK DIT
+            return new JsonResult(new { message = commentLogic.AddKudoToComment(commentId, User.Identity.Name) });
         }
 
         [Authorize]
         [HttpPost]
         public IActionResult RemoveComment(int commentId)
         {
-            throw new NotImplementedException(); //TODO MAAK DIT
+            commentLogic.RemoveComment(commentId);
+            return new JsonResult(new { message = "Success" });
         }
     }
 }

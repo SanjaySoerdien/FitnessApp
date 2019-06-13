@@ -39,11 +39,14 @@
     .dropdown > a > span.green:before {
         border-left-color: #2dcb73;
     }
-
-
 </style>
 
 <h2>@Html.DisplayFor(model => model.Name)</h2>
+
+<button id="LikePlanBtn" type="button" class="btn btn-default btn-sm">
+    <span class="glyphicon glyphicon-thumbs-up"></span> Like
+</button> 
+<p> Likes: @Model.Kudos</p>
 <div>
     <h4> @Html.DisplayNameFor(model => model.MuscleGroup)</h4>
     <hr />
@@ -65,7 +68,7 @@
                 <div class="col-md-6">
                     <div class="widget-area no-padding blank">
                         <div class="status-upload">
-                            <textarea class ="form-control" id="Comment" placeholder="Post your comment here!"></textarea> <br/>
+                            <textarea class="form-control" id="Comment" placeholder="Post your comment here!"></textarea> <br />
                             <button id="Postcomment" class="btn btn-success green" style="margin-top:20px"><i class="fa fa-share"></i> Place comment</button>
                         </div>
                     </div>
@@ -86,11 +89,18 @@
                         <div class="media">
                             @foreach (var comment in Model.Comments)
                             {
-                                <div class="media-body col-xs-12">
-                                    <h4 class="media-heading user_name">@comment.Nickname</h4>
-                                    @comment.Text
-                                    <p><small><a class="pull-right" href="#">Like</a></small></p>
-                                </div>
+                            <div class="media-body col-xs-12" style="margin: 20px">
+                                <h4 class="media-heading user_name">@comment.Nickname</h4>
+                                @comment.Text
+                                <button style="margin-left:auto; margin-right:0;" id="LikePlanBtn" type="button" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-thumbs-up"></span> Like
+                                </button>
+                                @comment.Kudos
+                                @if (User.Identity.Name == comment.Nickname || User.IsInRole("Admin"))
+                                {
+                                    @Html.ActionLink("Remove Comment", "RemoveComment", "Comment", new { comment.ID })
+                                }
+                            </div> 
                             }
                         </div>
                     </div>
@@ -118,7 +128,7 @@
                     success: function(result) {
                         console.log("Successfully placed comment!");
                         alert(result.message);
-                        location.reload(); 
+                        location.reload();
                     },
                     error: function () {
                         alert("Adding comment failed");

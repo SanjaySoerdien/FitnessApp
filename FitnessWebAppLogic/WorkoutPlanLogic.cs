@@ -8,7 +8,7 @@ using FitnessWebAppModels;
 
 namespace FitnessWebAppLogic
 {
-    public class WorkoutPlanLogic : IWorkoutPlanContext
+    public class WorkoutPlanLogic 
     {
        readonly WorkoutplanRepo workoutplanRepo = new WorkoutplanRepo();
 
@@ -50,6 +50,11 @@ namespace FitnessWebAppLogic
        public void AddExerciseToWorkout(int workoutPlanId, int exerciseId, int repCount, int setCount)
        {
            workoutplanRepo.AddExerciseToWorkout(workoutPlanId, exerciseId, repCount, setCount);
+       }
+
+       public string AddKudoToWorkoutPlan(int workoutplanId, string nickname)
+       {
+           return workoutplanRepo.AddKudoToWorkoutPlan(workoutplanId, nickname);
        }
     }
 }

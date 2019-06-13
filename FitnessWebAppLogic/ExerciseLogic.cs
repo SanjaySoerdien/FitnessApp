@@ -35,14 +35,9 @@ namespace FitnessWebAppLogic
             return exerciseRepo.GetExercisesByCategory(category);
         }
 
-        public void AddExercise(Exercise exercise)
+        public string AddKudoToExercise(int exerciseId, string nickname)
         {
-            throw new NotImplementedException(); // DOE DEZE
-        }
-
-        public void RemoveExercise(int id)
-        {
-            throw new NotImplementedException(); // DOE DEZE
+            return exerciseRepo.AddKudoToExercise(exerciseId, nickname);
         }
     }
 }

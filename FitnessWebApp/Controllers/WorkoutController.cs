@@ -86,9 +86,9 @@ namespace FitnessWebApp.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult AddKudoToWorkoutplan(int commentId)
+        public IActionResult AddKudoToWorkoutplan(int workoutplanId)
         {
-            throw new NotImplementedException(); //TODO MAAK DIT
+            return new JsonResult(new { message = workoutPlanLogic.AddKudoToWorkoutPlan(workoutplanId, User.Identity.Name) });
         }
     }
 }
