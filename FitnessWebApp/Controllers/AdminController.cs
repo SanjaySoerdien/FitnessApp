@@ -51,16 +51,14 @@ namespace FitnessWebApp.Controllers
             return new JsonResult(new { message = "Failed to delete category" });
         }
 
+        
         [HttpPost]
         public IActionResult AddExercise(Exercise exercise)
         {
-
-            //if (exercise.Name != null && exercise.MuscleGroup != null && exercise.Description != null)
             if (ModelState.IsValid)
             {
                 adminLogic.AddExercise(exercise);
             }
-           
             return View("ExerciseView");
         }
 

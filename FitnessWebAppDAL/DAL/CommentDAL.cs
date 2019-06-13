@@ -16,25 +16,32 @@ namespace FitnessWebAppDAL
         public List<Comment> GetCommentsByExercise(int id)
         {
             List<Comment> result = new List<Comment>();
-            using (SqlConnection conn = new SqlConnection(connectionString))
+
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("GetCommmentsByExercise", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@ID", id));
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    result.Add(new Comment
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("GetCommmentsByExercise", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@ID", id));
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
                     {
-                        ID = (int)reader["Id"],
-                        Text = (string) reader["Text"],
-                        Kudos = (int)reader["Kudos"],
-                        Nickname = (string)reader["Nickname"]
-                    });
+                        result.Add(new Comment
+                        {
+                            ID = (int)reader["Id"],
+                            Text = (string)reader["Text"],
+                            Kudos = (int)reader["Kudos"],
+                            Nickname = (string)reader["Nickname"]
+                        });
+                    }
+                    reader.Close();
+                    conn.Close();
                 }
-                reader.Close();
-                conn.Close();
+            }
+            catch(Exception)
+            {
             }
             return result;
         }
@@ -42,56 +49,74 @@ namespace FitnessWebAppDAL
         public List<Comment> GetCommentsByWorkoutplan(int id)
         {
             List<Comment> result = new List<Comment>();
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("GetCommmentsByWorkoutplan", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@ID", id));
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    result.Add(new Comment
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("GetCommmentsByWorkoutplan", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@ID", id));
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
                     {
-                        ID = (int)reader["Id"],
-                        Text = (string)reader["Text"],
-                        Kudos = (int)reader["Kudos"], 
-                        Nickname = (string)reader["Nickname"]
-                    });
+                        result.Add(new Comment
+                        {
+                            ID = (int)reader["Id"],
+                            Text = (string)reader["Text"],
+                            Kudos = (int)reader["Kudos"],
+                            Nickname = (string)reader["Nickname"]
+                        });
+                    }
+                    reader.Close();
+                    conn.Close();
                 }
-                reader.Close();
-                conn.Close();
+            }
+            catch (Exception)
+            {
             }
             return result;
         }
 
         public void AddCommentToWorkout(Comment commentToAdd)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("AddCommentToWorkoutplan", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@Username", commentToAdd.Nickname));
-                cmd.Parameters.Add(new SqlParameter("@Text", commentToAdd.Text));
-                cmd.Parameters.Add(new SqlParameter("@WorkoutplanID", commentToAdd.ForeignID));
-                cmd.ExecuteNonQuery();
-                conn.Close();
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("AddCommentToWorkoutplan", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Username", commentToAdd.Nickname));
+                    cmd.Parameters.Add(new SqlParameter("@Text", commentToAdd.Text));
+                    cmd.Parameters.Add(new SqlParameter("@WorkoutplanID", commentToAdd.ForeignID));
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
             }
         }
 
         public void AddCommentToExercise(Comment commentToAdd)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("AddCommentToExercise", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@Username", commentToAdd.Nickname));
-                cmd.Parameters.Add(new SqlParameter("@Text", commentToAdd.Text));
-                cmd.Parameters.Add(new SqlParameter("@ExerciseID", commentToAdd.ForeignID));
-                cmd.ExecuteNonQuery();
-                conn.Close();
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("AddCommentToExercise", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Username", commentToAdd.Nickname));
+                    cmd.Parameters.Add(new SqlParameter("@Text", commentToAdd.Text));
+                    cmd.Parameters.Add(new SqlParameter("@ExerciseID", commentToAdd.ForeignID));
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
             }
         }
 
@@ -114,22 +139,32 @@ namespace FitnessWebAppDAL
                     conn.Close();
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
+                if (ex.Number == 2627) // <-- but this will
+                {
+                    return "Already added a kudo!";
+                }
             }
             return result;
         }
 
         public void RemoveComment(int commentId)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("RemoveComment", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@Id", commentId));
-                cmd.ExecuteNonQuery();
-                conn.Close();
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("RemoveComment", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Id", commentId));
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
             }
         }
     }

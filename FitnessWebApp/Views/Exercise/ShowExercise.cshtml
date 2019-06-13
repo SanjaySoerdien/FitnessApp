@@ -43,7 +43,7 @@
 
 <h2>@Html.DisplayFor(model => model.Name)</h2>
 
-<button id="LikePlanBtn" type="button" class="btn btn-default btn-sm">
+<button button onclick="LikeExercise(@Model.Id)" type="button" class="btn btn-default btn-sm">
     <span class="glyphicon glyphicon-thumbs-up"></span> Like
 </button> 
 <p> Likes: @Model.Kudos</p>
@@ -92,19 +92,20 @@
                             <div class="media-body col-xs-12" style="margin: 20px">
                                 <h4 class="media-heading user_name">@comment.Nickname</h4>
                                 @comment.Text
-                                <button style="margin-left:auto; margin-right:0;" id="LikePlanBtn" type="button" class="btn btn-default btn-sm">
+                                <button button onclick="LikeComment(@comment.ID)" style="margin-left:auto; margin-right:0;" id="LikePlanBtn" type="button" class="btn btn-default btn-sm">
                                     <span class="glyphicon glyphicon-thumbs-up"></span> Like
                                 </button>
                                 @comment.Kudos
                                 @if (User.Identity.Name == comment.Nickname || User.IsInRole("Admin"))
                                 {
-                                    @Html.ActionLink("Remove Comment", "RemoveComment", "Comment", new { comment.ID })
+                                    <button button onclick="RemoveComment(@comment.ID)" style="margin-left:auto; margin-right:0;" id="LikePlanBtn" type="button" class="btn btn-default btn-sm">
+                                        <span class="glyphicon glyphicon-thumbs-up"></span> Remove comment
+                                    </button>
                                 }
                             </div> 
                             }
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -136,5 +137,69 @@
                 });
             }
         });
+
+        function LikeComment(id)
+        {
+            console.log(id);
+            if (id == undefined) {
+                alert("Cant add kudo");
+            } else {
+                $.ajax({
+                    url: '@Url.Action("AddKudoToComment", "Comment")',
+                    data: {
+                        commentId: id
+                    },
+                    type: "POST",
+                    dataType: "json",
+                    success: function(result) {
+                        console.log("Success");
+                        alert(result.message);
+                        location.reload(); 
+                    },
+                    error: function () {
+                        alert("Cant add kudo");
+                    }
+                });
+            }
+        }
+
+        function RemoveComment(id) {
+            $.ajax({
+                url: '@Url.Action("RemoveComment","Comment")',
+                data: {
+                    commentId: id
+                },
+                type: "POST",
+                dataType: "json",
+                success: function(result) {
+                    console.log("Successfully placed comment!");
+                    alert(result.message);
+                    location.reload(); 
+                },
+                error: function () {
+                    alert("Adding comment failed");
+                }
+            });
+        }
+
+        function LikeExercise(id) {
+            $.ajax({
+                url: '@Url.Action("AddKudoToExercise","Exercise")',
+                data: {
+                    exerciseId: id
+                },
+                type: "POST",
+                dataType: "json",
+                success: function(result) {
+                    console.log("Successfully placed comment!");
+                    alert(result.message);
+                    location.reload(); 
+                },
+                error: function () {
+                    alert("Adding comment failed");
+                }
+            });
+        }
+
     </script>
 }

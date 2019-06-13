@@ -46,7 +46,6 @@ namespace FitnessWebApp.Controllers
         }
 
         [Authorize]
-        [HttpPost]
         public IActionResult RemoveComment(int commentId)
         {
             commentLogic.RemoveComment(commentId);

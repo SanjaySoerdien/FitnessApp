@@ -17,24 +17,30 @@ namespace FitnessWebAppDAL.DAL
         public Exercise GetExercise(string name)
         {
             Exercise result = new Exercise();
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("GetExerciseByName", conn); 
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@Name", name));
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    result = new Exercise
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("GetExerciseByName", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Name", name));
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
                     {
-                        Id = (int) reader["Id"], 
-                        MuscleGroup = (string) reader["Category"],
-                        Name = (string) reader["Name"],
-                    };
+                        result = new Exercise
+                        {
+                            Id = (int)reader["Id"],
+                            MuscleGroup = (string)reader["Category"],
+                            Name = (string)reader["Name"],
+                        };
+                    }
+                    reader.Close();
+                    conn.Close();
                 }
-                reader.Close();
-                conn.Close();
+            }
+            catch (Exception)
+            {
             }
             return result;
         }
@@ -42,52 +48,64 @@ namespace FitnessWebAppDAL.DAL
         public Exercise GetExercise(int id)
         {
             Exercise result = new Exercise();
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("GetExcerciseByID", conn); 
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@ID", id));
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    result = new Exercise
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("GetExcerciseByID", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@ID", id));
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
                     {
-                        Id = (int)reader["Id"], 
-                        MuscleGroup = (string)reader["Category"],
-                        Name = (string)reader["Name"],
-                        Description = (string)reader["Description"],
-                        Kudos = (int)reader["Kudos"]
-                    };
+                        result = new Exercise
+                        {
+                            Id = (int)reader["Id"],
+                            MuscleGroup = (string)reader["Category"],
+                            Name = (string)reader["Name"],
+                            Description = (string)reader["Description"],
+                            Kudos = (int)reader["Kudos"]
+                        };
+                    }
+                    result.Comments = commentDAL.GetCommentsByExercise(result.Id);
+                    reader.Close();
+                    conn.Close();
                 }
-                reader.Close();
-                conn.Close();
             }
-            result.Comments = commentDAL.GetCommentsByExercise(result.Id);
+            catch (Exception)
+            {
+            }
             return result;
         }
 
         public List<Exercise> GetTopExercises()
         {
             List<Exercise> result = new List<Exercise>();
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("GetTopExercises", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    result.Add(new Exercise
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("GetTopExercises", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
                     {
-                        Id = (int)reader["Id"],
-                        MuscleGroup = (string)reader["Category"],
-                        Name = (string)reader["Name"],
-                        Kudos = (int)reader["Kudos"]
-                    });
+                        result.Add(new Exercise
+                        {
+                            Id = (int)reader["Id"],
+                            MuscleGroup = (string)reader["Category"],
+                            Name = (string)reader["Name"],
+                            Kudos = (int)reader["Kudos"]
+                        });
+                    }
+                    reader.Close();
+                    conn.Close();
                 }
-                reader.Close();
-                conn.Close();
+            }
+            catch (Exception)
+            {
             }
             return result;
         }
@@ -95,18 +113,24 @@ namespace FitnessWebAppDAL.DAL
         public List<string> GetAllCategories()
         {
             List<string> result = new List<string>();
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("GetAllCategories", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    result.Add((string)reader["Category"]);
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("GetAllCategories", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        result.Add((string)reader["Category"]);
+                    }
+                    reader.Close();
+                    conn.Close();
                 }
-                reader.Close();
-                conn.Close();
+            }
+            catch (Exception)
+            {
             }
             return result;
         }
@@ -114,25 +138,32 @@ namespace FitnessWebAppDAL.DAL
         public List<Exercise> GetExercisesByCategory(string category)
         {
             List<Exercise> result = new List<Exercise>();
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("GetExercisesByCategory", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@Category", category));
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    result.Add(new Exercise
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("GetExercisesByCategory", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Category", category));
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
                     {
-                        Id = (int)reader["Id"], 
-                        MuscleGroup = (string)reader["Category"],
-                        Name = (string)reader["Name"],
-                        Kudos = (int)reader["Kudos"]
-                    });
+                        result.Add(new Exercise
+                        {
+                            Id = (int)reader["Id"],
+                            MuscleGroup = (string)reader["Category"],
+                            Name = (string)reader["Name"],
+                            Kudos = (int)reader["Kudos"]
+                        });
+                    }
+                    reader.Close();
+                    conn.Close();
                 }
-                reader.Close();
-                conn.Close();
+
+            }
+            catch (Exception)
+            {
             }
             return result;
         }
@@ -140,29 +171,35 @@ namespace FitnessWebAppDAL.DAL
         public List<Exercise> GetWorkoutPlanExercises(string planname, string nickname)
         {
             List<Exercise> result = new List<Exercise>();
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("GetWorkoutPlanExercises", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.Add(new SqlParameter("@Planname", planname));
-                cmd.Parameters.Add(new SqlParameter("@Nickname", nickname));
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    result.Add(new Exercise
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("GetWorkoutPlanExercises", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@Planname", planname));
+                    cmd.Parameters.Add(new SqlParameter("@Nickname", nickname));
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
                     {
-                        Id = (int)reader["ID"],
-                        Name = (string)reader["Name"],
-                        SetTarget = (int)reader["SetsTarget"],
-                        RepTarget = (int)reader["RepsTarget"],
-                        MuscleGroup = (string)reader["Category"]
-                    });
+                        result.Add(new Exercise
+                        {
+                            Id = (int)reader["ID"],
+                            Name = (string)reader["Name"],
+                            SetTarget = (int)reader["SetsTarget"],
+                            RepTarget = (int)reader["RepsTarget"],
+                            MuscleGroup = (string)reader["Category"]
+                        });
+                    }
+                    reader.Close();
+                    conn.Close();
                 }
-                reader.Close();
-                conn.Close();
+            }
+            catch (Exception)
+            {
             }
             return result;
         }
@@ -186,8 +223,12 @@ namespace FitnessWebAppDAL.DAL
                     conn.Close();
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
+                if (ex.Number == 2627) // <-- but this will
+                {
+                    return "Already added a kudo!";
+                }
             }
             return result;
         }

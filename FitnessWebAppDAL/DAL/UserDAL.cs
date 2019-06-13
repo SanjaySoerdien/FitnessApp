@@ -16,70 +16,87 @@ namespace FitnessWebAppDAL
         public User Login(string username , string password)
         {
             User result = null;
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("Login", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@Username", username));
-               
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    if (password != (string) reader["Password"])
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("Login", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Username", username));
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
                     {
-                        return result;
+                        if (password != (string)reader["Password"])
+                        {
+                            return result;
+                        }
+                        result = new User
+                        {
+                            Username = (string)reader["Username"],
+                            Role = (string)reader["Role"],
+                            Nickname = (string)reader["Nickname"]
+                        };
                     }
-                    result = new User
-                    {
-                        Username = (string)reader["Username"],
-                        Role = (string)reader["Role"],
-                        Nickname = (string)reader["Nickname"]
-                    };
+                    reader.Close();
+                    conn.Close();
                 }
-                reader.Close();
-                conn.Close();
+            }
+            catch (Exception)
+            {
             }
             return result;
         }
         public User GetUserInfo(string nickname)
         {
             User result = null;
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("GetUserInfo", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@Nickname", nickname));
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    result = new User
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("GetUserInfo", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Nickname", nickname));
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
                     {
-                        Role = (string) reader["Role"],
-                        Nickname = (string) reader["Nickname"]
-                    };
+                        result = new User
+                        {
+                            Role = (string) reader["Role"],
+                            Nickname = (string) reader["Nickname"]
+                        };
+                    }
+
+                    reader.Close();
+                    conn.Close();
                 }
-                reader.Close();
-                conn.Close();
+            }
+            catch (Exception)
+            {
             }
             return result;
         }
 
         public void AddUser(User user)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("AddUser", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@Nickname", user.Nickname));
-                cmd.Parameters.Add(new SqlParameter("@Username", user.Username));
-                cmd.Parameters.Add(new SqlParameter("@Password", user.Password));
-                cmd.ExecuteNonQuery();
-
-                
-                conn.Close();
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("AddUser", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Nickname", user.Nickname));
+                    cmd.Parameters.Add(new SqlParameter("@Username", user.Username));
+                    cmd.Parameters.Add(new SqlParameter("@Password", user.Password));
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
             }
         }
     }

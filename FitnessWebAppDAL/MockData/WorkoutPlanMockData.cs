@@ -115,11 +115,9 @@ namespace FitnessWebAppDAL.MockData
 
         public WorkoutPlan GetWorkoutPlanById(int id)
         {
-            var result = new WorkoutPlan();
-            var searchedList = new List<WorkoutPlan>();
-            searchedList = (List<WorkoutPlan>) workoutPlans.Where(workoutplan => workoutplan.Id.Equals(id));
-            result = searchedList.First();
-            return result;
+            var result = new List<WorkoutPlan>();
+            result = (List<WorkoutPlan>) workoutPlans.Where(workoutplan => workoutplan.Id.Equals(id));
+            return result[0];
         }
 
         public void AddExerciseToWorkout(int workoutPlanId, int exerciseId, int repCount, int setCount)
@@ -130,6 +128,11 @@ namespace FitnessWebAppDAL.MockData
         public void RemoveWorkout(int id)
         {
             throw new NotImplementedException();//todo
+        }
+
+        public string AddKudoToWorkoutPlan(int workoutplanId, string nickname)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -83,51 +83,69 @@ namespace FitnessWebAppDAL
 
         public void AddExercise(Exercise exercise)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("AddExercise", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@Name", exercise.Name));
-                cmd.Parameters.Add(new SqlParameter("@Category", exercise.MuscleGroup));
-                cmd.Parameters.Add(new SqlParameter("@Description", exercise.Description));
-                cmd.ExecuteNonQuery();
-                conn.Close();
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("AddExercise", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Name", exercise.Name));
+                    cmd.Parameters.Add(new SqlParameter("@Category", exercise.MuscleGroup));
+                    cmd.Parameters.Add(new SqlParameter("@Description", exercise.Description));
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
             }
         }
 
         public void DeleteExercise(int id)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("RemoveExercise", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@Id", id));
-                cmd.ExecuteNonQuery();
-                conn.Close();
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("RemoveExercise", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Id", id));
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
             }
         }
 
         public List<Change> GetRecentChanges()
         {
             List<Change> result = new List<Change>();
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("GetRecentChanges", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    result.Add(new Change
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("GetRecentChanges", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
                     {
-                        changeText = (string)reader["ChangesText"],
-                        time = (DateTime)reader["Date"]
-                    });
+                        result.Add(new Change
+                        {
+                            changeText = (string)reader["ChangesText"],
+                            time = (DateTime)reader["Date"]
+                        });
+                    }
+                    reader.Close();
+                    conn.Close();
                 }
-                reader.Close();
-                conn.Close();
+            }
+            catch (Exception ex)
+            { 
             }
             return result; 
         }
@@ -135,22 +153,28 @@ namespace FitnessWebAppDAL
         public List<Change> GetMoreChanges()
         {
             List<Change> result = new List<Change>();
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("GetMoreChanges", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    result.Add(new Change
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("GetMoreChanges", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
                     {
-                        changeText = (string)reader["ChangesText"],
-                        time = (DateTime)reader["Date"]
-                    });
+                        result.Add(new Change
+                        {
+                            changeText = (string)reader["ChangesText"],
+                            time = (DateTime)reader["Date"]
+                        });
+                    }
+                    reader.Close();
+                    conn.Close();
                 }
-                reader.Close();
-                conn.Close();
+            }
+            catch (Exception ex)
+            {
             }
             return result;
         }

@@ -13,7 +13,7 @@
                     @Html.DisplayNameFor(model => model.changeText)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.time.ToString("dddd, dd MMMM yyyy HH:mm:ss"))
+                    @Html.DisplayNameFor(model => model.time)
                 </th>
             </tr>
         </thead>
@@ -27,7 +27,7 @@
                             @Html.DisplayFor(modelItem => item.changeText)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.time)
+                            @item.time.ToString("MM/dd/yyyy hh:mm tt")
                         </td>
                     </tr>
                 }
