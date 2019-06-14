@@ -16,6 +16,10 @@ namespace FitnessWebAppLogic
         {
             userRepo = new UserRepo();
         }
+        public UserLogic(IUserContext context)
+        {
+            userRepo = new UserRepo(context);
+        }
 
         public User Login(string username,string password)
         {

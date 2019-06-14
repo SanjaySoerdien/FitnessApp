@@ -72,7 +72,6 @@ namespace FitnessWebAppDAL
                             Kudos = (int) reader["Kudos"]
                         });
                     }
-
                     reader.Close();
                     conn.Close();
                 }

@@ -2,13 +2,24 @@
 using System.Collections.Generic;
 using System.Text;
 using FitnessWebAppDAL;
+using FitnessWebAppInterfaces;
 using FitnessWebAppModels;
 
 namespace FitnessWebAppLogic
 {
     public class CommentLogic
     {
-        private CommentRepo commentRepo = new CommentRepo();
+        private CommentRepo commentRepo;
+
+        public CommentLogic()
+        {
+            commentRepo  = new CommentRepo();
+        }
+
+        public CommentLogic(ICommentContext context)
+        {
+            commentRepo = new CommentRepo(context);
+        }
         public void AddCommentToWorkout(Comment commentToAdd)
         {
             commentRepo.AddCommentToWorkout(commentToAdd);

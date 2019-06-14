@@ -32,7 +32,7 @@ namespace FitnessWebAppDAL.MemoryContexts
 
         public User Login(string username, string password)
         {
-            User result = new User();
+            User result;
             result = null;
 
             foreach (User user in users)

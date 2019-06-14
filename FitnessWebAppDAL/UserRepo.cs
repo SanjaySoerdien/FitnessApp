@@ -17,6 +17,12 @@ namespace FitnessWebAppDAL
            // userContext = new UserMemoryContext();
         }
 
+        public UserRepo(IUserContext context)
+        {
+            //userContext = new UserDAL();
+            userContext = new UserMemoryContext();
+        }
+
         public User Login(string username, string password)
         {
             return userContext.Login(username, password);

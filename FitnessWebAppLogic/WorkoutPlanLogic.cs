@@ -8,11 +8,22 @@ using FitnessWebAppModels;
 
 namespace FitnessWebAppLogic
 {
-    public class WorkoutPlanLogic 
+    public class WorkoutPlanLogic
     {
-       readonly WorkoutplanRepo workoutplanRepo = new WorkoutplanRepo();
+        private readonly WorkoutplanRepo workoutplanRepo;
 
-       public List<WorkoutPlan> GetWorkoutPlansByUser(string username)
+       public WorkoutPlanLogic()
+       {
+           workoutplanRepo = new WorkoutplanRepo();
+       }
+
+       public WorkoutPlanLogic(IWorkoutPlanContext context)
+       {
+           workoutplanRepo = new WorkoutplanRepo(context);
+       }
+
+
+        public List<WorkoutPlan> GetWorkoutPlansByUser(string username)
        {
            return workoutplanRepo.GetWorkoutPlansByUser(username);
        }

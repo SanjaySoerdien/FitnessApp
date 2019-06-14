@@ -99,14 +99,14 @@ namespace FitnessWebAppDAL.MemoryContexts
 
         public Exercise GetExercise(string name)
         {
-            List<Exercise> result = (List<Exercise>) exercises.Where(n => n.Name.Equals(name));
-            return result[0];
+            Exercise result = exercises.Find(n => n.Name.Equals(name));
+            return result;
         }
 
         public Exercise GetExercise(int id)
         {
-            List<Exercise> result = (List<Exercise>) exercises.Where(n => n.Id.Equals(id));
-            return result[0];
+            Exercise result = exercises.Find(n => n.Id.Equals(id));
+            return result;
         }
 
         public List<Exercise> GetTopExercises()
@@ -128,7 +128,7 @@ namespace FitnessWebAppDAL.MemoryContexts
 
         public List<Exercise> GetExercisesByCategory(string category)
         {
-            return (List<Exercise>) exercises.Where(n => n.MuscleGroup.Equals(category));
+            return exercises.Where(n => n.MuscleGroup.Equals(category)).ToList();
         }
 
         public List<Exercise> GetWorkoutPlanExercises(string planname, string nickname)
@@ -143,9 +143,9 @@ namespace FitnessWebAppDAL.MemoryContexts
 
         public string AddKudoToExercise(int exerciseId, string nickname)
         {
-            List<Exercise> result = (List<Exercise>)exercises.Select(n => n.Id.Equals(exerciseId));
-            result[0].Kudos++;
-            return result[0].Kudos.ToString();
+            Exercise result = exercises.Find(n => n.Id.Equals(exerciseId));
+            result.Kudos++;
+            return result.Kudos.ToString();
         }
     }
 }

@@ -3,13 +3,25 @@ using System.Collections.Generic;
 using System.Text;
 using FitnessWebAppInterfaces;
 using FitnessWebAppDAL;
+using FitnessWebAppDAL.MemoryContexts;
 using FitnessWebAppModels;
 
 namespace FitnessWebAppLogic
 {
     public class ExerciseLogic
     {
-        ExerciseRepo exerciseRepo = new ExerciseRepo();
+        private ExerciseRepo exerciseRepo;
+
+        public ExerciseLogic()
+        {
+            exerciseRepo = new ExerciseRepo();
+        }
+
+        public ExerciseLogic(IExerciseContext exerciseContext)
+        {
+            exerciseRepo = new ExerciseRepo(exerciseContext);
+        }
+
         public Exercise GetExercise(string name)
         {
             return exerciseRepo.GetExercise(name);

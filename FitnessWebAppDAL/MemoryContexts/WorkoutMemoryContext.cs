@@ -9,10 +9,11 @@ namespace FitnessWebAppDAL.MemoryContexts
 {
     public class WorkoutMemoryContext : IWorkoutPlanContext
     {
-        private readonly List<WorkoutPlan> workoutPlans = new List<WorkoutPlan>();
+        private readonly List<WorkoutPlan> workoutPlans;
 
         public WorkoutMemoryContext()
         {
+            workoutPlans = new List<WorkoutPlan>();
             workoutPlans.Add(new WorkoutPlan
             {
                 Id = 0,
@@ -24,7 +25,7 @@ namespace FitnessWebAppDAL.MemoryContexts
             workoutPlans.Add(new WorkoutPlan
                 {
                     Id = 1,
-                    Name = "Always Skip LegDate",
+                    Name = "Always Skip Legday",
                     CreatorName = "TestUser",
                     Kudos = 12,
                     CategoryName = "Chest"
@@ -66,13 +67,13 @@ namespace FitnessWebAppDAL.MemoryContexts
 
         public WorkoutPlan GetWorkoutPlan(string username, string planName)
         {
-            var result = workoutPlans.First(workoutplan => workoutplan.Name.Equals(planName) && workoutplan.CreatorName.Equals(username));
+            var result = workoutPlans.Find(workoutplan => workoutplan.Name.Equals(planName) && workoutplan.CreatorName.Equals(username));
             return result;
         }
 
         public List<WorkoutPlan> GetWorkoutPlansByUser(string username)
         {
-            return (List<WorkoutPlan>) workoutPlans.Where(workoutplan => workoutplan.CreatorName.Equals(username));
+            return workoutPlans.Where(workoutplan => workoutplan.CreatorName.Equals(username)).ToList();
         }
 
         public void AddWorkoutPlan(WorkoutPlan workoutPlanToAdd)
@@ -87,19 +88,23 @@ namespace FitnessWebAppDAL.MemoryContexts
 
         public WorkoutPlan GetWorkoutPlanById(int id)
         {
-            var result = new List<WorkoutPlan>();
-            result = (List<WorkoutPlan>) workoutPlans.Where(workoutplan => workoutplan.Id.Equals(id));
-            return result[0];
+            
+            var result = workoutPlans.Where(workoutplan => workoutplan.Id.Equals(id)).ToList();
+            if (result.Count > 0)
+            {
+                return result.First();
+            }
+            return null;
         }
 
         public void AddExerciseToWorkout(int workoutPlanId, int exerciseId, int repCount, int setCount)
         {
-            throw new NotImplementedException(); //todo
+            throw new NotImplementedException(); 
         }
 
         public void RemoveWorkout(int id)
         {
-            throw new NotImplementedException();//todo
+            throw new NotImplementedException();
         }
 
         public string AddKudoToWorkoutPlan(int workoutplanId, string nickname)

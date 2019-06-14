@@ -18,6 +18,11 @@ namespace FitnessWebAppDAL
             //context = new ExerciseMemoryContext();
         }
 
+        public ExerciseRepo(IExerciseContext exerciseContext)
+        {
+            context = new ExerciseMemoryContext();
+        }
+
         public Exercise GetExercise(string name)
         {
             return context.GetExercise(name);
