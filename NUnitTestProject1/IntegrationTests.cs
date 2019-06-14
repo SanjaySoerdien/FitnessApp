@@ -9,7 +9,7 @@ namespace FitnessWebAppTests
 {
     public class IntegrationTests
     {
-        private UserLogic userlogic;
+        /*private UserLogic userlogic;
         private WorkoutPlanLogic workoutPlanLogic;
         private ExerciseLogic exerciseLogic;
         [SetUp]
@@ -46,6 +46,6 @@ namespace FitnessWebAppTests
         {
             var result = workoutPlanLogic.SearchWorkoutsByName("x66xq5dsa23a");
             Assert.That(result, Is.Empty);
-        }
+        }*/
     }
 }

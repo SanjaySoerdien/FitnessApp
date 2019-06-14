@@ -51,7 +51,6 @@ namespace FitnessWebApp.Controllers
             return new JsonResult(new { message = "Failed to delete category" });
         }
 
-        
         [HttpPost]
         public IActionResult AddExercise(Exercise exercise)
         {

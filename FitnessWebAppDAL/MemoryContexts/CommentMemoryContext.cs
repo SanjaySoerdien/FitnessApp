@@ -78,8 +78,6 @@ namespace FitnessWebAppDAL.MemoryContexts
                     Kudos = 44,
                     Nickname = "Anna",
                     Text = "goed hoor"
-
-
                 },
                 new Comment
                 {
