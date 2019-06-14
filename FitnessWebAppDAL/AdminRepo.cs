@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using FitnessWebAppDAL.MemoryContexts;
 using FitnessWebAppInterfaces;
 using FitnessWebAppModels;
 
@@ -11,7 +12,7 @@ namespace FitnessWebAppDAL
         public AdminRepo()
         {
             context = new AdminDal();
-            //todo Add mock data voor unit tests
+            //context = new AdminMemoryContext();
         }
 
         public int AddCategory(string category)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using FitnessWebAppDAL.MemoryContexts;
 using FitnessWebAppInterfaces;
 using FitnessWebAppModels;
 
@@ -13,7 +14,7 @@ namespace FitnessWebAppDAL
         public CommentRepo()
         {
             context = new CommentDAL();
-            //TODO
+            //context = new CommentMemoryContext();
         }
 
         public CommentRepo(ICommentContext context)

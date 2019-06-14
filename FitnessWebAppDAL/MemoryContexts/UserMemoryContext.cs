@@ -4,14 +4,14 @@ using System.Text;
 using FitnessWebAppInterfaces;
 using FitnessWebAppModels;
 
-namespace FitnessWebAppDAL
+namespace FitnessWebAppDAL.MemoryContexts
 {
-    class UserMockData : IUserContext
+    public class UserMemoryContext : IUserContext
     {
 
         private static List<User> users = new List<User>();
 
-        public UserMockData()
+        public UserMemoryContext()
         {
             users.Add(new User
             {

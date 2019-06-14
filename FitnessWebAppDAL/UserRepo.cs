@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using FitnessWebAppDAL.MemoryContexts;
 using FitnessWebAppInterfaces;
 using FitnessWebAppModels;
 
@@ -12,8 +13,8 @@ namespace FitnessWebAppDAL
 
         public UserRepo()
         {
-            //userContext = new UserMockData();
             userContext = new UserDAL();
+           // userContext = new UserMemoryContext();
         }
 
         public User Login(string username, string password)

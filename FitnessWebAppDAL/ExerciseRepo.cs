@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using FitnessWebAppDAL.DAL;
+using FitnessWebAppDAL.MemoryContexts;
 using FitnessWebAppInterfaces;
 using FitnessWebAppModels;
 
@@ -14,8 +15,9 @@ namespace FitnessWebAppDAL
         public ExerciseRepo()
         {
             context = new ExerciseDAL();
-            //todo add mock data
+            //context = new ExerciseMemoryContext();
         }
+
         public Exercise GetExercise(string name)
         {
             return context.GetExercise(name);

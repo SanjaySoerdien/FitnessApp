@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 using FitnessWebAppInterfaces;
 using FitnessWebAppModels;
 
-namespace FitnessWebAppDAL.MockData
+namespace FitnessWebAppDAL.MemoryContexts
 {
-    internal class WorkoutPlanMockData : IWorkoutPlanContext
+    public class WorkoutMemoryContext : IWorkoutPlanContext
     {
         private readonly List<WorkoutPlan> workoutPlans = new List<WorkoutPlan>();
 
-        public WorkoutPlanMockData()
+        public WorkoutMemoryContext()
         {
             workoutPlans.Add(new WorkoutPlan
             {
@@ -19,49 +19,15 @@ namespace FitnessWebAppDAL.MockData
                 Name = "Chest day is the best day",
                 CreatorName = "TestUser",
                 Kudos = 40,
-                Exercises = new List<Exercise>
-                {
-                    new Exercise
-                    {
-                        Name = "BenchPress",
-                        MuscleGroup = "Chest"
-                    },
-                    new Exercise
-                    {
-                        Name = "Chest Fly",
-                        MuscleGroup = "Chest"
-                    },
-                    new Exercise
-                    {
-                        Name = "Pullovers",
-                        MuscleGroup = "Chest"
-                    },
-                    new Exercise
-                    {
-                        Name = "Dips",
-                        MuscleGroup = "Chest"
-                    }
-                }
+                CategoryName = "Flex"
             });
             workoutPlans.Add(new WorkoutPlan
                 {
                     Id = 1,
                     Name = "Always Skip LegDate",
-                    CreatorName = "TestAdmin",
+                    CreatorName = "TestUser",
                     Kudos = 12,
-                    Exercises = new List<Exercise>
-                    {
-                        new Exercise
-                        {
-                            Name = "Squat",
-                            MuscleGroup = "Legs"
-                        },
-                        new Exercise
-                        {
-                            Name = "Leg press",
-                            MuscleGroup = "Legs"
-                        }
-                    }
+                    CategoryName = "Chest"
                 }
             );
             workoutPlans.Add(new WorkoutPlan
@@ -69,20 +35,26 @@ namespace FitnessWebAppDAL.MockData
                     Id = 2,
                     Name = "2nd plan for admin <3",
                     CreatorName = "TestAdmin",
+                    Kudos = 18,
+                    CategoryName = "Headday"
+                }
+            );
+            workoutPlans.Add(new WorkoutPlan
+                {
+                    Id = 3,
+                    Name = "3rd plan for admin <3",
+                    CreatorName = "TestAdmin",
                     Kudos = 12,
-                    Exercises = new List<Exercise>
-                    {
-                        new Exercise
-                        {
-                            Name = "360 noscope",
-                            MuscleGroup = "Brain"
-                        },
-                        new Exercise
-                        {
-                            Name = "Kickflip op skateboard",
-                            MuscleGroup = "LEGZZZ"
-                        }
-                    }
+                    CategoryName = "Bulk"
+                }
+            );
+            workoutPlans.Add(new WorkoutPlan
+                {
+                    Id = 4,
+                    Name = "4th plan for admin <3",
+                    CreatorName = "TestAdmin",
+                    Kudos = 44,
+                    CategoryName = "Mass bulking for sumo wrestler"
                 }
             );
         }
@@ -110,7 +82,7 @@ namespace FitnessWebAppDAL.MockData
 
         public List<WorkoutPlan> SearchWorkoutsByName(string name)
         {
-            throw new NotImplementedException(); //todo
+            return (List<WorkoutPlan>) workoutPlans.Where(workoutplan => workoutplan.Name.Equals(name));
         }
 
         public WorkoutPlan GetWorkoutPlanById(int id)
