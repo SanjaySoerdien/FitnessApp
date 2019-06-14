@@ -48,7 +48,8 @@ namespace FitnessWebApp.Controllers
             {
                 Nickname = user.Nickname,
                 Password = user.Password,
-                Role = "Member"
+                Role = "Member",
+                Username = user.Username
             };
             userLogic.AddUser(userToAdd);
             AuthorizeUser(userToAdd);
