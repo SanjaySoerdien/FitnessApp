@@ -64,7 +64,9 @@ namespace FitnessWebAppTests
                 Kudos = 1,
                 MuscleGroup = "Arms",
             };
+
             var result = exerciseLogic.GetExercise(1);
+
             Assert.Multiple(() =>
             {
                 Assert.That(result.Name, Is.EqualTo(assumption.Name));

@@ -137,22 +137,28 @@
                     <h1><small class="pull-right">@Model.Comments.Count Comments</small> Comments </h1>
                 </div>
                 <div class="comments-list">
-                    <div class="media">
+                    <div class="media col-xs-12">
                         @foreach (var comment in Model.Comments)
                         {
-                            <div class="media-body col-xs-12" style="margin: 20px">
+                            <div style="margin: 20px">
                                 <h4 class="media-heading user_name">@comment.Nickname</h4>
-                                @comment.Text
-                                <button button onclick="LikeComment(@comment.ID)" style="margin-left:auto; margin-right:0;" id="LikePlanBtn" type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-thumbs-up"></span> Like
-                                </button>
-                                @comment.Kudos
-                                @if (User.Identity.Name == comment.Nickname || User.IsInRole("Admin"))
-                                {
-                                    <button button onclick="RemoveComment(@comment.ID)" style="margin-left:auto; margin-right:0;" id="LikePlanBtn" type="button" class="btn btn-default btn-sm">
-                                        <span class="glyphicon glyphicon-thumbs-up"></span> Remove comment
+                                <div class="col-xs-8">
+                                    <p>
+                                        @comment.Text
+                                    </p>
+                                </div>
+                                <div class="col-xs-4">
+                                    <button button onclick="LikeComment(@comment.ID)" style="margin-left:auto; margin-right:0; " id="LikePlanBtn" type="button" class="btn btn-default btn-sm">
+                                        <span class="glyphicon glyphicon-thumbs-up"></span> Like
                                     </button>
-                                }
+                                    @comment.Kudos
+                                    @if (User.Identity.Name == comment.Nickname || User.IsInRole("Admin"))
+                                    {
+                                        <button button onclick="RemoveComment(@comment.ID)" style="margin-left:auto; margin-right:0; margin-top: 20px" id="LikePlanBtn" type="button" class="btn btn-default btn-sm">
+                                            <span class="glyphicon glyphicon-thumbs-up"></span> Remove comment
+                                        </button>
+                                    }
+                                </div>
                             </div>
                         }
                     </div>
