@@ -15,6 +15,6 @@ namespace FitnessWebAppInterfaces
         void AddWorkoutPlan(WorkoutPlan workoutPlanToAdd);
         WorkoutPlan GetWorkoutPlanById(int id);
         void AddExerciseToWorkout(int workoutPlanId, int exerciseId, int repCount, int setCount);
-        string AddKudoToWorkoutPlan(int workoutplanId, string nickname);
+        ErrorMessage AddKudoToWorkoutPlan(int workoutplanId, string nickname);
     }
 }

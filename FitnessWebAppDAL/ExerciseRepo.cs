@@ -41,7 +41,7 @@ namespace FitnessWebAppDAL
         {
             return context.GetExercisesByCategory(category);
         }
-        public string AddKudoToExercise(int commentId, string nickname)
+        public ErrorMessage AddKudoToExercise(int commentId, string nickname)
         {
             return context.AddKudoToExercise(commentId, nickname);
         }

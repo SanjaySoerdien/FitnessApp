@@ -204,9 +204,9 @@ namespace FitnessWebAppDAL
             return result;
         }
 
-        public string AddKudoToExercise(int exerciseId, string nickname)
+        public ErrorMessage AddKudoToExercise(int exerciseId, string nickname)
         {
-            string result = "Unable to add kudo";
+            ErrorMessage result = ErrorMessage.Unsuccesfull;
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -218,16 +218,16 @@ namespace FitnessWebAppDAL
                     cmd.Parameters.Add(new SqlParameter("@exerciseID", exerciseId));
                     if (cmd.ExecuteNonQuery() > 0)
                     {
-                        result = "Kudo added!";
+                        result = ErrorMessage.Succes;
                     }
                     conn.Close();
                 }
             }
             catch (SqlException ex)
             {
-                if (ex.Number == 2627) // <-- but this will
+                if (ex.Number == 2627) //Detects duplicate key error
                 {
-                    return "Already added a kudo!";
+                    return ErrorMessage.Duplicate;
                 }
             }
             return result;

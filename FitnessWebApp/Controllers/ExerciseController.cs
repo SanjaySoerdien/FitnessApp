@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FitnessWebAppDAL;
+using FitnessWebAppInterfaces;
 using FitnessWebAppLogic;
 using FitnessWebAppModels;
 using Microsoft.AspNetCore.Authorization;
@@ -44,7 +45,21 @@ namespace FitnessWebApp.Controllers
         [HttpPost]
         public IActionResult AddKudoToExercise(int exerciseId)
         {
-            return new JsonResult(new {message = exerciseLogic.AddKudoToExercise(exerciseId, User.Identity.Name)});
+            string result = "Error";
+            ErrorMessage check = exerciseLogic.AddKudoToExercise(exerciseId, User.Identity.Name);
+            if (check == ErrorMessage.Succes)
+            {
+                result = "Succesfully added kudo";
+            }
+            else if (check == ErrorMessage.Unsuccesfull)
+            {
+                result = "Unsuccesfull";
+            }
+            else if (check == ErrorMessage.Duplicate)
+            {
+                result = "Already added a kudo!";
+            }
+            return new JsonResult(new { message = result });
         }
     }
 }

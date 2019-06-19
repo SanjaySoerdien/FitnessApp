@@ -43,7 +43,7 @@ namespace FitnessWebAppLogic
             return exerciseRepo.GetExercisesByCategory(category);
         }
 
-        public string AddKudoToExercise(int exerciseId, string nickname)
+        public ErrorMessage AddKudoToExercise(int exerciseId, string nickname)
         {
             return exerciseRepo.AddKudoToExercise(exerciseId, nickname);
         }

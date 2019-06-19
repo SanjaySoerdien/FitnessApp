@@ -15,7 +15,7 @@ namespace FitnessWebAppInterfaces
         List<string> GetAllCategories();
         List<Exercise> GetExercisesByCategory(string category);
         List<Exercise> GetWorkoutPlanExercises(string planname, string nickname);
-        string AddKudoToExercise(int exerciseId, string nickname);
+        ErrorMessage AddKudoToExercise(int exerciseId, string nickname);
 
     }
 }

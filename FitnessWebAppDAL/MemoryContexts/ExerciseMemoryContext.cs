@@ -141,11 +141,9 @@ namespace FitnessWebAppDAL.MemoryContexts
             return result;
         }
 
-        public string AddKudoToExercise(int exerciseId, string nickname)
+        public ErrorMessage AddKudoToExercise(int exerciseId, string nickname)
         {
-            Exercise result = exercises.Find(n => n.Id.Equals(exerciseId));
-            result.Kudos++;
-            return result.Kudos.ToString();
+          throw new NotImplementedException();
         }
     }
 }

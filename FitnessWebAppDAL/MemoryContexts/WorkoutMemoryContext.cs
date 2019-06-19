@@ -107,7 +107,7 @@ namespace FitnessWebAppDAL.MemoryContexts
             throw new NotImplementedException();
         }
 
-        public string AddKudoToWorkoutPlan(int workoutplanId, string nickname)
+        public ErrorMessage AddKudoToWorkoutPlan(int workoutplanId, string nickname)
         {
             throw new NotImplementedException();
         }

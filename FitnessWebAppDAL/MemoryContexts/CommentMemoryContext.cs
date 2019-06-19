@@ -109,7 +109,7 @@ namespace FitnessWebAppDAL.MemoryContexts
             throw new NotImplementedException();
         }
 
-        public string AddKudoToComment(int commentId, string nickname)
+        public ErrorMessage AddKudoToComment(int commentId, string nickname)
         {
             throw new NotImplementedException();
         }

@@ -59,7 +59,7 @@ namespace FitnessWebAppLogic
            workoutplanRepo.AddExerciseToWorkout(workoutPlanId, exerciseId, repCount, setCount);
        }
 
-       public string AddKudoToWorkoutPlan(int workoutplanId, string nickname)
+       public ErrorMessage AddKudoToWorkoutPlan(int workoutplanId, string nickname)
        {
            return workoutplanRepo.AddKudoToWorkoutPlan(workoutplanId, nickname);
        }

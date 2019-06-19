@@ -9,10 +9,11 @@ using FitnessWebAppModels;
 
 namespace FitnessWebAppDAL
 {
-    public class WorkoutPlanDAL: IWorkoutPlanContext
+    public class WorkoutPlanDAL : IWorkoutPlanContext
     {
         private readonly string connectionString =
             "Server=mssql.fhict.local;Database=dbi413271_iller;User Id=dbi413271_iller;Password=sjorsbaktniet;";
+
         CommentDAL commentDAL = new CommentDAL();
         ExerciseDAL exerciseDAL = new ExerciseDAL();
 
@@ -33,13 +34,14 @@ namespace FitnessWebAppDAL
                     {
                         result.Add(new WorkoutPlan
                         {
-                            Id = (int)reader["ID"],
-                            Name = (string)reader["Name"],
-                            CreatorName = (string)reader["Nickname"],
-                            CategoryName = (string)reader["CategoryName"],
-                            Kudos = (int)reader["Kudos"]
+                            Id = (int) reader["ID"],
+                            Name = (string) reader["Name"],
+                            CreatorName = (string) reader["Nickname"],
+                            CategoryName = (string) reader["CategoryName"],
+                            Kudos = (int) reader["Kudos"]
                         });
                     }
+
                     reader.Close();
                     conn.Close();
                 }
@@ -47,6 +49,7 @@ namespace FitnessWebAppDAL
             catch (Exception)
             {
             }
+
             return result;
         }
 
@@ -72,6 +75,7 @@ namespace FitnessWebAppDAL
                             Kudos = (int) reader["Kudos"]
                         });
                     }
+
                     reader.Close();
                     conn.Close();
                 }
@@ -79,6 +83,7 @@ namespace FitnessWebAppDAL
             catch (Exception)
             {
             }
+
             return result;
         }
 
@@ -113,9 +118,10 @@ namespace FitnessWebAppDAL
                 result.Exercises = exerciseDAL.GetWorkoutPlanExercises(result.Name, result.CreatorName);
                 result.Comments = commentDAL.GetCommentsByWorkoutplan(result.Id);
             }
-            catch(Exception)
+            catch (Exception)
             {
             }
+
             return result;
         }
 
@@ -135,21 +141,24 @@ namespace FitnessWebAppDAL
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        result.Id = (int)reader["ID"];
-                        result.Name = (string)reader["Name"];
-                        result.CreatorName = (string)reader["Nickname"];
-                        result.CategoryName = (string)reader["CategoryName"];
-                        result.Kudos = (int)reader["Kudos"];
+                        result.Id = (int) reader["ID"];
+                        result.Name = (string) reader["Name"];
+                        result.CreatorName = (string) reader["Nickname"];
+                        result.CategoryName = (string) reader["CategoryName"];
+                        result.Kudos = (int) reader["Kudos"];
                     }
+
                     reader.Close();
                     conn.Close();
                 }
+
                 result.Exercises = exerciseDAL.GetWorkoutPlanExercises(result.Name, result.CreatorName);
                 result.Comments = commentDAL.GetCommentsByWorkoutplan(result.Id);
             }
             catch (Exception)
             {
             }
+
             return result;
         }
 
@@ -209,13 +218,14 @@ namespace FitnessWebAppDAL
                     {
                         result.Add(new WorkoutPlan
                         {
-                            Id = (int)reader["ID"],
-                            Name = (string)reader["Name"],
-                            CreatorName = (string)reader["Nickname"],
-                            CategoryName = (string)reader["CategoryName"],
-                            Kudos = (int)reader["Kudos"]
+                            Id = (int) reader["ID"],
+                            Name = (string) reader["Name"],
+                            CreatorName = (string) reader["Nickname"],
+                            CategoryName = (string) reader["CategoryName"],
+                            Kudos = (int) reader["Kudos"]
                         });
                     }
+
                     reader.Close();
                     conn.Close();
                 }
@@ -223,6 +233,7 @@ namespace FitnessWebAppDAL
             catch (Exception)
             {
             }
+
             return result;
         }
 
@@ -247,9 +258,9 @@ namespace FitnessWebAppDAL
             }
         }
 
-        public string AddKudoToWorkoutPlan(int workoutplanId, string nickname)
+        public ErrorMessage AddKudoToWorkoutPlan(int workoutplanId, string nickname)
         {
-            string result = "Unable to add kudo";
+            ErrorMessage result = ErrorMessage.Unsuccesfull;
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -261,7 +272,7 @@ namespace FitnessWebAppDAL
                     cmd.Parameters.Add(new SqlParameter("@WorkoutplanID", workoutplanId));
                     if (cmd.ExecuteNonQuery() > 0)
                     {
-                        result = "Kudo added!";
+                        result = ErrorMessage.Succes;
                     }
 
                     conn.Close();
@@ -269,11 +280,12 @@ namespace FitnessWebAppDAL
             }
             catch (SqlException ex)
             {
-                if (ex.Number == 2627) // <-- but this will
+                if (ex.Number == 2627) //Detects duplicate key error
                 {
-                    return "Already added a kudo!";
+                    return ErrorMessage.Duplicate;
                 }
             }
+
             return result;
         }
     }

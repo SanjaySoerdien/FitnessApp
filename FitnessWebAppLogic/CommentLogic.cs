@@ -25,7 +25,7 @@ namespace FitnessWebAppLogic
             commentRepo.AddCommentToExercise(commentToAdd);
         }
 
-        public string AddKudoToComment(int commentId,string nickname)
+        public ErrorMessage AddKudoToComment(int commentId,string nickname)
         {
             return commentRepo.AddKudoToComment(commentId,nickname);
         }

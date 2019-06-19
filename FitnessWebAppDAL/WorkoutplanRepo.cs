@@ -55,7 +55,7 @@ namespace FitnessWebAppDAL
             context.AddExerciseToWorkout(workoutPlanId, exerciseId, repCount, setCount);
         }
 
-        public string AddKudoToWorkoutPlan(int workoutplanId, string nickname)
+        public ErrorMessage AddKudoToWorkoutPlan(int workoutplanId, string nickname)
         {
             return context.AddKudoToWorkoutPlan(workoutplanId, nickname);
         }
