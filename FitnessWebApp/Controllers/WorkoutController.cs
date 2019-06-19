@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FitnessWebAppDAL;
 using FitnessWebAppLogic;
 using FitnessWebAppModels;
 using Microsoft.AspNetCore.Authorization;
@@ -12,7 +13,7 @@ namespace FitnessWebApp.Controllers
 {
     public class WorkoutController : Controller
     {
-        WorkoutPlanLogic workoutPlanLogic = new WorkoutPlanLogic();
+        WorkoutPlanLogic workoutPlanLogic = new WorkoutPlanLogic(new WorkoutPlanDAL());
         public IActionResult Index()
         {
             return View(workoutPlanLogic.GetTopWorkoutPlans());

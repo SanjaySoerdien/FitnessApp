@@ -8,7 +8,7 @@ using FitnessWebAppModels;
 
 namespace FitnessWebAppDAL
 {
-    class UserDAL : IUserContext
+    public class UserDAL : IUserContext
     {
         private readonly string connectionString =
             "Server=mssql.fhict.local;Database=dbi413271_iller;User Id=dbi413271_iller;Password=sjorsbaktniet;";

@@ -11,15 +11,9 @@ namespace FitnessWebAppDAL
     {
         private readonly IWorkoutPlanContext context;
 
-        public WorkoutplanRepo()
-        {
-            context = new WorkoutPlanDAL();
-            //context = new WorkoutMemoryContext();
-        }
-
         public WorkoutplanRepo(IWorkoutPlanContext workoutPlanContext)
         {
-            context = new WorkoutMemoryContext();
+            this.context = workoutPlanContext;
         }
 
         public List<WorkoutPlan> GetWorkoutPlansByUser(string username)

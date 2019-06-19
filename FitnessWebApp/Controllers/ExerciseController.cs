@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FitnessWebAppDAL;
 using FitnessWebAppLogic;
 using FitnessWebAppModels;
 using Microsoft.AspNetCore.Authorization;
@@ -11,7 +12,7 @@ namespace FitnessWebApp.Controllers
 {
     public class ExerciseController : Controller
     {
-        ExerciseLogic exerciseLogic = new ExerciseLogic();
+        ExerciseLogic exerciseLogic = new ExerciseLogic(new ExerciseDAL());
         public IActionResult Index()
         {
             return View(exerciseLogic.GetTopExercises());

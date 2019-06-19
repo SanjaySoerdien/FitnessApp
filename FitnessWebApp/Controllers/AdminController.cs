@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FitnessWebAppDAL;
 using FitnessWebAppLogic;
 using FitnessWebAppModels;
 using Microsoft.AspNetCore.Authorization;
@@ -12,11 +13,10 @@ namespace FitnessWebApp.Controllers
     [Authorize (Roles = "Admin")]
     public class AdminController : Controller
     {
-        AdminLogic adminLogic = new AdminLogic();
-        ExerciseLogic exerciseLogic = new ExerciseLogic();
+        AdminLogic adminLogic = new AdminLogic(new AdminDal());
+        ExerciseLogic exerciseLogic = new ExerciseLogic(new ExerciseDAL());
         public IActionResult Index()
         {
-      
             return View(adminLogic.GetRecentChanges());
         }
 

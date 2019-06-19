@@ -9,15 +9,9 @@ namespace FitnessWebAppDAL
     {
         private IAdminContext context;
 
-        public AdminRepo()
-        {
-            context = new AdminDal();
-            //context = new AdminMemoryContext();
-        }
         public AdminRepo(IAdminContext context)
         {
-            //context = new AdminDal();
-            context = new AdminMemoryContext();
+            this.context = context;
         }
 
         public int AddCategory(string category)

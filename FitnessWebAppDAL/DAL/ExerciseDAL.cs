@@ -6,9 +6,9 @@ using System.Text;
 using FitnessWebAppInterfaces;
 using FitnessWebAppModels;
 
-namespace FitnessWebAppDAL.DAL
+namespace FitnessWebAppDAL
 {
-    class ExerciseDAL : IExerciseContext
+    public class ExerciseDAL : IExerciseContext
     {
         private readonly string connectionString =
             "Server=mssql.fhict.local;Database=dbi413271_iller;User Id=dbi413271_iller;Password=sjorsbaktniet;";

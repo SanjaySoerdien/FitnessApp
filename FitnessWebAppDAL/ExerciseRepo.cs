@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using FitnessWebAppDAL.DAL;
+using FitnessWebAppDAL;
 using FitnessWebAppDAL.MemoryContexts;
 using FitnessWebAppInterfaces;
 using FitnessWebAppModels;
@@ -12,15 +12,9 @@ namespace FitnessWebAppDAL
     {
         private readonly IExerciseContext context;
 
-        public ExerciseRepo()
-        {
-            context = new ExerciseDAL();
-            //context = new ExerciseMemoryContext();
-        }
-
         public ExerciseRepo(IExerciseContext exerciseContext)
         {
-            context = new ExerciseMemoryContext();
+            context = exerciseContext;
         }
 
         public Exercise GetExercise(string name)

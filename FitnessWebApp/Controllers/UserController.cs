@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using FitnessWebApp.Models;
+using FitnessWebAppDAL;
 using FitnessWebAppLogic;
 using FitnessWebAppModels;
 using Microsoft.AspNetCore.Authentication;
@@ -16,7 +17,7 @@ namespace FitnessWebApp.Controllers
 {
     public class UserController : Controller
     {
-        UserLogic userLogic = new UserLogic();
+        UserLogic userLogic = new UserLogic(new UserDAL());
         public IActionResult Index()
         {
             return View("Login");

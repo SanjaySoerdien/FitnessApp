@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessWebAppModels", "Fitn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessWebApp", "FitnessWebApp\FitnessWebApp.csproj", "{358CAE38-9D1A-45C7-882C-B3B18345F798}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessWebAppTests", "NUnitTestProject1\FitnessWebAppTests.csproj", "{E095CD5A-D1FA-4936-8551-6079031DE227}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessWebAppTests", "NUnitTestProject1\FitnessWebAppTests.csproj", "{E095CD5A-D1FA-4936-8551-6079031DE227}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

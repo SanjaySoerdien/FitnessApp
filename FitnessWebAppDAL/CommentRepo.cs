@@ -11,12 +11,6 @@ namespace FitnessWebAppDAL
     {
         private ICommentContext context;
 
-        public CommentRepo()
-        {
-            context = new CommentDAL();
-            //context = new CommentMemoryContext();
-        }
-
         public CommentRepo(ICommentContext context)
         {
             this.context = context;

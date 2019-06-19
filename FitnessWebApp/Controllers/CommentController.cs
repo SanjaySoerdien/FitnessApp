@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FitnessWebAppDAL;
 using FitnessWebAppLogic;
 using FitnessWebAppModels;
 using Microsoft.AspNetCore.Authorization;
@@ -11,7 +12,7 @@ namespace FitnessWebApp.Controllers
 {
     public class CommentController : Controller
     {
-        private CommentLogic commentLogic = new CommentLogic();
+        private CommentLogic commentLogic = new CommentLogic(new CommentDAL());
         [Authorize]
         public IActionResult AddCommentToWorkout(int workoutId , string text)
         {

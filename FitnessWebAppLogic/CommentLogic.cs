@@ -11,11 +11,6 @@ namespace FitnessWebAppLogic
     {
         private CommentRepo commentRepo;
 
-        public CommentLogic()
-        {
-            commentRepo  = new CommentRepo();
-        }
-
         public CommentLogic(ICommentContext context)
         {
             commentRepo = new CommentRepo(context);

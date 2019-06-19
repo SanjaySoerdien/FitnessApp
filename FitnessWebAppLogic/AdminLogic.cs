@@ -2,13 +2,19 @@
 using System.Collections.Generic;
 using System.Text;
 using FitnessWebAppDAL;
+using FitnessWebAppInterfaces;
 using FitnessWebAppModels;
 
 namespace FitnessWebAppLogic
 {
     public class AdminLogic
     {
-        private AdminRepo adminRepo = new AdminRepo();
+        private AdminRepo adminRepo;
+
+        public AdminLogic(IAdminContext context)
+        {
+            adminRepo = new AdminRepo(context);
+        }
 
         public int AddCategory(string category)
         {

@@ -12,10 +12,6 @@ namespace FitnessWebAppLogic
     {
         private ExerciseRepo exerciseRepo;
 
-        public ExerciseLogic()
-        {
-            exerciseRepo = new ExerciseRepo();
-        }
 
         public ExerciseLogic(IExerciseContext exerciseContext)
         {

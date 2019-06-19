@@ -12,10 +12,6 @@ namespace FitnessWebAppLogic
     {
         private readonly UserRepo userRepo;
 
-        public UserLogic()
-        {
-            userRepo = new UserRepo();
-        }
         public UserLogic(IUserContext context)
         {
             userRepo = new UserRepo(context);

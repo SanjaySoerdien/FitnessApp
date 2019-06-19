@@ -12,10 +12,6 @@ namespace FitnessWebAppLogic
     {
         private readonly WorkoutplanRepo workoutplanRepo;
 
-       public WorkoutPlanLogic()
-       {
-           workoutplanRepo = new WorkoutplanRepo();
-       }
 
        public WorkoutPlanLogic(IWorkoutPlanContext context)
        {
