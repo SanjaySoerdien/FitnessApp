@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using FitnessWebAppDAL.MemoryContexts;
-using FitnessWebAppInterfaces;
+﻿using FitnessWebAppInterfaces;
 using FitnessWebAppModels;
 
-namespace FitnessWebAppDAL
+namespace FitnessWebAppRepos
 {
     public class CommentRepo
     {

@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FitnessWebAppInterfaces;
-using FitnessWebAppModels;
 
-namespace FitnessWebAppDAL.MemoryContexts
+namespace FitnessWebAppMemContexts
 {
     public class ExerciseMemoryContext : IExerciseContext
     {

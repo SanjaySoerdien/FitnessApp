@@ -5,10 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FitnessWebAppDAL\FitnessWebAppDAL.csproj" />
     <ProjectReference Include="..\FitnessWebAppInterfaces\FitnessWebAppInterfaces.csproj" />
     <ProjectReference Include="..\FitnessWebAppModels\FitnessWebAppModels.csproj" />
-    <ProjectReference Include="..\FitnessWebAppRepos\FitnessWebAppRepos.csproj" />
   </ItemGroup>
 
 </Project>

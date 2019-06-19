@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using FitnessWebAppDAL;
 using FitnessWebAppInterfaces;
 using FitnessWebAppModels;
+using FitnessWebAppRepos;
 
 namespace FitnessWebAppLogic
 {

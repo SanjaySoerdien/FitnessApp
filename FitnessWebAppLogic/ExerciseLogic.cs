@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using FitnessWebAppInterfaces;
-using FitnessWebAppDAL;
-using FitnessWebAppDAL.MemoryContexts;
 using FitnessWebAppModels;
+using FitnessWebAppRepos;
 
 namespace FitnessWebAppLogic
 {

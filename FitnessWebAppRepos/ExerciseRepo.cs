@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using FitnessWebAppDAL;
-using FitnessWebAppDAL.MemoryContexts;
+﻿using System.Collections.Generic;
 using FitnessWebAppInterfaces;
 using FitnessWebAppModels;
 
-namespace FitnessWebAppDAL
+namespace FitnessWebAppRepos
 {
     public class ExerciseRepo
     {

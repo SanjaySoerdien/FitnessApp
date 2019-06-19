@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using FitnessWebAppDAL.MemoryContexts;
 using FitnessWebAppInterfaces;
 using FitnessWebAppModels;
 
-namespace FitnessWebAppDAL
+namespace FitnessWebAppRepos
 {
     public class AdminRepo
     {

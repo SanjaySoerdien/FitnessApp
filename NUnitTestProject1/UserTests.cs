@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using FitnessWebAppDAL.MemoryContexts;
 using FitnessWebAppInterfaces;
 using FitnessWebAppLogic;
 using FitnessWebAppModels;

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Text;
-using FitnessWebAppDAL;
 using FitnessWebAppInterfaces;
 using FitnessWebAppModels;
+using FitnessWebAppRepos;
 
 namespace FitnessWebAppLogic
 {

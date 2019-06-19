@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using FitnessWebAppInterfaces;
-using FitnessWebAppModels;
 
-namespace FitnessWebAppDAL.MemoryContexts
+namespace FitnessWebAppMemContexts
 {
     public class AdminMemoryContext : IAdminContext
     {

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using FitnessWebAppDAL.MemoryContexts;
 using FitnessWebAppLogic;
 using NUnit.Framework;
 
