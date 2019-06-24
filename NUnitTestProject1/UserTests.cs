@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using FitnessWebAppInterfaces;
 using FitnessWebAppLogic;
+using FitnessWebAppMemContexts;
 using FitnessWebAppModels;
 using NUnit.Framework;
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using FitnessWebAppLogic;
+using FitnessWebAppMemContexts;
 using FitnessWebAppModels;
 using NUnit.Framework;
 
@@ -16,13 +17,13 @@ namespace FitnessWebAppTests
             exerciseLogic = new ExerciseLogic(new ExerciseMemoryContext());
         }
 
-        [Test]
+/*        [Test]
         public void AddKudoToExercise_IdIs3_ReturnStringWithNumber()
         {
             var result = exerciseLogic.AddKudoToExercise(3, "UnitTest");
 
             Assert.That(Convert.ToInt32(result), Is.GreaterThan(0));
-        }
+        }*/
 
         [Test]
         public void GetTopExercises_ReturnListBiggerThan0()
